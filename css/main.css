@@ -1,0 +1,350 @@
+@charset "UTF-8";
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.7rem;
+}
+
+.container {
+  max-width: 1070px;
+  min-width: 960px;
+  margin: 0 auto;
+}
+
+footer {
+  font-size: 11px;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  color: #777;
+}
+
+#headercontent {
+  background-image: url(../img/mainbg.jpg);
+  background-position: 50% 0%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 20px 0 50px;
+  height: 600px;
+}
+
+#headercontent p {
+  padding-top: 20px;
+}
+
+#headercontent .loginbuttons {
+  margin-top: 20px;
+}
+
+#headercontent .loginbuttons .btn-basic {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #6868AF;
+  color: #fff;
+  width: 200px;
+  font-weight: 400;
+  font-size: 16px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: default;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#headercontent .loginbuttons .btn-basic:hover {
+  background-color: #7878CC;
+}
+
+.overlay {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay .modal-wrapping {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 450px;
+  background-color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay .modal-wrapping .modal-wrapping__title {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.overlay .modal-wrapping .modal-wrapping__name {
+  font-size: 13px;
+  line-height: 1rem;
+  color: #777;
+  text-align: left;
+}
+
+.overlay .modal-wrapping .modal-wrapping__formcontrol {
+  /* デフォルトスタイルをリセット */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  /* font-familyを継承しないので、継承させる */
+  font-family: inherit;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  color: inherit;
+  font-size: 1em;
+  padding: 0.4em 0.8em;
+  width: 100%;
+  height: 40px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 4px 0 10px;
+}
+
+.overlay .modal-wrapping .modal-wrapping__submit {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #6868AF;
+  color: #fff;
+  width: 200px;
+  font-weight: 400;
+  font-size: 16px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: default;
+  margin: 20px 20px 0 0;
+  width: 100%;
+}
+
+.overlay .modal-wrapping .modal-wrapping__submit:hover {
+  background-color: #7878CC;
+}
+
+#modal-signup, #modal-login, #modal-newplan {
+  display: none;
+}
+
+#introduction {
+  padding: 30px 40px;
+}
+
+#introduction .introduction__title {
+  text-align: center;
+  font-size: 24px;
+}
+
+#introduction .introitems-wrap {
+  margin: 30px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#introduction .introitems-wrap .intro-item {
+  width: 33%;
+  padding: 20px 40px;
+}
+
+#introduction .introitems-wrap .intro-item .intro-icon {
+  float: left;
+  color: #6868AF;
+  font-size: 40px;
+  padding-right: 20px;
+  display: block;
+  line-height: 90px;
+}
+
+#introduction .introitems-wrap .intro-item h3 {
+  font-weight: 700;
+  color: #6868AF;
+}
+
+#introduction .introitems-wrap .intro-item p {
+  font-size: 13px;
+  line-height: 1.5rem;
+}
+
+#post-photos {
+  padding: 30px 40px;
+}
+
+#post-photos h2 {
+  font-size: 24px;
+  display: inline-block;
+}
+
+#post-photos span {
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+#post-photos p {
+  font-size: 12px;
+  color: #777;
+}
+
+#post-photos .post-photos-wrap {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#post-photos .post-photos-wrap .post-photo {
+  width: 32%;
+}
+
+#post-photos .post-photos-wrap .post-photo .post-photo__photo {
+  width: 100%;
+  height: 300px;
+  background-color: #eee;
+  margin-bottom: 10px;
+}
+
+#post-photos .post-photos-wrap .post-photo .post-photo_text {
+  line-height: 1rem;
+}
+
+.user-heading {
+  padding: 10px auto 0;
+}
+
+.user-heading img {
+  float: left;
+  padding-left: 40px;
+}
+
+.user-heading .user {
+  float: right;
+  padding-right: 40px;
+}
+
+.user-heading .user p {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.user-heading .user .logout {
+  cursor: default;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.personal-link {
+  clear: both;
+  padding-right: 40px;
+  margin: 30px auto 50px;
+  text-align: right;
+  color: #6868AF;
+  cursor: pointer;
+}
+
+.personal-link .icon {
+  padding-right: 5px;
+}
+
+#addcampplan {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #6868AF;
+  color: #fff;
+  width: 200px;
+  font-weight: 400;
+  font-size: 16px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: default;
+  border-radius: 0;
+  text-align: center;
+  margin: 0 auto;
+  width: 400px;
+  cursor: pointer;
+}
+
+#addcampplan:hover {
+  background-color: #7878CC;
+}
+
+#addcampplan span {
+  font-size: 20px;
+}
+
+#campcards {
+  background-color: #cccce4;
+  padding: 40px;
+  margin: 50px 0;
+}
+
+#campcards .campcards-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 40px;
+}
+
+#campcards .campcards-wrap .campcard {
+  width: 30%;
+  height: 160px;
+  text-align: center;
+  background-color: #9a9ac9;
+  border-radius: 8px;
+  -webkit-box-shadow: 2px 2px 2px #777;
+          box-shadow: 2px 2px 2px #777;
+  position: relative;
+  cursor: pointer;
+}
+
+#campcards .campcards-wrap .campcard .tent-icon {
+  font-size: 110px;
+  color: #6868AF;
+  line-height: 150px;
+}
+
+#campcards .campcards-wrap .campcard .campcard__text {
+  color: #fff;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  z-index: 1;
+}
+
+#campcards .campcards-wrap .campcard .campcard__text .campcard__place {
+  font-size: 22px;
+}
+
+#campcards .campcards-wrap .campcard .campcard__text .campcard__date {
+  font-size: 13px;
+}
+/*# sourceMappingURL=main.css.map */

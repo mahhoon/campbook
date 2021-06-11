@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's go CAMPING</title>
+
+    <!--リセットCSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <!--favicon -->
+    <!--webフォント -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!--css -->
+    <link rel="stylesheet" href="css/main.css">
+    <noscript>
+    <!-- JavaScriptが無効化されている場合の追加スタイルシート -->
+    
+    </noscript>
+</head>
+<body>
+    <div id="app"></div>
+        <!--トップページ-->
+        <section id="toppage">
+            <!--ヘッダー-->
+            <div id="headercontent" class="container">
+                <h1><img src="img/title.svg" alt="キャンプノシオリ"></h1>
+                <p>キャンプ行ってますかー？<br>
+                    キャンプの準備をちょっと便利にしてくれるかもしれないアプリを作ってみました。<br>
+                    行き届かない所もありますが、良かったら使ってみてください！</p>          
+                <div class="loginbuttons">
+                    <div class="btn-basic loginbuttons__login">ログイン</div>
+                    <div class="btn-basic loginbuttons__signup">新規登録</div>
+                </div>
+            </div>
+            <!--ログインモーダル-->
+            <div class="modal-wrapping" id="modal-login">
+                <div class="overlay">
+                    <form class="modal-wrapping">
+                        <p class="modal-wrapping__title">ログイン</p>
+                        <div class="modal-wrapping__name">メールアドレス</div>
+                        <input tupe="e-mail" class="modal-wrapping__formcontrol login-email">
+                        <div class="modal-wrapping__name">パスワード</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol login-password">
+                        <div type="submit" class="modal-wrapping__submit">ログイン</div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-wrapping" id="modal-signup">
+                <div class="overlay">
+                    <form class="modal-wrapping">
+                        <p class="modal-wrapping__title">新規登録</p>
+                        <div class="modal-wrapping__name">メールアドレス</div>
+                        <input tupe="e-mail" class="modal-wrapping__formcontrol login-email">
+                        <div class="modal-wrapping__name">パスワード</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol login-password">
+                        <div type="submit" class="modal-wrapping__submit">新規登録</div>                    
+                    </form>
+                </div>
+            </div>
+            <!--機能-->
+            <div id="introduction" class="container">
+                <h2 class="introduction__title">こんなことができます</h2>
+                <ul class="introitems-wrap">
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
+                        <h3>キャンプ場情報表示</h3>
+                        <p>行く予定のキャンプ場の天気予報・地図・周辺情報を表示します。</p>
+                    </li>
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="far fa-list-alt"></i></i></span>
+                        <h3>TODOリスト作成</h3>
+                        <p>買い物リストやキャンセルポリシー、備忘録などに。</p>
+                    </li>
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="fas fa-check-circle"></i></span>
+                        <h3>持ち物チェックリスト作成</h3>
+                        <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！</p>
+                    </li>
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="fas fa-link"></i></span>
+                        <h3>お役立ちリンク集を作れる</h3>
+                        <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
+                    </li>
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="fas fa-camera"></i></span>
+                        <h3>写真アップ（予定）</h3>
+                        <p>キャンプに行ったら写真をアップ。トップページでみんなにシェア。</p>
+                    </li>
+                    <li class="intro-item">
+                        <span class="intro-icon"><i class="fas fa-drumstick-bite"></i></span>
+                        <h3>キャンプごはんメモ（予定）</h3>
+                        <p>キャンプごはんメニュー計画のメモに。</p>
+                    </li>
+                </ul>
+            </div>
+            <!--投稿写真集-->
+            <div id="post-photos" class="container">
+                <h2 class="post-photos-title">CAMP SNAP!</h2>
+                <span>キャンプマニアの写真たち</span>
+                <div class="post-photos-wrap">
+                    <div class="post-photo">
+                        <div class="post-photo__photo"><img src="" ></div>
+                        <P class="post-photo__title post-photo_text">カレー20人分</P>
+                        <p class="post-photo__info post-photo_text">Recamp勝浦<span class="post-photo__date">2020/11/03</span></p>
+                        <P class="post-photo__by post-photo_text">username</P>
+                    </div>
+                    <div class="post-photo">
+                        <div class="post-photo__photo"><img src="" ></div>
+                        <P class="post-photo__title post-photo_text">カレー20人分</P>
+                        <p class="post-photo__info post-photo_text">Recamp勝浦<span class="post-photo__date">2020/11/03</span></p>
+                        <P class="post-photo__by post-photo_text">username</P>
+                    </div>
+                    <div class="post-photo">
+                        <div class="post-photo__photo"><img src="" ></div>
+                        <P class="post-photo__title post-photo_text">カレー20人分</P>
+                        <p class="post-photo__info post-photo_text">Recamp勝浦<span class="post-photo__date">2020/11/03</span></p>
+                        <P class="post-photo__by post-photo_text">username</P>
+                    </div>
+                </div>
+            </div>
+            <!--フッター-->
+            <footer class="container">
+                <p>&copy; luonto 2021</p>
+            </footer>
+        </section>
+        <!--ユーザートップページ-->
+        <section id="userindex">
+            <div class="user-heading container">
+                <img src="img/logo-small.svg">
+                <div class="user">
+                    <p class="username">ユーザーIDさん</p>
+                    <p class="logout">ログアウト</p>
+                </div>
+            </div>
+            <div class="personal-link container">
+                <P><span class="icon"><i class="fas fa-check-circle"></i></span></i>持ち物リストの編集</P>
+                <p><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+            </div>
+            <div id="addcampplan">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
+            <div id="campcards">
+                <div class="campcards-wrap container">
+                    <div class="campcard">
+                        <span class="tent-icon"><i class="fas fa-campground"></i></span>
+                        <div class="campcard__text">
+                            <p class="campcard__place">ふもとっぱら</p>
+                            <p class="campcard__data">2021/5/3-5/5</p>
+                        </div>
+                    </div>
+                    <div class="campcard">
+                        <span class="tent-icon"><i class="fas fa-campground"></i></span>
+                        <div class="campcard__text">
+                            <p class="campcard__place">ふもとっぱら</p>
+                            <p class="campcard__data">2021/5/3-5/5</p>
+                        </div>
+                    </div>
+                    <div class="campcard">
+                        <span class="tent-icon"><i class="fas fa-campground"></i></span>
+                        <div class="campcard__text">
+                            <p class="campcard__place">ふもとっぱら</p>
+                            <p class="campcard__data">2021/5/3-5/5</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!--キャンプ登録モーダル-->
+            <div class="modal-wrapping" id="modal-newplan">
+                <div class="overlay">
+                    <form class="modal-wrapping">
+                        <p class="modal-wrapping__title">今度行くキャンプの登録をします</p>
+                        <div class="modal-wrapping__name">キャンプ場名</div>
+                        <input tupe="text" class="modal-wrapping__formcontrol campsite">
+                        <div class="modal-wrapping__name">公式サイト</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol campsiteurl">
+                        <div class="modal-wrapping__name">電話番号</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol campsitetel">
+                        <div class="modal-wrapping__name">日程</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol campdate">
+                        <div class="modal-wrapping__name">イメージ画像</div>
+                        <input tupe="password" class="modal-wrapping__formcontrol campdimg">
+                        <div type="submit" class="modal-wrapping__submit">シオリ作成</div>
+                    </form>
+                </div>
+            </div>
+            <!--フッター-->
+            <footer class="container">
+                <p>&copy; luonto 2021</p>
+            </footer>
+        </section>
+        
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyBzQ9Lya1ysM3s9nJg3WV1DD2GlT6i79L0",
+    authDomain: "camp-booklet-4944c.firebaseapp.com",
+    projectId: "camp-booklet-4944c",
+    storageBucket: "camp-booklet-4944c.appspot.com",
+    messagingSenderId: "778773079794",
+    appId: "1:778773079794:web:13a7766fe2bff0fc51526b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <!-- まずjQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Popper.js, 次に Bootstrap JS -->
+    
+    <!-- その他のライブラリのJavaScript -->
+    
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>
+    
+    <script src="js/main.js"></script>
+    
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script> 
+</body>
+</html>
