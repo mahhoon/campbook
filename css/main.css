@@ -1,4 +1,21 @@
 @charset "UTF-8";
+.pc {
+  display: block;
+}
+
+.sp {
+  display: none;
+}
+
+@media (max-width: 670px) {
+  .pc {
+    display: none;
+  }
+  .sp {
+    display: block;
+  }
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -11,10 +28,22 @@ body {
   line-height: 1.7rem;
 }
 
+@media (max-width: 670px) {
+  body {
+    font-size: 13px;
+  }
+}
+
 .container {
   max-width: 1070px;
   min-width: 960px;
   margin: 0 auto;
+}
+
+@media (max-width: 670px) {
+  .container {
+    min-width: 100%;
+  }
 }
 
 footer {
@@ -35,8 +64,25 @@ footer {
   height: 600px;
 }
 
+@media (max-width: 670px) {
+  #headercontent {
+    height: auto;
+  }
+  #headercontent img {
+    width: 250px;
+    padding-bottom: 60px;
+  }
+}
+
 #headercontent p {
   padding-top: 20px;
+}
+
+@media (max-width: 670px) {
+  #headercontent p {
+    text-align: left;
+    padding: 20px;
+  }
 }
 
 #headercontent .loginbuttons {
@@ -63,6 +109,13 @@ footer {
   background-color: #7878CC;
 }
 
+@media (max-width: 670px) {
+  #headercontent .loginbuttons .btn-basic {
+    width: 60%;
+    margin: 0 0 15px 0;
+  }
+}
+
 .overlay {
   z-index: 1;
   position: fixed;
@@ -79,11 +132,18 @@ footer {
   left: 0;
   right: 0;
   margin: auto;
-  width: 450px;
+  width: 50%;
   background-color: #fff;
   border-radius: 4px;
   text-align: center;
   padding: 20px;
+}
+
+@media (max-width: 670px) {
+  .overlay .modal-wrapping {
+    width: 80%;
+    top: 5%;
+  }
 }
 
 .overlay .modal-wrapping .modal-wrapping__title {
@@ -154,9 +214,21 @@ footer {
   padding: 30px 40px;
 }
 
+@media (max-width: 670px) {
+  #introduction {
+    padding: 30px;
+  }
+}
+
 #introduction .introduction__title {
   text-align: center;
   font-size: 24px;
+}
+
+@media (max-width: 670px) {
+  #introduction .introduction__title {
+    font-size: 20px;
+  }
 }
 
 #introduction .introitems-wrap {
@@ -168,9 +240,22 @@ footer {
       flex-wrap: wrap;
 }
 
+@media (max-width: 670px) {
+  #introduction .introitems-wrap {
+    margin: 20px 0;
+  }
+}
+
 #introduction .introitems-wrap .intro-item {
   width: 33%;
   padding: 20px 40px;
+}
+
+@media (max-width: 670px) {
+  #introduction .introitems-wrap .intro-item {
+    width: 100%;
+    padding: 10px 0;
+  }
 }
 
 #introduction .introitems-wrap .intro-item .intro-icon {
@@ -180,6 +265,13 @@ footer {
   padding-right: 20px;
   display: block;
   line-height: 90px;
+}
+
+@media (max-width: 670px) {
+  #introduction .introitems-wrap .intro-item .intro-icon {
+    font-size: 30px;
+    line-height: 60px;
+  }
 }
 
 #introduction .introitems-wrap .intro-item h3 {
@@ -196,14 +288,32 @@ footer {
   padding: 30px 40px;
 }
 
+@media (max-width: 670px) {
+  #post-photos {
+    padding: 20px;
+  }
+}
+
 #post-photos h2 {
   font-size: 24px;
   display: inline-block;
 }
 
+@media (max-width: 670px) {
+  #post-photos h2 {
+    display: block;
+  }
+}
+
 #post-photos span {
   font-size: 13px;
   padding-left: 10px;
+}
+
+@media (max-width: 670px) {
+  #post-photos span {
+    padding: 0;
+  }
 }
 
 #post-photos p {
@@ -227,6 +337,13 @@ footer {
   width: 32%;
 }
 
+@media (max-width: 670px) {
+  #post-photos .post-photos-wrap .post-photo {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 #post-photos .post-photos-wrap .post-photo .post-photo__photo {
   width: 100%;
   height: 300px;
@@ -248,7 +365,7 @@ footer {
 }
 
 .user-heading .user {
-  float: right;
+  text-align: right;
   padding-right: 40px;
 }
 
@@ -263,8 +380,34 @@ footer {
   cursor: pointer;
 }
 
+@media (max-width: 670px) {
+  .user-heading {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .user-heading .user {
+    padding: 0;
+    text-align: left;
+  }
+  .user-heading .user p {
+    display: block;
+  }
+}
+
+@media (max-width: 670px) {
+  #userindex h1 {
+    text-align: center;
+    margin: 40px auto 20px;
+  }
+}
+
 .personal-link {
-  clear: both;
   padding-right: 40px;
   margin: 30px auto 50px;
   text-align: right;
@@ -272,11 +415,19 @@ footer {
   cursor: pointer;
 }
 
+@media (max-width: 670px) {
+  .personal-link {
+    margin: 0;
+    padding-right: 20px;
+  }
+}
+
 .personal-link .icon {
   padding-right: 5px;
 }
 
 #addcampplan {
+  clear: both;
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
@@ -297,6 +448,12 @@ footer {
 
 #addcampplan:hover {
   background-color: #7878CC;
+}
+
+@media (max-width: 670px) {
+  #addcampplan {
+    width: 90%;
+  }
 }
 
 #addcampplan span {
@@ -353,5 +510,23 @@ footer {
 
 #campcards .campcards-wrap .campcard .campcard__text .campcard__date {
   font-size: 13px;
+}
+
+#campcards .campcards-wrap .campcard:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 670px) {
+  #campcards {
+    padding: 20px;
+    margin: 20px 0;
+  }
+  #campcards .campcards-wrap {
+    padding: 0;
+  }
+  #campcards .campcards-wrap .campcard {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
