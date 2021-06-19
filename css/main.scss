@@ -140,7 +140,7 @@ footer {
         left: 0;
         right: 0;
         margin: auto;
-        width: 50%;
+        width: 450px;
         background-color: #fff;
         border-radius: 4px;
         text-align: center;
@@ -192,10 +192,17 @@ footer {
             cursor: pointer;
             color: #888;
         }
+        .modal-msgbox {
+            height: 20px;
+            .modal-errormsg {
+                font-size: 13px;
+                text-align: left;
+            }
+        }
     }
 }
 
-#modal-signup,#modal-login,#modal-newplan {
+#modal-newplan {
     display: none;
 }
 
@@ -305,6 +312,9 @@ footer {
 
 
 //ユーザートップページ
+#userindex {
+    padding-top: 20px;
+}
 .user-heading {
     padding: 10px auto 0;
     img {

@@ -132,7 +132,7 @@ footer {
   left: 0;
   right: 0;
   margin: auto;
-  width: 50%;
+  width: 450px;
   background-color: #fff;
   border-radius: 4px;
   text-align: center;
@@ -206,7 +206,16 @@ footer {
   color: #888;
 }
 
-#modal-signup, #modal-login, #modal-newplan {
+.overlay .modal-wrapping .modal-msgbox {
+  height: 20px;
+}
+
+.overlay .modal-wrapping .modal-msgbox .modal-errormsg {
+  font-size: 13px;
+  text-align: left;
+}
+
+#modal-newplan {
   display: none;
 }
 
@@ -353,6 +362,10 @@ footer {
 
 #post-photos .post-photos-wrap .post-photo .post-photo_text {
   line-height: 1rem;
+}
+
+#userindex {
+  padding-top: 20px;
 }
 
 .user-heading {

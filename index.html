@@ -19,9 +19,9 @@
     </noscript>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
         <!--トップページ-->
-        <section id="toppage">
+        <section id="toppage"  v-if="nouser">
             <!--ヘッダー-->
             <div id="headercontent" class="container">
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
@@ -30,37 +30,13 @@
                     キャンプの準備をちょっと便利にしてくれるかもしれないアプリを作ってみました。<br>
                     行き届かない所もありますが、良かったら使ってみてください！</p>          
                 <div class="loginbuttons">
-                    <div class="btn-basic loginbuttons__login">ログイン</div>
-                    <div class="btn-basic loginbuttons__signup">新規登録</div>
+                    <div class="btn-basic loginbuttons__login" v-on:click="openLoginModal">ログイン</div>
+                    <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
                 </div>
             </div>
             <!--ログインモーダル-->
-            <div class="modal-wrapping" id="modal-login">
-                <div class="overlay">
-                    <form class="modal-wrapping">
-                        <div class="close-modal"><i class="fa fa-2x fa-times"></i></div>
-                        <p class="modal-wrapping__title">ログイン</p>
-                        <div class="modal-wrapping__name">メールアドレス</div>
-                        <input tupe="e-mail" class="modal-wrapping__formcontrol login-email">
-                        <div class="modal-wrapping__name">パスワード</div>
-                        <input tupe="password" class="modal-wrapping__formcontrol login-password">
-                        <div type="submit" class="modal-wrapping__submit">ログイン</div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-wrapping" id="modal-signup">
-                <div class="overlay">
-                    <form class="modal-wrapping">
-                        <div class="close-modal"><i class="fa fa-2x fa-times"></i></div>
-                        <p class="modal-wrapping__title">新規登録</p>
-                        <div class="modal-wrapping__name">メールアドレス</div>
-                        <input tupe="e-mail" class="modal-wrapping__formcontrol login-email">
-                        <div class="modal-wrapping__name">パスワード</div>
-                        <input tupe="password" class="modal-wrapping__formcontrol login-password">
-                        <div type="submit" class="modal-wrapping__submit">新規登録</div>                    
-                    </form>
-                </div>
-            </div>
+            <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal" v-bind:loginemail="loginEmail" v-bind:loginpass="loginPassword"></login-modal>
+            <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal" v-bind:signupemail="signupEmail" v-bind:signuppass="signupPassword"></signup-modal>
             <!--機能-->
             <div id="introduction" class="container">
                 <h2 class="introduction__title">こんなことができます</h2>
@@ -122,18 +98,14 @@
                     </div>
                 </div>
             </div>
-            <!--フッター-->
-            <footer class="container">
-                <p>&copy; luonto 2021</p>
-            </footer>
         </section>
         <!--ユーザートップページ-->
-        <section id="userindex">
+        <section id="userindex" v-else>
             <div class="user-heading container">
                 <h1 class="pc"><img src="img/logo-small.svg"></h1>
                 <div class="user">
                     <p class="username">ユーザーIDさん</p>
-                    <p class="logout">ログアウト</p>
+                    <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
                 <div class="personal-link">
                     <P><span class="icon"><i class="fas fa-check-circle"></i></span></i>持ち物リストの編集</P>
@@ -166,9 +138,9 @@
                             <p class="campcard__data">2021/5/3-5/5</p>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
+
             <!--キャンプ登録モーダル-->
             <div class="modal-wrapping" id="modal-newplan">
                 <div class="overlay">
@@ -189,35 +161,33 @@
                     </form>
                 </div>
             </div>
-            <!--フッター-->
-            <footer class="container">
-                <p>&copy; luonto 2021</p>
-            </footer>
+
         </section>
-        
+        <footer-wrap></footer-wrap>
+    </div>
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-
+    
     <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
+    https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
 
     <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-    apiKey: "AIzaSyBzQ9Lya1ysM3s9nJg3WV1DD2GlT6i79L0",
-    authDomain: "camp-booklet-4944c.firebaseapp.com",
-    projectId: "camp-booklet-4944c",
-    storageBucket: "camp-booklet-4944c.appspot.com",
-    messagingSenderId: "778773079794",
-    appId: "1:778773079794:web:13a7766fe2bff0fc51526b"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyBzQ9Lya1ysM3s9nJg3WV1DD2GlT6i79L0",
+  authDomain: "camp-booklet-4944c.firebaseapp.com",
+  projectId: "camp-booklet-4944c",
+  storageBucket: "camp-booklet-4944c.appspot.com",
+  messagingSenderId: "778773079794",
+  appId: "1:778773079794:web:13a7766fe2bff0fc51526b"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
     </script>
     
     <!-- まずjQuery -->
