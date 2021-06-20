@@ -36,20 +36,16 @@ $hover-violet: #7878CC;
 
 .pc {
     display: block;
+    @include sp {
+        display: none;
+    }
 }
 .sp {
     display: none;
-}
-
-@include sp {
-    .pc {
-        display: none;
-    }
-    .sp {
+    @include sp {
         display: block;
     }
 }
-
 
 //basic settings
 *{
@@ -81,6 +77,79 @@ footer {
     color: #777;
 }
 
+//ユーザーページ共通ヘッダー
+.user-heading {
+    padding: 0 40px;
+    @include flex;
+    h1 {
+        padding-left: 40px;
+    }
+    .user {
+        text-align: right;
+        padding-right: 20px;
+        p {
+            display: inline-block;
+            padding-left: 20px;
+        }
+        .logout {
+            cursor: default;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    @include sp {
+        padding: 0 20px;
+        margin-bottom: 10px;
+        h1 {
+            width: 170px;
+            padding-left: 0;
+            img {
+                width: 100%;
+            }
+        }
+        .toggle-wrap {
+            text-align: right;
+        }
+        .togglebtn {
+            z-index: 20;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: $violet;
+        }
+    }
+}
+.togglemenu {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    width: 200px;
+    z-index: 10;
+    transform: translateX(200px);
+    transition: all .3s;
+    text-align: right;
+    .icon {
+        padding-right: 5px;
+    }
+    p {
+        font-size: 14px;
+        color: $violet;
+        line-height: 3rem
+    }
+}
+.togglemenu-show {
+    transform: translateX(0);
+}
+
+.username-sp {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 
 //toppage
@@ -146,7 +215,7 @@ footer {
         text-align: center;
         padding: 20px;
         @include sp {
-            width: 80%;
+            width: 90%;
             top: 5%;
         }
 
@@ -195,8 +264,9 @@ footer {
         .modal-msgbox {
             height: 20px;
             .modal-errormsg {
-                font-size: 13px;
+                font-size: 12px;
                 text-align: left;
+                line-height: 1.1rem;
             }
         }
     }
@@ -315,48 +385,10 @@ footer {
 #userindex {
     padding-top: 20px;
 }
-.user-heading {
-    padding: 10px auto 0;
-    img {
-        float: left;
-        padding-left: 40px;
-    }
-    .user {
-        text-align: right;
-        padding-right: 40px;
-        p {
-            display: inline-block;
-            padding-left: 20px;
-        }
-        .logout {
-            cursor: default;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    }
-    @include sp {
-        @include flex;
-        .user {
-            padding: 0;
-            text-align: left;
-            p{
-                display: block;
-            }
-        }
-    }
-}
-@include sp {
-    #userindex {
-        h1 {
-            text-align: center;
-            margin: 40px auto 20px;
-        }
-    }
-}
 
 .personal-link {
-    padding-right: 40px;
-    margin: 30px auto 50px;
+    padding-right: 60px;
+    margin: 0 auto 30px;
     text-align: right;
     color: $violet;
     cursor: pointer;

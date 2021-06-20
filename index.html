@@ -102,18 +102,30 @@
         <!--ユーザートップページ-->
         <section id="userindex" v-else>
             <div class="user-heading container">
-                <h1 class="pc"><img src="img/logo-small.svg"></h1>
-                <div class="user">
-                    <p class="username">ユーザーIDさん</p>
-                    <p class="logout" v-on:click="logOut">ログアウト</p>
-                </div>
-                <div class="personal-link">
-                    <P><span class="icon"><i class="fas fa-check-circle"></i></span></i>持ち物リストの編集</P>
-                    <p><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
-                </div>
-                
+                    <h1 class="pc"><img src="img/logo-small.svg"></h1>
+                    <div class="user pc">
+                        <p class="username">こんにちは、ユーザーさん</p>
+                        <p class="logout" v-on:click="logOut">ログアウト</p>
+                    </div>
+
+                    <h1 class="sp"><img src="img/logo-small.svg"></h1>
+                    <div class="toggle-wrap sp">
+                        <div class="togglebtn">
+                            <span><i class="fas fa-bars"></i></span>
+                        </div>
+                    </div>
             </div>
-            <h1 class="sp"><img src="img/logo-small.svg"></h1>
+            <div class="togglemenu sp">
+                <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
+                <p><span class="icon"><i class="fas fa-check-circle"></i></span>写真投稿</p>
+                <p v-on:click="logOut"><span class="icon"><i class="fas fa-check-circle"></i></span>ログアウト</p>
+            </div>
+            <div class="username-sp container"><p class="sp">こんにちは、ユーザーさん</p></div>
+            
+            <div class="personal-link container pc">
+                <P><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</P>
+                <p><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+            </div>
             <div id="addcampplan">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
                 <div class="campcards-wrap container">

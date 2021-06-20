@@ -3,14 +3,17 @@
   display: block;
 }
 
+@media (max-width: 670px) {
+  .pc {
+    display: none;
+  }
+}
+
 .sp {
   display: none;
 }
 
 @media (max-width: 670px) {
-  .pc {
-    display: none;
-  }
   .sp {
     display: block;
   }
@@ -52,6 +55,99 @@ footer {
   padding: 20px 0;
   border-top: 1px solid #eee;
   color: #777;
+}
+
+.user-heading {
+  padding: 0 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.user-heading h1 {
+  padding-left: 40px;
+}
+
+.user-heading .user {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.user-heading .user p {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.user-heading .user .logout {
+  cursor: default;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .user-heading {
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
+  .user-heading h1 {
+    width: 170px;
+    padding-left: 0;
+  }
+  .user-heading h1 img {
+    width: 100%;
+  }
+  .user-heading .toggle-wrap {
+    text-align: right;
+  }
+  .user-heading .togglebtn {
+    z-index: 20;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #6868AF;
+  }
+}
+
+.togglemenu {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  padding: 20px;
+  width: 200px;
+  z-index: 10;
+  -webkit-transform: translateX(200px);
+          transform: translateX(200px);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  text-align: right;
+}
+
+.togglemenu .icon {
+  padding-right: 5px;
+}
+
+.togglemenu p {
+  font-size: 14px;
+  color: #6868AF;
+  line-height: 3rem;
+}
+
+.togglemenu-show {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.username-sp {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #headercontent {
@@ -141,7 +237,7 @@ footer {
 
 @media (max-width: 670px) {
   .overlay .modal-wrapping {
-    width: 80%;
+    width: 90%;
     top: 5%;
   }
 }
@@ -211,8 +307,9 @@ footer {
 }
 
 .overlay .modal-wrapping .modal-msgbox .modal-errormsg {
-  font-size: 13px;
+  font-size: 12px;
   text-align: left;
+  line-height: 1.1rem;
 }
 
 #modal-newplan {
@@ -368,61 +465,9 @@ footer {
   padding-top: 20px;
 }
 
-.user-heading {
-  padding: 10px auto 0;
-}
-
-.user-heading img {
-  float: left;
-  padding-left: 40px;
-}
-
-.user-heading .user {
-  text-align: right;
-  padding-right: 40px;
-}
-
-.user-heading .user p {
-  display: inline-block;
-  padding-left: 20px;
-}
-
-.user-heading .user .logout {
-  cursor: default;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-@media (max-width: 670px) {
-  .user-heading {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-  .user-heading .user {
-    padding: 0;
-    text-align: left;
-  }
-  .user-heading .user p {
-    display: block;
-  }
-}
-
-@media (max-width: 670px) {
-  #userindex h1 {
-    text-align: center;
-    margin: 40px auto 20px;
-  }
-}
-
 .personal-link {
-  padding-right: 40px;
-  margin: 30px auto 50px;
+  padding-right: 60px;
+  margin: 0 auto 30px;
   text-align: right;
   color: #6868AF;
   cursor: pointer;

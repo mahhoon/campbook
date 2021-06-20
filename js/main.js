@@ -150,3 +150,10 @@ new Vue({
     });     
   }
 })
+
+//jQuery
+$(function(){
+  $('.togglebtn').on('click', ()=>{
+    $('.togglemenu').toggleClass('togglemenu-show');
+  });
+});
