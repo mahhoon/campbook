@@ -37,15 +37,21 @@ body {
   }
 }
 
+body h2 {
+  font-size: 24px;
+}
+
 .container {
   max-width: 1070px;
   min-width: 960px;
   margin: 0 auto;
+  padding: 0 80px;
 }
 
 @media (max-width: 670px) {
   .container {
     min-width: 100%;
+    padding: 0 20px;
   }
 }
 
@@ -58,7 +64,7 @@ footer {
 }
 
 .user-heading {
-  padding: 0 40px;
+  margin-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -69,13 +75,8 @@ footer {
           justify-content: space-between;
 }
 
-.user-heading h1 {
-  padding-left: 40px;
-}
-
 .user-heading .user {
   text-align: right;
-  padding-right: 20px;
 }
 
 .user-heading .user p {
@@ -91,7 +92,6 @@ footer {
 
 @media (max-width: 670px) {
   .user-heading {
-    padding: 0 20px;
     margin-bottom: 10px;
   }
   .user-heading h1 {
@@ -312,10 +312,6 @@ footer {
   line-height: 1.1rem;
 }
 
-#modal-newplan {
-  display: none;
-}
-
 #introduction {
   padding: 30px 40px;
 }
@@ -401,7 +397,6 @@ footer {
 }
 
 #post-photos h2 {
-  font-size: 24px;
   display: inline-block;
 }
 
@@ -466,7 +461,7 @@ footer {
 }
 
 .personal-link {
-  padding-right: 60px;
+  padding-right: 80px;
   margin: 0 auto 30px;
   text-align: right;
   color: #6868AF;
@@ -554,6 +549,14 @@ footer {
   line-height: 150px;
 }
 
+#campcards .campcards-wrap .campcard img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+
 #campcards .campcards-wrap .campcard .campcard__text {
   color: #fff;
   position: absolute;
@@ -585,6 +588,140 @@ footer {
   #campcards .campcards-wrap .campcard {
     width: 100%;
     margin-bottom: 20px;
+  }
+}
+
+#camppage {
+  padding-top: 20px;
+}
+
+.heroimg {
+  width: 100%;
+  height: 400px;
+  background-image: url(../img/IMG_9274.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 670px) {
+  .heroimg {
+    height: 200px;
+  }
+}
+
+.camppage__heading {
+  margin-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.camppage__heading .icon {
+  padding-right: 5px;
+}
+
+.camppage__heading .camppage__title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+@media (max-width: 670px) {
+  .camppage__heading .camppage__title {
+    font-size: 24px;
+  }
+}
+
+.camppage__heading .camppage__date {
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.camppage__heading .camppage__navlinks {
+  color: #6868AF;
+  text-align: right;
+}
+
+.camppage__heading .camppage__navlinks li {
+  cursor: pointer;
+}
+
+.campcontent_wrap {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.campcontent_wrap .campcontent_menubar {
+  width: 100%;
+  height: 34px;
+  background-color: #6868AF;
+  color: #fff;
+  padding-left: 10px;
+  line-height: 34px;
+  border-radius: 8px 0 0 0;
+  position: relative;
+}
+
+.campcontent_wrap .campcontent_menubar:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 38%;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.campcontent_wrap .close:after {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  top: 30%;
+}
+
+.campcontent_wrap .contentarea {
+  width: 100%;
+  height: 200px;
+  background-color: #eee;
+  margin-bottom: 20px;
+}
+
+.campcontent_wrap .left {
+  height: 800px;
+}
+
+.campcontent_flexlayout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.campcontent_flexlayout .column2 {
+  width: 48%;
+}
+
+@media (max-width: 670px) {
+  .campcontent_flexlayout {
+    display: block;
+  }
+  .campcontent_flexlayout .column2 {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=main.css.map */

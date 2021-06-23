@@ -59,14 +59,19 @@ body {
     @include sp {
         font-size: 13px;
     }
+    h2  {
+        font-size: 24px;
+    }
 }
 
 .container {
     max-width: 1070px;
     min-width: 960px;
     margin: 0 auto;
+    padding: 0 80px;
     @include sp {
         min-width: 100%;
+        padding: 0 20px;
     }
 }
 footer {
@@ -79,14 +84,12 @@ footer {
 
 //ユーザーページ共通ヘッダー
 .user-heading {
-    padding: 0 40px;
+    margin-bottom: 10px;
     @include flex;
-    h1 {
-        padding-left: 40px;
-    }
+
     .user {
         text-align: right;
-        padding-right: 20px;
+
         p {
             display: inline-block;
             padding-left: 20px;
@@ -99,7 +102,6 @@ footer {
     }
 
     @include sp {
-        padding: 0 20px;
         margin-bottom: 10px;
         h1 {
             width: 170px;
@@ -272,11 +274,6 @@ footer {
     }
 }
 
-#modal-newplan {
-    display: none;
-}
-
-
 //機能紹介
 #introduction {
     padding: 30px 40px;
@@ -340,7 +337,6 @@ footer {
         padding: 20px;
     }
     h2 {
-        font-size: 24px;
         display: inline-block;
         @include sp {
             display: block;
@@ -387,7 +383,7 @@ footer {
 }
 
 .personal-link {
-    padding-right: 60px;
+    padding-right: 80px;
     margin: 0 auto 30px;
     text-align: right;
     color: $violet;
@@ -437,6 +433,12 @@ footer {
                 color: $violet;
                 line-height: 150px;
             }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
             .campcard__text {
                 color:#fff;
                 position: absolute;
@@ -465,5 +467,105 @@ footer {
                 margin-bottom: 20px;
             }
         }  
+    }
+}
+
+//キャンプ詳細ページ
+#camppage {
+    padding-top: 20px;
+}
+
+.heroimg {
+    width: 100%;
+    height: 400px;
+    background-image: url(../img/IMG_9274.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    @include sp {
+        height: 200px;
+    }
+}
+
+.camppage__heading {
+    margin-bottom: 50px;
+    @include flex;
+    .icon {
+        padding-right: 5px;
+    }
+    .camppage__title {
+        font-size: 28px;
+        font-weight: 700;
+        @include sp {
+            font-size: 24px;
+        }
+    }
+    .camppage__date {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+    .camppage__navlinks {
+        color: $violet;
+        text-align: right;
+        li {
+            cursor: pointer;
+        }
+    }
+}
+
+.campcontent_wrap {
+    width: 100%;
+    margin-bottom: 20px;
+    .campcontent_menubar {     
+        width: 100%;
+        height: 34px;
+        background-color: $violet;
+        color: #fff;
+        padding-left: 10px;
+        line-height: 34px;
+        border-radius: 8px 0 0 0;
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            display: block;
+            top: 38%;
+            right: 20px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: rotate(-45deg);
+            transition: all 0.2s ease-out;
+        }
+    }
+    .close:after{
+        transform: rotate(135deg);
+        top: 30%;
+    }
+    .contentarea {
+        width: 100%;
+        height: 200px;
+        background-color: #eee;
+        margin-bottom: 20px;
+    }
+    .left {
+        height: 800px;
+    }
+}
+
+
+.campcontent_flexlayout {
+    @include flex;
+    .column2 {
+        width: 48%;
+    }
+    
+    @include sp {
+        display: block;
+        .column2 {
+            width: 100%;
+        }
     }
 }

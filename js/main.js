@@ -92,6 +92,43 @@ const signupModal= {
   }
 }
 
+
+/**
+ * キャンプ登録部分
+ */
+const registCampModal= {
+  template: `
+    <div class="modal-wrapping" id="modal-newplan">
+    <div class="overlay">
+        <form class="modal-wrapping">
+            <div class="close-modal" v-on:click="clickEvent"><i class="fa fa-2x fa-times"></i></div>
+            <p class="modal-wrapping__title">今度行くキャンプの登録をします</p>
+            <div class="modal-wrapping__name">キャンプ場名</div>
+            <input type="text" class="modal-wrapping__formcontrol campsite">
+            <div class="modal-wrapping__name">公式サイト</div>
+            <input type="url" class="modal-wrapping__formcontrol campsiteurl">
+            <div class="modal-wrapping__name">電話番号</div>
+            <input type="tel" class="modal-wrapping__formcontrol campsitetel">
+            <div class="modal-wrapping__name">いつから</div>
+            <input type="date" class="modal-wrapping__formcontrol campdate">
+            <div class="modal-wrapping__name">いつまで</div>
+            <input type="date" class="modal-wrapping__formcontrol campdate">
+            <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
+            <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg">
+            <div type="submit" class="modal-wrapping__submit">シオリ作成</div>
+        </form>
+    </div>
+  </div>
+  `,
+  methods: {
+    clickEvent() {
+      this.$emit('from-child')
+    }
+  }
+}
+
+
+
 //フッター
 const footerWrap = {
   template: `
@@ -108,7 +145,8 @@ new Vue({
   components: {
     'login-modal': loginModal,
     'signup-modal': signupModal,
-    'footer-wrap': footerWrap
+    'footer-wrap': footerWrap,
+    'regist-camp-modal': registCampModal,
   },
   data: {
     loginModalShow: false,
@@ -117,7 +155,8 @@ new Vue({
     signupModalShow: false,
     signupEmail: '',
     signupPassword: '',
-    nouser: ''
+    nouser: '',
+    registCampModalShow: false,
   },
   methods: {
     openLoginModal() {
@@ -136,6 +175,12 @@ new Vue({
       firebase.auth().signOut();
       this.closeLoginModal();
       this.closeSignupModal();
+    },
+    openNewcampModal() {
+      this.registCampModalShow = true
+    },
+    closeNewcampModal() {
+      this.registCampModalShow = false
     }
   },
   mounted() {
@@ -153,7 +198,18 @@ new Vue({
 
 //jQuery
 $(function(){
-  $('.togglebtn').on('click', ()=>{
-    $('.togglemenu').toggleClass('togglemenu-show');
+  //ハンバーガーメニュー
+  $('.togglebtn__userindex').on('click', ()=>{
+    $('.togglemenu__userindex').toggleClass('togglemenu-show');
+  });
+  $('.togglebtn__camppage').on('click', ()=>{
+    $('.togglemenu__camppage').toggleClass('togglemenu-show');
+  });
+
+  //アコーディオン
+  $('.campcontent_menubar').on('click', (e)=>{
+    $(e.target).next().slideToggle(200);
   });
 });
+
+
