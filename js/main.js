@@ -115,7 +115,7 @@ const registCampModal= {
             <input type="date" class="modal-wrapping__formcontrol campdate">
             <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
             <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg">
-            <div type="submit" class="modal-wrapping__submit">シオリ作成</div>
+            <div type="submit" class="modal-wrapping__submit" v-on:click="clickEventRegist">シオリ作成</div>
         </form>
     </div>
   </div>
@@ -123,7 +123,10 @@ const registCampModal= {
   methods: {
     clickEvent() {
       this.$emit('from-child')
-    }
+    },
+    clickEventRegist() {
+      this.$emit('from-child-regist')
+    },
   }
 }
 
@@ -156,7 +159,9 @@ new Vue({
     signupEmail: '',
     signupPassword: '',
     nouser: '',
+    usertop: true,
     registCampModalShow: false,
+    camppage: false
   },
   methods: {
     openLoginModal() {
@@ -181,6 +186,11 @@ new Vue({
     },
     closeNewcampModal() {
       this.registCampModalShow = false
+    },
+    openDetailPage() {
+      this.camppage = true
+      this.registCampModalShow = false
+      this.usertop = false
     }
   },
   mounted() {
@@ -197,19 +207,53 @@ new Vue({
 })
 
 //jQuery
+
 $(function(){
   //ハンバーガーメニュー
-  $('.togglebtn__userindex').on('click', ()=>{
+
+  $('.togglebtn__userindex').on('click', () => {
     $('.togglemenu__userindex').toggleClass('togglemenu-show');
   });
-  $('.togglebtn__camppage').on('click', ()=>{
+  $('.togglebtn__camppage').on('click', () => {
     $('.togglemenu__camppage').toggleClass('togglemenu-show');
   });
 
+
   //アコーディオン
-  $('.campcontent_menubar').on('click', (e)=>{
+
+  $('.campcontent_menubar').on('click', (e) => {
     $(e.target).next().slideToggle(200);
+    $(e.target).toggleClass('close',200);
   });
+
+  //スクロールに合わせてふわっと出す なぜかアロー関数だとエラーになる
+  //Uncaught TypeError: r.getClientRects is not a function
+
+  　/*
+  $(window).scroll('scroll', () => {
+    $('.fade').each( () => {
+      const targetElement = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      if (scroll > targetElement - windowHeight) {
+        $(this).addClass('fade-show');
+      }
+    });
+  });
+    */
+
+  $(window).scroll(function () {
+    $('.fade').each(function () {
+      const targetElement = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      if (scroll > targetElement - windowHeight) {
+        $(this).addClass('fade-show');
+      }
+    });
+  });
+
+
 });
 
 

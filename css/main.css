@@ -63,6 +63,16 @@ footer {
   color: #777;
 }
 
+.fade {
+  opacity: 0;
+  -webkit-transition: all 3s;
+  transition: all 3s;
+}
+
+.fade-show {
+  opacity: 1;
+}
+
 .user-heading {
   margin-bottom: 10px;
   display: -webkit-box;

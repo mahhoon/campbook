@@ -82,6 +82,15 @@ footer {
     color: #777;
 }
 
+.fade {
+    opacity: 0; 
+    transition: all 3s;
+}
+
+.fade-show {
+    opacity: 1;
+}
+
 //ユーザーページ共通ヘッダー
 .user-heading {
     margin-bottom: 10px;

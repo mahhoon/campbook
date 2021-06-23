@@ -27,7 +27,7 @@
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
                 <h1 class="sp"><img src="img/title-sp.svg" alt="キャンプノシオリ"></h1>
                 <p>キャンプ行ってますかー？<br>
-                    キャンプの準備をちょっと便利にしてくれるかもしれないアプリを作ってみましたよ。<br>       
+                    キャンプの準備をちょっと便利にしてくれるかもしれないアプリを作ってみました。<br>       
                 <div class="loginbuttons">
                     <div class="btn-basic loginbuttons__login" v-on:click="openLoginModal">ログイン</div>
                     <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
@@ -37,8 +37,8 @@
             <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal" v-bind:loginemail="loginEmail" v-bind:loginpass="loginPassword"></login-modal>
             <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal" v-bind:signupemail="signupEmail" v-bind:signuppass="signupPassword"></signup-modal>
             <!--機能-->
-            <div id="introduction" class="container">
-                <h2 class="introduction__title">こんなことができます（できたらいいな）</h2>
+            <div id="introduction" class="container fade">
+                <h2 class="introduction__title">こんなことができ（たらいいな）</h2>
                 <ul class="introitems-wrap">
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
@@ -73,7 +73,7 @@
                 </ul>
             </div>
             <!--投稿写真集-->
-            <div id="post-photos" class="container">
+            <div id="post-photos" class="container fade">
                 <h2 class="post-photos-title">CAMP SNAP!</h2>
                 <span>キャンプマニアの写真たち</span>
                 <div class="post-photos-wrap">
@@ -98,8 +98,9 @@
                 </div>
             </div>
         </section>
+        <div v-else>
         <!--ユーザートップページ-->
-        <section id="userindex" v-else>
+        <section id="userindex" v-show="usertop">
             <div class="user-heading container">
                     <h1 class="pc"><img src="img/logo-small.svg"></h1>
                     <div class="user pc">
@@ -153,12 +154,12 @@
             </div>
 
             <!--キャンプ登録モーダル-->
-            <regist-camp-modal v-show="registCampModalShow" v-on:from-child="closeNewcampModal"></regist-camp-modal>
+            <regist-camp-modal v-show="registCampModalShow" v-on:from-child="closeNewcampModal" v-on:from-child-regist="openDetailPage"></regist-camp-modal>
 
         </section>
 
         <!--キャンプ詳細ページ-->
-        <section id="camppage">
+        <section id="camppage" v-show="camppage">
             <div class="user-heading container">
                 <h1 class="pc"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
@@ -222,6 +223,8 @@
                 </div>
             </div>
         </section>
+    </div>
+
         <footer-wrap></footer-wrap>
     </div>
 
