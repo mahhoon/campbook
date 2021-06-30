@@ -158,8 +158,30 @@
             </div>
 
             <!--キャンプ登録モーダル-->
-            <regist-camp-modal v-show="registCampModalShow" v-on:from-child="closeNewcampModal" v-on:from-child-regist="openDetailPage"></regist-camp-modal>
-
+            <div class="modal-wrapping" id="modal-newplan" v-show="registCampModalShow">
+                <div class="overlay">
+                    <form class="modal-wrapping">
+                        <div class="close-modal" v-on:click="closeNewcampModal"><i class="fa fa-2x fa-times"></i></div>
+                        <p class="modal-wrapping__title">今度行くキャンプの登録をします</p>
+                        <div class="modal-wrapping__name">キャンプ場名</div>
+                        <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campsiteName">
+                        <div class="modal-wrapping__name">公式サイト</div>
+                        <input type="url" class="modal-wrapping__formcontrol campsiteurl">
+                        <div class="modal-wrapping__name">電話番号</div>
+                        <input type="tel" class="modal-wrapping__formcontrol campsitetel">
+                        <div class="modal-wrapping__name">いつから</div>
+                        <input type="date" class="modal-wrapping__formcontrol campdate">
+                        <div class="modal-wrapping__name">いつまで</div>
+                        <input type="date" class="modal-wrapping__formcontrol campdate">
+                        <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
+                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg">
+                        <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ作成</div>
+                    </form>
+                </div>
+            </div>
+            <!--
+              <regist-camp-modal v-show="registCampModalShow" v-on:from-child="closeNewcampModal" v-on:from-child-regist="registCampdata"></regist-camp-modal>
+            -->
         </section>
 
         <!--キャンプ詳細ページ-->
@@ -188,7 +210,7 @@
             <div class="heroimg container"></div>
             <div class="camppage__heading container">
                 <div>
-                    <h2 class="camppage__title">ふもとっぱら</h2>
+                    <h2 class="camppage__title">{{ campTitle }}</h2>
                     <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>2021/5/3〜5/5</p>
                     <a href="">公式サイト</a>
                     <p><span class="icon"><i class="fas fa-phone"></i></span>0544-52-2112</p>
@@ -266,7 +288,7 @@ firebase.initializeApp(firebaseConfig);
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>
     
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script> 
