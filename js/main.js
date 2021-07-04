@@ -42,7 +42,11 @@
      campUrl: '',
      campTel: '',
      fromDate: '',
-     toDate:  ''
+     toDate:  '',
+     uploadFile: null,
+     fileName: '',
+     campImageLocation: '',
+     downloadCampImage: '',
    },
    methods: {
      //表示切り替え
@@ -79,8 +83,39 @@
        this.usertop = false;
      },
  
+     //画像セレクト
+     selectedFile(e) {
+       e.preventDefault();
+       let files = e.target.files;
+       this.uploadFile = files[0];
+       this.fileName = this.uploadFile.name;
+     },
+     
      //キャンプ登録
      registCampdata(){
+       
+       //画像ファイルアップ
+       firebase
+         .storage()
+         .ref(`files/${this.fileName}`)
+         .put(this.uploadFile)
+         .then(()=>{
+           firebase
+             .storage()
+             .ref(`files/${this.fileName}`)
+             .getDownloadURL()
+             
+             .then ((url) => {
+               this.downloadCampImage = url;
+               console.log(url);
+             });
+         })
+         .catch((error) => {
+           console.error('アップロード失敗', error);
+         });
+       
+       
+       //データベース登録
        firebase
          .database()
          .ref(`campbook/${this.currentUid}`).push({
@@ -89,10 +124,14 @@
            campsitetel: this.campsiteTel,
            fromcampdate: this.fromCampDate,
            tocampdate: this.toCampDate,
+           campimagelocation: `files/${this.fileName}`,
            createdAt: firebase.database.ServerValue.TIMESTAMP,
          });
+         
+       //詳細画面を開く  
        this.openDetailPage();
        
+       //データ取り出し・表示
        firebase.database().ref(`campbook/${this.currentUid}`)
          .on('child_added', (snapshot) => {
            this.campTitle = snapshot.child('campsitename').val();
@@ -100,20 +139,27 @@
            this.campTel = snapshot.child('campsitetel').val();
            this.fromDate = snapshot.child('fromcampdate').val();
            this.toDate = snapshot.child('tocampdate').val();
+           this.campImageLocation = snapshot.child('campimagelocation').val();
          });
          
        firebase.database().ref(`campbook/${this.currentUid}`)
          .off('child_added');
-     }
+     },
      
    },
-   
    mounted() {
      firebase.auth().onAuthStateChanged((user) => {
        if (user) {
          console.log('login', user.uid);
+         
          this.currentUid = user.uid;
          this.nouser = false;
+         
+         // firebase.database().ref(`campbook/${user.uid}`).on('value', (snapshot) => {
+         //   const data = snapshot.val();
+         //   console.log(data)
+         //   this.campData = data
+         // });
        } else {
          console.log('logout');
          this.nouser = true;
@@ -156,7 +202,7 @@
        }
      });
    });
-     */
+     
  
    $(window).scroll(function () {
      $('.fade').each(function () {
@@ -168,7 +214,7 @@
        }
      });
    });
- 
+ */
  
  });
  

@@ -41,7 +41,7 @@
             <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal"></login-modal>
             <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal"></signup-modal>
             <!--機能-->
-            <div id="introduction" class="container fade">
+            <div id="introduction" class="container"> <!--fade-->
                 <h2 class="introduction__title">こんなことができ（たらいいな）</h2>
                 <ul class="introitems-wrap">
                     <li class="intro-item">
@@ -77,7 +77,7 @@
                 </ul>
             </div>
             <!--投稿写真集-->
-            <div id="post-photos" class="container fade">
+            <div id="post-photos" class="container"> <!--fade-->
                 <h2 class="post-photos-title">CAMP SNAP!</h2>
                 <span>キャンプマニアの写真たち</span>
                 <div class="post-photos-wrap">
@@ -132,29 +132,29 @@
             </div>
             <div id="addcampplan" v-on:click="openNewcampModal">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
-                <div class="campcards-wrap container">
-                    <div class="campcard">
+                <ul class="campcards-wrap container">
+                    <li class="campcard">
                         <img src="img/IMG_9274.jpg">
                         <div class="campcard__text">
                             <p class="campcard__place">ふもとっぱら</p>
                             <p class="campcard__data">2021/5/3-5/5</p>
                         </div>
-                    </div>
-                    <div class="campcard">
-                        <span class="tent-icon"><i class="fas fa-campground"></i></span>
+                    </li>
+                    <li class="campcard">
+                        <img src="img/campimg.png">
                         <div class="campcard__text">
                             <p class="campcard__place">Recamp勝浦</p>
                             <p class="campcard__data">2021/5/3-5/5</p>
                         </div>
-                    </div>
-                    <div class="campcard">
-                        <span class="tent-icon"><i class="fas fa-campground"></i></span>
+                    </li>
+                    <li class="campcard">
+                        <img src="img/campimg.png">
                         <div class="campcard__text">
                             <p class="campcard__place">ビッグランド</p>
                             <p class="campcard__data">2021/5/3-5/5</p>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
 
             <!--キャンプ登録モーダル-->
@@ -174,7 +174,7 @@
                         <div class="modal-wrapping__name">いつまで</div>
                         <input type="date" class="modal-wrapping__formcontrol campdate" v-model="toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
-                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg">
+                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
                         <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ作成</div>
                     </form>
                 </div>
@@ -207,7 +207,9 @@
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
                 </div>
             </div>
-            <div class="heroimg container"></div>
+            <div class="heroimg">
+                <img class="headimg" v-bind:src="downloadCampImage">
+            </div>
             <div class="camppage__heading container">
                 <div>
                     <h2 class="camppage__title">{{ campTitle }}</h2>

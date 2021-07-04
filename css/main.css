@@ -234,7 +234,7 @@ footer {
 
 .overlay .modal-wrapping {
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 0;
   right: 0;
   margin: auto;
@@ -544,19 +544,11 @@ footer {
 #campcards .campcards-wrap .campcard {
   width: 30%;
   height: 160px;
-  text-align: center;
-  background-color: #9a9ac9;
   border-radius: 8px;
   -webkit-box-shadow: 2px 2px 2px #777;
           box-shadow: 2px 2px 2px #777;
   position: relative;
   cursor: pointer;
-}
-
-#campcards .campcards-wrap .campcard .tent-icon {
-  font-size: 110px;
-  color: #6868AF;
-  line-height: 150px;
 }
 
 #campcards .campcards-wrap .campcard img {
@@ -568,6 +560,7 @@ footer {
 }
 
 #campcards .campcards-wrap .campcard .campcard__text {
+  text-align: center;
   color: #fff;
   position: absolute;
   top: 60px;
@@ -606,19 +599,24 @@ footer {
 }
 
 .heroimg {
-  width: 100%;
+  max-width: 1070px;
+  min-width: 960px;
+  margin: 0 auto 20px;
   height: 400px;
-  background-image: url(../img/IMG_9274.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 670px) {
   .heroimg {
     height: 200px;
+    min-width: 100%;
   }
+}
+
+.headimg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .camppage__heading {
