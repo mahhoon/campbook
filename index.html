@@ -166,13 +166,13 @@
                         <div class="modal-wrapping__name">キャンプ場名</div>
                         <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campsiteName">
                         <div class="modal-wrapping__name">公式サイト</div>
-                        <input type="url" class="modal-wrapping__formcontrol campsiteurl">
+                        <input type="url" class="modal-wrapping__formcontrol campsiteurl" v-model="campsiteUrl">
                         <div class="modal-wrapping__name">電話番号</div>
-                        <input type="tel" class="modal-wrapping__formcontrol campsitetel">
+                        <input type="tel" class="modal-wrapping__formcontrol campsitetel" v-model="campsiteTel">
                         <div class="modal-wrapping__name">いつから</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate">
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="fromCampDate">
                         <div class="modal-wrapping__name">いつまで</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate">
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
                         <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg">
                         <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ作成</div>
@@ -203,7 +203,7 @@
                     <p><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</p>
                     <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
                     <p><span class="icon"><i class="far fa-trash-alt"></i></i></span>このシオリを削除</p>
-                    <p><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ</p>
+                    <p><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
                 </div>
             </div>
@@ -211,15 +211,15 @@
             <div class="camppage__heading container">
                 <div>
                     <h2 class="camppage__title">{{ campTitle }}</h2>
-                    <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>2021/5/3〜5/5</p>
-                    <a href="">公式サイト</a>
-                    <p><span class="icon"><i class="fas fa-phone"></i></span>0544-52-2112</p>
+                    <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>{{fromDate}}〜{{toDate}}</p>
+                    <a v-bind:href="campUrl" target="_blank">公式サイト</a>
+                    <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campTel }}</p>
                 </div>
                 <ul class="camppage__navlinks pc">
                     <li><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
                     <li><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
-                    <li><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
+                    <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
                 </ul>    
             </div>
             <div class="camppage_content container">
