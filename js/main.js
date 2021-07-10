@@ -6,6 +6,9 @@
  import {signupModal} from "./signupModal.js";
  
  
+ /**
+  * 表示パーツ
+  */
  
  //フッター
  const footerWrap = {
@@ -15,38 +18,78 @@
    </footer>
    `
  };
+ 
+ //キャンプ一覧
+ const campCards = {
+   template: `
+   <ul class="campcards-wrap container" v-on:click="godetailpage">
+     <li class="campcard" v-for="(value, key) in campdatafromparent">
+         <img v-bind:src="value.downloadcampimage">
+         <div class="campcard__text">
+             <p class="campcard__place">{{value.campsitename}}</p>
+             <p class="campcard__data">{{value.fromcampdate}}〜{{value.tocampdate}}</p>
+         </div>
+     </li>
+   </ul>
+   `,
+   props: {
+     
+     
+   },
+   methods: {
+ 
+   },
+   data: {
+     
+   }
+ }
+ 
   
-  
- //インスタンス
+ /**
+  * インスタンス
+  */
+ 
  new Vue({
    el: '#app',
    components: {
      'login-modal': loginModal,
      'signup-modal': signupModal,
      'footer-wrap': footerWrap,
+     'camp-cards': campCards
    },
    data: {
+     //表示関連
      loginModalShow: false,
      signupModalShow: false,
      nouser: '',
      usertop: true,
      registCampModalShow: false,
      camppage: false,
+     editCampModalShow: false,
+     //ユーザー関連
      currentUid: '',
-     campsiteName: '',
-     campsiteUrl: '',
-     campsiteTel: '',
-     fromCampDate:'',
-     toCampDate:'',
-     campTitle: '',
-     campUrl: '',
-     campTel: '',
-     fromDate: '',
-     toDate:  '',
+     //画像保存
      uploadFile: null,
      fileName: '',
-     campImageLocation: '',
-     downloadCampImage: '',
+     //登録データオブジェクト
+     campData: '',
+     campRegisterData: {
+       campsiteName: '',
+       campsiteUrl: '',
+       campsiteTel: '',
+       fromCampDate:'',
+       toCampDate:'',
+       downloadCampImage: '',
+     },
+     campDetailData: {
+       campsiteName: '',
+       campsiteUrl: '',
+       campsiteTel: '',
+       fromCampDate:'',
+       toCampDate:'',
+       downloadCampImage: '',
+     },
+     currentCampId: '',
    },
    methods: {
      //表示切り替え
@@ -69,9 +112,18 @@
      },
      openNewcampModal() {
        this.registCampModalShow = true;
+       this.campRegisterData = {
+         campsiteName: '',
+         campsiteUrl: '',
+         campsiteTel: '',
+         fromCampDate:'',
+         toCampDate:'',
+         downloadCampImage: '',
+       }
      },
      closeNewcampModal() {
        this.registCampModalShow = false;
+       this.editCampModalShow = false
      },
      goUserIndex(){
        this.camppage = false;
@@ -106,45 +158,57 @@
              .getDownloadURL()
              
              .then ((url) => {
-               this.downloadCampImage = url;
+               this.campRegisterData.downloadCampImage = url;
                console.log(url);
+               
+               //データベース登録
+               firebase
+                 .database()
+                 .ref(`campbooks/${this.currentUid}`).push({
+                   ...this.campRegisterData,
+                   campimagelocation: `files/${this.fileName}`,
+                   createdAt: firebase.database.ServerValue.TIMESTAMP,
+                 });
              });
+ 
          })
          .catch((error) => {
            console.error('アップロード失敗', error);
          });
        
-       
-       //データベース登録
-       firebase
-         .database()
-         .ref(`campbook/${this.currentUid}`).push({
-           campsitename: this.campsiteName,
-           campsiteurl: this.campsiteUrl,
-           campsitetel: this.campsiteTel,
-           fromcampdate: this.fromCampDate,
-           tocampdate: this.toCampDate,
-           campimagelocation: `files/${this.fileName}`,
-           createdAt: firebase.database.ServerValue.TIMESTAMP,
-         });
-         
        //詳細画面を開く  
        this.openDetailPage();
-       
-       //データ取り出し・表示
-       firebase.database().ref(`campbook/${this.currentUid}`)
-         .on('child_added', (snapshot) => {
-           this.campTitle = snapshot.child('campsitename').val();
-           this.campUrl = snapshot.child('campsiteurl').val();
-           this.campTel = snapshot.child('campsitetel').val();
-           this.fromDate = snapshot.child('fromcampdate').val();
-           this.toDate = snapshot.child('tocampdate').val();
-           this.campImageLocation = snapshot.child('campimagelocation').val();
-         });
-         
-       firebase.database().ref(`campbook/${this.currentUid}`)
-         .off('child_added');
      },
+     
+     //サムネイルから詳細画面へ
+     expandPage(value, key) {
+       this.openDetailPage();
+       this.campDetailData = value;
+       this.currentCampId = key;
+     },
+     
+     //詳細画面でキャンプデータを削除する
+     deleteCampData(currentCampId) {
+       const resultDelete = window.confirm('削除しますか？');
+       if (resultDelete) {
+         firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`)
+           .remove()
+           .then(() => {
+             this.goUserIndex();
+           });
+       }
+     },
+     
+     //行程を編集
+     editCampData(){
+       this.editCampModalShow = true;
+       // this.campRegisterData = this.campDetailData
+       this.campRegisterData = {...this.campDetailData}
+       
+       firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
+         ...this.campRegisterData
+       })
+     }
      
    },
    mounted() {
@@ -155,11 +219,23 @@
          this.currentUid = user.uid;
          this.nouser = false;
          
-         // firebase.database().ref(`campbook/${user.uid}`).on('value', (snapshot) => {
-         //   const data = snapshot.val();
-         //   console.log(data)
-         //   this.campData = data
-         // });
+         //データ取り出し・表示
+         //二重にイベントハンドラが登録されないように
+         firebase.database().ref(`campbooks/${this.currentUid}`)
+           .off('child_added');
+           
+         firebase.database().ref(`campbooks/${this.currentUid}`)
+           .on('child_added', (snapshot) => {
+             this.campDetailData = snapshot.val();
+             console.log(this.campDetailData)
+           });
+ 
+         //全てのデータ
+         firebase.database().ref(`campbooks/${user.uid}`).orderByChild('fromCampDate')
+           .on('value', (snapshot) => {
+             this.campData = snapshot.val();
+             console.log(this.campData)
+           });
        } else {
          console.log('logout');
          this.nouser = true;

@@ -132,14 +132,29 @@
             </div>
             <div id="addcampplan" v-on:click="openNewcampModal">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
+                <!--<camp-cards v-bind:campdatafromparent="campData" v-bind:godetailpage="openDetailPage"></camp-cards>-->
+                
+                
                 <ul class="campcards-wrap container">
-                    <li class="campcard">
-                        <img src="img/IMG_9274.jpg">
+                    <li class="campcard" v-for="(value, key) in campData" v-on:click="expandPage(value, key)">
+                        <img v-bind:src="value.downloadCampImage">
                         <div class="campcard__text">
-                            <p class="campcard__place">ふもとっぱら</p>
-                            <p class="campcard__data">2021/5/3-5/5</p>
+                            <p class="campcard__place">{{value.campsiteName}}</p>
+                            <p class="campcard__data">{{value.fromCampDate}}〜{{value.toCampDate}}</p>
                         </div>
                     </li>
+                </ul>
+                
+                    
+                    <!--
+                    <li class="campcard" v-for="(value, key) in campData">
+                        <img src="img/IMG_9274.jpg">
+                        <div class="campcard__text">
+                            <p class="campcard__place">{{value.campsitename}}</p>
+                            <p class="campcard__data">{{value.fromcampdate}}〜{{value.tocampdate}}</p>
+                        </div>
+                    </li>
+                    
                     <li class="campcard">
                         <img src="img/campimg.png">
                         <div class="campcard__text">
@@ -154,25 +169,25 @@
                             <p class="campcard__data">2021/5/3-5/5</p>
                         </div>
                     </li>
-                </ul>
+                    -->
             </div>
 
             <!--キャンプ登録モーダル-->
-            <div class="modal-wrapping" id="modal-newplan" v-show="registCampModalShow">
+            <div class="modal-wrapping" v-show="registCampModalShow">
                 <div class="overlay">
                     <form class="modal-wrapping">
                         <div class="close-modal" v-on:click="closeNewcampModal"><i class="fa fa-2x fa-times"></i></div>
                         <p class="modal-wrapping__title">今度行くキャンプの登録をします</p>
                         <div class="modal-wrapping__name">キャンプ場名</div>
-                        <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campsiteName">
+                        <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campRegisterData.campsiteName">
                         <div class="modal-wrapping__name">公式サイト</div>
-                        <input type="url" class="modal-wrapping__formcontrol campsiteurl" v-model="campsiteUrl">
+                        <input type="url" class="modal-wrapping__formcontrol campsiteurl" v-model="campRegisterData.campsiteUrl">
                         <div class="modal-wrapping__name">電話番号</div>
-                        <input type="tel" class="modal-wrapping__formcontrol campsitetel" v-model="campsiteTel">
+                        <input type="tel" class="modal-wrapping__formcontrol campsitetel" v-model="campRegisterData.campsiteTel">
                         <div class="modal-wrapping__name">いつから</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="fromCampDate">
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.fromCampDate">
                         <div class="modal-wrapping__name">いつまで</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="toCampDate">
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
                         <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
                         <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ作成</div>
@@ -202,28 +217,30 @@
                 <div class="togglemenu togglemenu__camppage sp">
                     <p><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</p>
                     <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
-                    <p><span class="icon"><i class="far fa-trash-alt"></i></i></span>このシオリを削除</p>
-                    <p><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
+                    <p v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></i></span>このシオリを削除</p>
+                    <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
                 </div>
             </div>
             <div class="heroimg">
-                <img class="headimg" v-bind:src="downloadCampImage">
+                <img class="headimg" v-bind:src="campDetailData.downloadCampImage">
             </div>
             <div class="camppage__heading container">
                 <div>
-                    <h2 class="camppage__title">{{ campTitle }}</h2>
-                    <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>{{fromDate}}〜{{toDate}}</p>
-                    <a v-bind:href="campUrl" target="_blank">公式サイト</a>
-                    <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campTel }}</p>
+                    <h2 class="camppage__title">{{ campDetailData.campsiteName }}</h2>
+                    <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>{{campDetailData.fromCampDate}}〜{{campDetailData.toCampDate}}</p>
+                    <a v-bind:href="campDetailData.campsiteUrl" target="_blank">公式サイト</a>
+                    <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campDetailData.campsiteTel }}</p>
                 </div>
                 <ul class="camppage__navlinks pc">
-                    <li><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
+                    <li v-on:click="editCampData()"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
-                    <li><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
+                    <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
                 </ul>    
             </div>
+            
+            
             <div class="camppage_content container">
                 <div class="campcontent_wrap">
                     <div class="campcontent_menubar">Weather&Map</div>
@@ -250,6 +267,30 @@
                     </div>
                 </div>
             </div>
+            
+            <!--キャンプ編集モーダル　できればコンポーネント化したい-->
+            <div class="modal-wrapping" v-show="editCampModalShow">
+                <div class="overlay">
+                    <form class="modal-wrapping">
+                        <div class="close-modal" v-on:click="closeNewcampModal"><i class="fa fa-2x fa-times"></i></div>
+                        <p class="modal-wrapping__title">キャンプ計画を変更します</p>
+                        <div class="modal-wrapping__name">キャンプ場名</div>
+                        <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campRegisterData.campsiteName">
+                        <div class="modal-wrapping__name">公式サイト</div>
+                        <input type="url" class="modal-wrapping__formcontrol campsiteurl" v-model="campRegisterData.campsiteUrl">
+                        <div class="modal-wrapping__name">電話番号</div>
+                        <input type="tel" class="modal-wrapping__formcontrol campsitetel" v-model="campRegisterData.campsiteTel">
+                        <div class="modal-wrapping__name">いつから</div>
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.fromCampDate">
+                        <div class="modal-wrapping__name">いつまで</div>
+                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
+                        <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
+                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
+                        <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ更新</div>
+                    </form>
+                </div>
+            </div>
+            
         </section>
     </div>
 
