@@ -233,7 +233,7 @@
                     <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campDetailData.campsiteTel }}</p>
                 </div>
                 <ul class="camppage__navlinks pc">
-                    <li v-on:click="editCampData()"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
+                    <li v-on:click="editCampDataShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
                     <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
@@ -286,7 +286,7 @@
                         <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
                         <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
-                        <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ更新</div>
+                        <div type="submit" class="modal-wrapping__submit" v-on:click="editCampData">シオリ更新</div>
                     </form>
                 </div>
             </div>

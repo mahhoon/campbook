@@ -200,14 +200,16 @@
      },
      
      //行程を編集
-     editCampData(){
+     editCampDataShow(){
        this.editCampModalShow = true;
        // this.campRegisterData = this.campDetailData
-       this.campRegisterData = {...this.campDetailData}
-       
+       this.campRegisterData = {...this.campDetailData};
+     },
+     editCampData(){
        firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
          ...this.campRegisterData
-       })
+       });
+       this.editCampModalShow = false;
      }
      
    },
