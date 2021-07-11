@@ -65,7 +65,8 @@
      usertop: true,
      registCampModalShow: false,
      camppage: false,
-     editCampModalShow: false,
+     newCamp: true,
+     editCamp: false,
      //ユーザー関連
      currentUid: '',
      //画像保存
@@ -112,6 +113,8 @@
      },
      openNewcampModal() {
        this.registCampModalShow = true;
+       this.newCamp = true;
+       this.editCamp = false;
        this.campRegisterData = {
          campsiteName: '',
          campsiteUrl: '',
@@ -123,7 +126,6 @@
      },
      closeNewcampModal() {
        this.registCampModalShow = false;
-       this.editCampModalShow = false
      },
      goUserIndex(){
        this.camppage = false;
@@ -200,8 +202,10 @@
      },
      
      //行程を編集
-     editCampDataShow(){
-       this.editCampModalShow = true;
+     editCampModalShow(){
+       this.registCampModalShow = true;
+       this.editCamp = true;
+       this.newCamp = false;
        // this.campRegisterData = this.campDetailData
        this.campRegisterData = {...this.campDetailData};
      },
@@ -209,10 +213,12 @@
        firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
          ...this.campRegisterData
        });
-       this.editCampModalShow = false;
+       this.registCampModalShow = false;
      }
      
    },
+   
+   //読み込み時
    mounted() {
      firebase.auth().onAuthStateChanged((user) => {
        if (user) {

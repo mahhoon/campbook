@@ -33,14 +33,10 @@
                     <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
                 </div>
             </div>
-            <!--ログインモーダル
-            <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal" v-bind:loginemail="loginEmail" v-bind:loginpass="loginPassword"></login-modal>
-            <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal" v-bind:signupemail="signupEmail" v-bind:signuppass="signupPassword"></signup-modal>
-            -->
             <!--ログインモーダル-->
             <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal"></login-modal>
             <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal"></signup-modal>
-            <!--機能-->
+            <!--機能紹介-->
             <div id="introduction" class="container"> <!--fade-->
                 <h2 class="introduction__title">こんなことができ（たらいいな）</h2>
                 <ul class="introitems-wrap">
@@ -144,59 +140,7 @@
                         </div>
                     </li>
                 </ul>
-                
-                    
-                    <!--
-                    <li class="campcard" v-for="(value, key) in campData">
-                        <img src="img/IMG_9274.jpg">
-                        <div class="campcard__text">
-                            <p class="campcard__place">{{value.campsitename}}</p>
-                            <p class="campcard__data">{{value.fromcampdate}}〜{{value.tocampdate}}</p>
-                        </div>
-                    </li>
-                    
-                    <li class="campcard">
-                        <img src="img/campimg.png">
-                        <div class="campcard__text">
-                            <p class="campcard__place">Recamp勝浦</p>
-                            <p class="campcard__data">2021/5/3-5/5</p>
-                        </div>
-                    </li>
-                    <li class="campcard">
-                        <img src="img/campimg.png">
-                        <div class="campcard__text">
-                            <p class="campcard__place">ビッグランド</p>
-                            <p class="campcard__data">2021/5/3-5/5</p>
-                        </div>
-                    </li>
-                    -->
             </div>
-
-            <!--キャンプ登録モーダル-->
-            <div class="modal-wrapping" v-show="registCampModalShow">
-                <div class="overlay">
-                    <form class="modal-wrapping">
-                        <div class="close-modal" v-on:click="closeNewcampModal"><i class="fa fa-2x fa-times"></i></div>
-                        <p class="modal-wrapping__title">今度行くキャンプの登録をします</p>
-                        <div class="modal-wrapping__name">キャンプ場名</div>
-                        <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campRegisterData.campsiteName">
-                        <div class="modal-wrapping__name">公式サイト</div>
-                        <input type="url" class="modal-wrapping__formcontrol campsiteurl" v-model="campRegisterData.campsiteUrl">
-                        <div class="modal-wrapping__name">電話番号</div>
-                        <input type="tel" class="modal-wrapping__formcontrol campsitetel" v-model="campRegisterData.campsiteTel">
-                        <div class="modal-wrapping__name">いつから</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.fromCampDate">
-                        <div class="modal-wrapping__name">いつまで</div>
-                        <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
-                        <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
-                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
-                        <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata">シオリ作成</div>
-                    </form>
-                </div>
-            </div>
-            <!--
-              <regist-camp-modal v-show="registCampModalShow" v-on:from-child="closeNewcampModal" v-on:from-child-regist="registCampdata"></regist-camp-modal>
-            -->
         </section>
 
         <!--キャンプ詳細ページ-->
@@ -215,7 +159,7 @@
                     </div>
                 </div>
                 <div class="togglemenu togglemenu__camppage sp">
-                    <p><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</p>
+                    <p v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</p>
                     <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
                     <p v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></i></span>このシオリを削除</p>
                     <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
@@ -233,7 +177,7 @@
                     <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campDetailData.campsiteTel }}</p>
                 </div>
                 <ul class="camppage__navlinks pc">
-                    <li v-on:click="editCampDataShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
+                    <li v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
                     <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
@@ -268,12 +212,18 @@
                 </div>
             </div>
             
+
+            
+        </section>
+
+    
             <!--キャンプ編集モーダル　できればコンポーネント化したい-->
-            <div class="modal-wrapping" v-show="editCampModalShow">
+            <div class="modal-wrapping" v-show="registCampModalShow">
                 <div class="overlay">
                     <form class="modal-wrapping">
                         <div class="close-modal" v-on:click="closeNewcampModal"><i class="fa fa-2x fa-times"></i></div>
-                        <p class="modal-wrapping__title">キャンプ計画を変更します</p>
+                        <p class="modal-wrapping__title" v-show="newCamp">今度行くキャンプの登録をします</p>
+                        <p class="modal-wrapping__title" v-show="editCamp">キャンプ計画を変更します</p>
                         <div class="modal-wrapping__name">キャンプ場名</div>
                         <input type="text" class="modal-wrapping__formcontrol campsite" v-model="campRegisterData.campsiteName">
                         <div class="modal-wrapping__name">公式サイト</div>
@@ -286,14 +236,13 @@
                         <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
                         <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
-                        <div type="submit" class="modal-wrapping__submit" v-on:click="editCampData">シオリ更新</div>
+                        <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata" v-show="newCamp">シオリ作成</div>
+                        <div type="submit" class="modal-wrapping__submit" v-on:click="editCampData" v-show="editCamp">シオリ更新</div>
                     </form>
                 </div>
             </div>
-            
-        </section>
-    </div>
 
+        </div>
         <footer-wrap></footer-wrap>
     </div>
 
