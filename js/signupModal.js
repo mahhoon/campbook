@@ -1,3 +1,4 @@
+
 //新規登録コンポーネント
 export const signupModal= {
   template: `
@@ -10,7 +11,10 @@ export const signupModal= {
             <input type="e-mail" class="modal-wrapping__formcontrol login-email" v-model="signupEmail">
             <div class="modal-wrapping__name">パスワード</div>
             <input type="password" class="modal-wrapping__formcontrol login-password" v-model="signupPassword">
-            <div class="modal-msgbox"><p class="modal-errormsg" v-show="errormsg">パスワードは6文字以上にしてください</p></div>
+            <div class="modal-msgbox">
+            <p class="modal-errormsg" v-show="errormsgPass">パスワードは6文字以上にしてください</p>
+            <p class="modal-errormsg" v-show="errormsgDuplicate">既に登録されているメールアドレスです</p>
+            </div>
             <button type="submit" class="modal-wrapping__submit">新規登録</button>                    
         </form>
       </div>
@@ -29,7 +33,9 @@ export const signupModal= {
         .catch((error) => {
           console.log(error.code);
           if(error.code === 'auth/weak-password'){
-            this.errormsg = true
+            this.errormsgPass = true
+          } else if(error.code === 'auth/email-already-in-use') {
+            this.errormsgDuplicate = true
           }
         });
     },
@@ -38,7 +44,8 @@ export const signupModal= {
     return{
       signupEmail: '',
       signupPassword: '',
-      errormsg: false
+      errormsgPass: false,
+      errormsgDuplicate: false
     };
   }
 }

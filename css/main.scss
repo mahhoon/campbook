@@ -34,6 +34,10 @@ $hover-violet: #7878CC;
   }
 }
 
+.non-active, .togglemenu >.non-active {
+    color: lighten($violet, 20%);
+}
+
 .pc {
     display: block;
     @include sp {
@@ -82,10 +86,18 @@ footer {
     color: #777;
 }
 
+
 .fade {
     opacity: 0; 
-    transition: all 2s;
+    animation: fadein-anim 0.5s Linear forwards;
+    
+    @keyframes fadein-anim {
+        100% {
+            opacity: 1;
+        }
+    }
 }
+
 
 .fade-show {
     opacity: 1;
@@ -285,7 +297,7 @@ footer {
 
 //機能紹介
 #introduction {
-    padding: 30px 40px;
+    padding: 0 40px 30px;
     @include sp {
         padding: 30px;
     }
@@ -568,8 +580,35 @@ footer {
         background-color: #eee;
         margin-bottom: 20px;
     }
+    .contentarea__weather-map {
+        @extend .contentarea;
+        height: 300px;
+        @include flex;
+        @include sp {
+            display: block;
+            height: auto;
+        }
+    }
     .left {
         height: 800px;
+    }
+    #weatherarea {
+        width: 40%;
+        height: 100%;
+        text-align: center;
+        line-height: 150px;
+        @include sp {
+            width: 100%;
+            height: 150px;
+        }
+    }
+    #maparea {
+        width: 60%;
+        height: 100%;
+        @include sp {
+            width: 100%;
+            height: 200px;
+        }
     }
 }
 

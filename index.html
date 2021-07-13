@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!--css -->
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8uIoaPz2mTI0XVtGIl7GZRPknGYSvrZA&langage=ja&region=JP" async defer></script>
     <noscript>
     <!-- JavaScriptが無効化されている場合の追加スタイルシート -->
     
@@ -21,7 +22,8 @@
 <body>
     <div id="app">
         <!--トップページ-->
-        <section id="toppage"  v-if="nouser">
+        <template v-if="nouser">
+        <section id="toppage">
             <!--ヘッダー-->
             <div id="headercontent" class="container">
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
@@ -37,7 +39,7 @@
             <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal"></login-modal>
             <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal"></signup-modal>
             <!--機能紹介-->
-            <div id="introduction" class="container"> <!--fade-->
+            <div id="introduction" class="container fade"> <!--fade-->
                 <h2 class="introduction__title">こんなことができ（たらいいな）</h2>
                 <ul class="introitems-wrap">
                     <li class="intro-item">
@@ -73,9 +75,9 @@
                 </ul>
             </div>
             <!--投稿写真集-->
-            <div id="post-photos" class="container"> <!--fade-->
+            <div id="post-photos" class="container fade">
                 <h2 class="post-photos-title">CAMP SNAP!</h2>
-                <span>キャンプマニアの写真たち</span>
+                <span>キャンプマニアの写真たち ※作成予定</span>
                 <div class="post-photos-wrap">
                     <div class="post-photo">
                         <div class="post-photo__photo"><img src="" ></div>
@@ -98,33 +100,35 @@
                 </div>
             </div>
         </section>
-        <div v-else>
+        </template>
+        <!--ログインしたら表示-->
+        <template v-else-if="user">
         <!--ユーザートップページ-->
         <section id="userindex" v-show="usertop">
             <div class="user-heading container">
-                    <h1 class="pc"><img src="img/logo-small.svg"></h1>
-                    <div class="user pc">
-                        <p class="username">こんにちは、ユーザーさん</p>
-                        <p class="logout" v-on:click="logOut">ログアウト</p>
-                    </div>
+                <h1 class="pc"><img src="img/logo-small.svg"></h1>
+                <div class="user pc">
+                    <p class="username">こんにちは</p>
+                    <p class="logout" v-on:click="logOut">ログアウト</p>
+                </div>
 
-                    <h1 class="sp"><img src="img/logo-small.svg"></h1>
-                    <div class="toggle-wrap sp">
-                        <div class="togglebtn togglebtn__userindex">
-                            <span><i class="fas fa-bars"></i></span>
-                        </div>
+                <h1 class="sp"><img src="img/logo-small.svg"></h1>
+                <div class="toggle-wrap sp">
+                    <div class="togglebtn" v-on:click="showToggleMenu">
+                        <span><i class="fas fa-bars"></i></span>
                     </div>
+                </div>
             </div>
-            <div class="togglemenu togglemenu__userindex sp">
-                <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
-                <p><span class="icon"><i class="fas fa-check-circle"></i></span>写真投稿</p>
-                <p v-on:click="logOut"><span class="icon"><i class="fas fa-check-circle"></i></span>ログアウト</p>
+            <div v-bind:class="[togglemenu, {'togglemenu-show':isActive}, sp]">
+                <p class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
+                <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+                <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
             </div>
-            <div class="username-sp container"><p class="sp">こんにちは、ユーザーさん</p></div>
+            <div class="username-sp container"><p class="sp">こんにちは</p></div>
             
             <div class="personal-link container pc">
-                <P><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</P>
-                <p><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+                <P class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</P>
+                <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
             </div>
             <div id="addcampplan" v-on:click="openNewcampModal">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
@@ -148,19 +152,19 @@
             <div class="user-heading container">
                 <h1 class="pc"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
-                    <p class="username">こんにちは、ユーザーさん</p>
+                    <p class="username">こんにちは</p>
                     <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
 
                 <h1 class="sp"><img src="img/logo-small.svg"></h1>
                 <div class="toggle-wrap sp">
-                    <div class="togglebtn togglebtn__camppage">
+                    <div class="togglebtn" v-on:click="showToggleMenu">
                         <span><i class="fas fa-bars"></i></span>
                     </div>
                 </div>
-                <div class="togglemenu togglemenu__camppage sp">
+                <div v-bind:class="[togglemenu, {'togglemenu-show':isActive}, sp]">
                     <p v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</p>
-                    <p><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
+                    <p class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
                     <p v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></i></span>このシオリを削除</p>
                     <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
@@ -178,7 +182,7 @@
                 </div>
                 <ul class="camppage__navlinks pc">
                     <li v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
-                    <li><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
+                    <li class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</li>
                     <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>シオリ一覧ページへ戻る</li>
                 </ul>    
@@ -188,7 +192,10 @@
             <div class="camppage_content container">
                 <div class="campcontent_wrap">
                     <div class="campcontent_menubar">Weather&Map</div>
-                    <div class="contentarea"></div>
+                    <div class="contentarea__weather-map">
+                        <div id="weatherarea">作成中</div>
+                        <div id="maparea"></div>
+                    </div>
                 </div>
                 <div class="campcontent_flexlayout">
                     <div class="campcontent_wrap column2">
@@ -217,7 +224,7 @@
         </section>
 
     
-            <!--キャンプ編集モーダル　できればコンポーネント化したい-->
+            <!--キャンプ編集モーダル-->
             <div class="modal-wrapping" v-show="registCampModalShow">
                 <div class="overlay">
                     <form class="modal-wrapping">
@@ -242,7 +249,7 @@
                 </div>
             </div>
 
-        </div>
+        </template>
         <footer-wrap></footer-wrap>
     </div>
 
