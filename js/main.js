@@ -101,6 +101,7 @@ new Vue({
     sp: 'sp',
     //ユーザー関連
     currentUid: '',
+    currentUname: '',
     //画像保存
     uploadFile: null,
     fileName: '',
@@ -272,9 +273,10 @@ new Vue({
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('login', user.uid);
+        console.log('login', user);
         
         this.currentUid = user.uid;
+        this.currentUname = user.displayName;
         this.nouser = false;
         this.user = true;
         
@@ -322,29 +324,16 @@ $(function(){
 
 
   //アコーディオン
+  //ページ読み込み時の要素を指定したいのでセレクタにbody,第二引数に要素を入れています
 
-  $('.campcontent_menubar').on('click', (e) => {
+  $('body').on('click', '.campcontent_menubar', (e) => {
     $(e.target).next().slideToggle(200);
     $(e.target).toggleClass('close',200);
   });
   
 
-  //スクロールに合わせてふわっと出す なぜかアロー関数だとエラーになる
-  //Uncaught TypeError: r.getClientRects is not a function
-
+  //スクロールに合わせてふわっと出す
   /*  
-  $(window).scroll(() => {
-    $('.fade').each(() => {
-      const targetElement = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      if (scroll > targetElement - windowHeight) {
-        $(this).addClass('fade-show');
-      }
-    });
-  });
-
-
   $(window).scroll(function () {
     $('.fade').each(function () {
       const targetElement = $(this).offset().top;

@@ -149,6 +149,8 @@ footer {
       margin-right: 20px; }
       #headercontent .loginbuttons .btn-basic:hover {
         background-color: #7878CC; }
+      #headercontent .loginbuttons .btn-basic:disabled {
+        background-color: #ababd2; }
       @media (max-width: 670px) {
         #headercontent .loginbuttons .btn-basic {
           width: 60%;
@@ -218,17 +220,21 @@ footer {
       width: 100%; }
       .overlay .modal-wrapping .modal-wrapping__submit:hover {
         background-color: #7878CC; }
+      .overlay .modal-wrapping .modal-wrapping__submit:disabled {
+        background-color: #ababd2; }
     .overlay .modal-wrapping .close-modal {
       text-align: right;
       font-size: 10px;
       cursor: pointer;
       color: #888; }
     .overlay .modal-wrapping .modal-msgbox {
-      height: 20px; }
+      height: 20px;
+      margin-bottom: 10px; }
       .overlay .modal-wrapping .modal-msgbox .modal-errormsg {
         font-size: 12px;
         text-align: left;
-        line-height: 1.1rem; }
+        line-height: 1.1rem;
+        color: red; }
 
 #introduction {
   padding: 0 40px 30px; }
@@ -346,6 +352,8 @@ footer {
   cursor: pointer; }
   #addcampplan:hover {
     background-color: #7878CC; }
+  #addcampplan:disabled {
+    background-color: #ababd2; }
   @media (max-width: 670px) {
     #addcampplan {
       width: 90%; } }

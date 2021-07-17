@@ -108,7 +108,7 @@
             <div class="user-heading container">
                 <h1 class="pc"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
-                    <p class="username">こんにちは</p>
+                    <p class="username">{{ currentUname }}さん、こんにちは</p>
                     <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
 
@@ -124,7 +124,7 @@
                 <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
                 <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
             </div>
-            <div class="username-sp container"><p class="sp">こんにちは</p></div>
+            <div class="username-sp container"><p class="sp">{{ currentUname }}さん、こんにちは</p></div>
             
             <div class="personal-link container pc">
                 <P class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</P>
@@ -152,7 +152,7 @@
             <div class="user-heading container">
                 <h1 class="pc"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
-                    <p class="username">こんにちは</p>
+                    <p class="username">{{ currentUname }}さん、こんにちは</p>
                     <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
 
@@ -282,7 +282,7 @@ firebase.initializeApp(firebaseConfig);
     <!-- Popper.js, 次に Bootstrap JS -->
     
     <!-- その他のライブラリのJavaScript -->
-    
+    <script src="https://unpkg.com/v8n/dist/v8n.min.js"></script>
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>

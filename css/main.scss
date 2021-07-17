@@ -21,6 +21,10 @@ $hover-violet: #7878CC;
     &:hover {
         background-color: $hover-violet;
     }
+    
+    &:disabled {
+        background-color: lighten($violet, 20%);
+    }
 }
 @mixin flex {
     display: flex;
@@ -102,6 +106,7 @@ footer {
 .fade-show {
     opacity: 1;
 }
+
 
 //ユーザーページ共通ヘッダー
 .user-heading {
@@ -286,10 +291,12 @@ footer {
         }
         .modal-msgbox {
             height: 20px;
+            margin-bottom: 10px;
             .modal-errormsg {
                 font-size: 12px;
                 text-align: left;
                 line-height: 1.1rem;
+                color: red;
             }
         }
     }
