@@ -45,9 +45,9 @@ export const loginModal= {
     },
     toggledisabled() {
       if (this.loginEmail.length !== 0 && this.loginPassword.length !== 0){
-        console.log('ここまで動いてます！');
+        // console.log('ここまで動いてます！');
         if(!this.errormsgInvalid){
-          console.log('さらにここまでも動いてます！')
+          // console.log('さらにここまでも動いてます！')
           this.addDisabled = false;
         } 
       }

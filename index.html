@@ -37,7 +37,7 @@
             </div>
             <!--ログインモーダル-->
             <login-modal v-show="loginModalShow" v-on:from-child="closeLoginModal"></login-modal>
-            <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal"></signup-modal>
+            <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal" v-on:set-uname="setUserName"></signup-modal>
             <!--機能紹介-->
             <div id="introduction" class="container fade"> <!--fade-->
                 <h2 class="introduction__title">こんなことができ（たらいいな）</h2>

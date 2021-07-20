@@ -20,7 +20,7 @@ export const signupModal = {
             <p class="modal-errormsg" v-if="errormsgPass">パスワードは6文字以上にしてください</p>
             <p class="modal-errormsg" v-else-if="errormsgDuplicate">既に登録されているメールアドレスです</p>
             </div>
-            <button type="submit" class="modal-wrapping__submit" v-bind:disabled=addDisabled>新規登録</button>                    
+            <button type="submit" class="modal-wrapping__submit" v-bind:disabled=addDisabled v-on:click="signUpfromChild">新規登録</button>                    
         </form>
       </div>
     </div>
@@ -66,9 +66,9 @@ export const signupModal = {
     },
     toggledisabled() {
       if (this.signupNickname.length !== 0 && this.signupEmail.length !== 0 && this.signupPassword.length !== 0){
-        console.log('ここまで動いてます！');
+        // console.log('ここまで動いてます！');
         if(!this.errormsgInvalid && !this.errormsgPass){
-          console.log('さらにここまでも動いてます！')
+          // console.log('さらにここまでも動いてます！')
           this.addDisabled = false;
         } 
       }
@@ -87,6 +87,9 @@ export const signupModal = {
           result.user.updateProfile({
             displayName: this.signupNickname
           })
+          //あらかじめニックネームを変数に入れておく
+          this.signUpfromChild(this.signupNickname)
+          
           // firebase.database().ref(`users/${result.user.uid}`).set({
           //   nickname: this.signupNickname,
           //   createdAt: firebase.database.ServerValue.TIMESTAMP,
@@ -98,7 +101,14 @@ export const signupModal = {
             this.errormsgDuplicate = true
           }
         });
+        
     },
+    
+    signUpfromChild(username){
+      // $emit('親コンポーネントで発火させる関数の名前', 処理の内容);
+      this.$emit('set-uname', username);
+    }
+
   },
   
   data(){
@@ -111,5 +121,5 @@ export const signupModal = {
       errormsgInvalid: false,
       addDisabled: true,
     };
-  }
+  },
 }
