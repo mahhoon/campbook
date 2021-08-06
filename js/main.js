@@ -190,12 +190,12 @@ new Vue({
       //画像ファイルアップ
       firebase
         .storage()
-        .ref(`files/${this.fileName}`)
+        .ref(`${this.currentUid}/${this.fileName}`)
         .put(this.uploadFile)
         .then(()=>{
           firebase
             .storage()
-            .ref(`files/${this.fileName}`)
+            .ref(`${this.currentUid}/${this.fileName}`)
             .getDownloadURL()
             
             .then ((url) => {
@@ -207,7 +207,7 @@ new Vue({
                 .database()
                 .ref(`campbooks/${this.currentUid}`).push({
                   ...this.campRegisterData,
-                  campimagelocation: `files/${this.fileName}`,
+                  campimagelocation: `${this.currentUid}/${this.fileName}`,
                   createdAt: firebase.database.ServerValue.TIMESTAMP,
                 });
             });
@@ -328,8 +328,8 @@ new Vue({
           this.currentUname = user.displayName;
         }
         
-        
         console.log(this.currentUname)
+        
         //データ取り出し・表示
         //二重にイベントハンドラが登録されないように
         firebase.database().ref(`campbooks/${this.currentUid}`)

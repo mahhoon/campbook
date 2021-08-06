@@ -87,7 +87,7 @@ export const signupModal = {
           result.user.updateProfile({
             displayName: this.signupNickname
           })
-          //あらかじめニックネームを変数に入れておく
+          //inputに入力した値を使えるように（firebaseのデータ登録が遅いので）
           this.signUpfromChild(this.signupNickname)
           
           // firebase.database().ref(`users/${result.user.uid}`).set({
