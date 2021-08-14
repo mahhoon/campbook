@@ -137,7 +137,8 @@
                 
                 <ul class="campcards-wrap container">
                     <li class="campcard" v-for="(value, key) in campData" v-on:click="expandPage(value, key)">
-                        <img v-bind:src="value.downloadCampImage">
+                        <img v-if="value.downloadCampImage.length === 0" src="img/campimg.png">
+                        <img v-else v-bind:src="value.downloadCampImage">
                         <div class="campcard__text">
                             <p class="campcard__place">{{value.campsiteName}}</p>
                             <p class="campcard__data">{{value.fromCampDate}}〜{{value.toCampDate}}</p>
@@ -171,7 +172,9 @@
                 </div>
             </div>
             <div class="heroimg">
-                <img class="headimg" v-bind:src="campDetailData.downloadCampImage">
+                <img class="headimg" v-if="campDetailData.downloadCampImage.length === 0" src="img/campimg.svg">
+                <img class="headimg" v-else v-bind:src="campDetailData.downloadCampImage">
+                
             </div>
             <div class="camppage__heading container">
                 <div>
@@ -242,7 +245,7 @@
                         <div class="modal-wrapping__name">いつまで</div>
                         <input type="date" class="modal-wrapping__formcontrol campdate" v-model="campRegisterData.toCampDate">
                         <div class="modal-wrapping__name">イメージ画像（サムネイル表示用）</div>
-                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" v-on:change="selectedFile">
+                        <input type="file" accept=".png, .jpg, .jpeg" class="modal-wrapping__formcontrol campdimg" ref="selectedFileInput" v-on:change="selectedFile">
                         <div type="submit" class="modal-wrapping__submit" v-on:click="registCampdata" v-show="newCamp">シオリ作成</div>
                         <div type="submit" class="modal-wrapping__submit" v-on:click="editCampData" v-show="editCamp">シオリ更新</div>
                     </form>

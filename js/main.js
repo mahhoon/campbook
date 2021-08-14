@@ -158,7 +158,9 @@ new Vue({
         fromCampDate:'',
         toCampDate:'',
         downloadCampImage: '',
-      }
+      };
+      //input="file"の値をクリア
+      this.$refs.selectedFileInput.value = null;
     },
     closeNewcampModal() {
       this.registCampModalShow = false;
@@ -176,19 +178,32 @@ new Vue({
       this.isActive = !this.isActive;
     },
 
+
     //画像セレクト
     selectedFile(e) {
       e.preventDefault();
       let files = e.target.files;
       this.uploadFile = files[0];
       this.fileName = this.uploadFile.name;
+      console.log(e);
     },
     
     //キャンプ登録
     registCampdata() {
-      
-      //画像ファイルアップ
-      firebase
+      const pushDatabase = () =>{
+        firebase
+        .database()
+        .ref(`campbooks/${this.currentUid}`).push({
+          ...this.campRegisterData,
+          campimagelocation: `${this.currentUid}/${this.fileName}`,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+        });
+      }
+
+      //画像ファイルが選択されてたら、画像を登録する
+      if (this.fileName.length !== 0) {
+        //画像ファイルアップ
+        firebase
         .storage()
         .ref(`${this.currentUid}/${this.fileName}`)
         .put(this.uploadFile)
@@ -203,23 +218,25 @@ new Vue({
               console.log(url);
               
               //データベース登録
-              firebase
-                .database()
-                .ref(`campbooks/${this.currentUid}`).push({
-                  ...this.campRegisterData,
-                  campimagelocation: `${this.currentUid}/${this.fileName}`,
-                  createdAt: firebase.database.ServerValue.TIMESTAMP,
-                });
+              pushDatabase();
             });
 
         })
-        .catch((error) => {
-          console.error('アップロード失敗', error);
-        });
+      .catch((error) => {
+        console.error('アップロード失敗', error);
+      });
+      } else {
+        //画像なしでデータベース登録
+        pushDatabase();
+      }
+
+      
+      //新規登録モーダルを閉じる
+      this.closeNewcampModal();
       
       //詳細画面を開く  
-      this.openDetailPage();
-      gMap(this.campRegisterData.campsiteName);
+      // this.openDetailPage();
+      // gMap(this.campRegisterData.campsiteName);
     },
     
     //サムネイルから詳細画面へ
@@ -234,34 +251,10 @@ new Vue({
     
     
     //詳細画面でキャンプデータを削除する
-    deleteCampData(currentCampId) {
-      //削除する画像を格納
-      firebase
-        .database().ref(`campbooks/${this.currentUid}/${this.currentCampId}/campimagelocation`)
-        .on('value', (snapshot) => {
-          this.deleteImage = snapshot.val();
-          console.log(this.deleteImage);
-        })
-
+    deleteCampData() {
       const resultDelete = window.confirm('削除しますか？');
-      // if (resultDelete) {
-      //   firebase.storage().ref().child(this.deleteImage).delete()
-      //     .then(() => {
-      //       firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`)
-      //         .remove()
-      //         .then(() => {
-      //           this.goUserIndex();
-      //         })
-      //         .catch(()=> {
-      //           console.error()
-      //         })
-      //     })
-
 
       if (resultDelete) {
-
-        firebase.storage().ref(`${this.deleteImage}`).delete()
-          .then(() => {
             firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`)
               .remove()
               .then(() => {
@@ -270,18 +263,6 @@ new Vue({
               .catch(()=> {
                 console.error()
               })
-          })
-        // firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`)
-        //   .remove()
-        //   .then(() => {
-        //     firebase.storage().ref(`'${this.deleteImage}'`).delete()
-        //       .then(()=>{
-        //         this.goUserIndex();
-        //       })
-        //       .catch(()=> {
-        //         console.error()
-        //       })
-        //   });
       }
     },
     
@@ -290,18 +271,53 @@ new Vue({
       this.registCampModalShow = true;
       this.editCamp = true;
       this.newCamp = false;
-      // this.campRegisterData = this.campDetailData
+      // this.campRegisterData = this.campDetailDataだと参照渡しになるので、展開して入れる
       this.campRegisterData = {...this.campDetailData};
+      this.$refs.selectedFileInput.value = null;
     },
     editCampData() {
-      firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
-        ...this.campRegisterData
+      //画像ファイルが選択されてたら、画像を登録する
+      if (this.fileName.length !== 0) {
+        //画像ファイルアップ
+        firebase
+        .storage()
+        .ref(`${this.currentUid}/${this.fileName}`)
+        .put(this.uploadFile)
+        .then(()=>{
+          firebase
+            .storage()
+            .ref(`${this.currentUid}/${this.fileName}`)
+            .getDownloadURL()
+            
+            .then ((url) => {
+              this.campRegisterData.downloadCampImage = url;
+              console.log(url);
+              
+              //データベース登録
+              firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
+                ...this.campRegisterData,
+                campimagelocation: `${this.currentUid}/${this.fileName}`
+              });
+              this.campDetailData = this.campRegisterData;
+            });
+
+        })
+      .catch((error) => {
+        console.error('アップロード失敗', error);
       });
-      this.campDetailData = this.campRegisterData;
+      } else {
+        //画像なしでデータベース登録
+        firebase.database().ref(`campbooks/${this.currentUid}/${this.currentCampId}`).update({
+          ...this.campRegisterData,
+          campimagelocation: `${this.currentUid}/${this.fileName}`
+        });
+        this.campDetailData = this.campRegisterData;
+      }
       
       this.registCampModalShow = false;
       
     },
+
     setUserName(name) {
       console.log(name)
       this.currentUname = name
@@ -330,16 +346,16 @@ new Vue({
         
         console.log(this.currentUname)
         
-        //データ取り出し・表示
+        //データ取り出し・表示　　←これいらないかも？！
         //二重にイベントハンドラが登録されないように
-        firebase.database().ref(`campbooks/${this.currentUid}`)
-          .off('child_added');
+        // firebase.database().ref(`campbooks/${this.currentUid}`)
+        //   .off('child_added');
           
-        firebase.database().ref(`campbooks/${this.currentUid}`)
-          .on('child_added', (snapshot) => {
-            this.campDetailData = snapshot.val();
-            console.log(this.campDetailData)
-          });
+        // firebase.database().ref(`campbooks/${this.currentUid}`)
+        //   .on('child_added', (snapshot) => {
+        //     this.campDetailData = snapshot.val();
+        //     console.log(this.campDetailData)
+        //   });
 
         //全てのデータ
         firebase.database().ref(`campbooks/${user.uid}`).orderByChild('fromCampDate')
