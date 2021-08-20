@@ -5,34 +5,39 @@
 import {loginModal} from "./loginModal.js";
 import {signupModal} from "./signupModal.js";
 
+//OpenWeatherMap
+const apiKey = '28f6fef487aab69f58982d60c1b8f9e0';
+import taranslateJp from "./forecastTranslate.js";
 
-//GoogleMaps
-const gMap = (currentCampAdress) => {
-  const geocoder = new window.google.maps.Geocoder();
-  geocoder.geocode({
-    address: currentCampAdress
-  },(results, status) => {
-  
-    const resultLocation = results[0].geometry.location;
+// //GoogleMaps
+// const gMap = (currentCampAdress) => {
+//   const geocoder = new window.google.maps.Geocoder();
+//   geocoder.geocode({
+//     address: currentCampAdress
+//   },(results, status) => {
+//     console.log(results);
+//     // this.resultZip = results[0].address_components[6].long_name;
+//     const resultLocation = results[0].geometry.location;
     
-    const mapArea = document.getElementById('maparea')
-    let map;
-    if (results[0]) {
-      map = new window.google.maps.Map(mapArea, {
-        center: resultLocation,
-        zoom: 10
-      });
-      new window.google.maps.Marker({
-        position: resultLocation,
-        map: map,
-        animation: window.google.maps.Animation.DROP
-      })
-    } else {
-      alert('No results found')
-      return;
-    }
-  });
-}
+    
+//     const mapArea = document.getElementById('maparea')
+//     let map;
+//     if (results[0]) {
+//       map = new window.google.maps.Map(mapArea, {
+//         center: resultLocation,
+//         zoom: 10
+//       });
+//       new window.google.maps.Marker({
+//         position: resultLocation,
+//         map: map,
+//         animation: window.google.maps.Animation.DROP
+//       })
+//     } else {
+//       alert('No results found')
+//       return;
+//     }
+//   });
+// }
 
 /**
  * 表示パーツ
@@ -125,11 +130,22 @@ new Vue({
       downloadCampImage: '',
     },
     currentCampId: '',
-    //機能群
-
+    //天気予報
+    forecastdata: {
+      resultLocationLat: '',
+      resultLocationLng: '',
+      description: '',
+      temphigh: '',
+      templow: '',
+      day: '',
+      icon: '',
+    },
+    forecast3days: [],
   },
   methods: {
-    //表示切り替え
+  /*
+  表示切り替え
+  */
     openLoginModal() {
       this.loginModalShow = true;
     },
@@ -230,22 +246,93 @@ new Vue({
         pushDatabase();
       }
 
-      
       //新規登録モーダルを閉じる
       this.closeNewcampModal();
-      
-      //詳細画面を開く  
-      // this.openDetailPage();
-      // gMap(this.campRegisterData.campsiteName);
     },
-    
-    //サムネイルから詳細画面へ
+
+  /*
+  サムネイルから詳細画面へ
+  */
     expandPage(value, key) {
       this.openDetailPage();
       this.campDetailData = value;
       this.currentCampId = key;
       
-      gMap(this.campDetailData.campsiteName);
+      //GoogleMaps & OpenWeatherMap
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode({
+        address: this.campDetailData.campsiteName
+      },(results, status) => {
+        console.log(results);
+        //座標を取得
+        const resultLocation = results[0].geometry.location;
+        //緯度
+        this.resultLocationLat = results[0].geometry.location.lat();
+        //軽度
+        this.resultLocationLng = results[0].geometry.location.lng();
+
+        const mapArea = document.getElementById('maparea')
+        let map;
+        if (results[0]) {
+          map = new window.google.maps.Map(mapArea, {
+            center: resultLocation,
+            zoom: 10
+          });
+          new window.google.maps.Marker({
+            position: resultLocation,
+            map: map,
+            animation: window.google.maps.Animation.DROP
+          })
+        } else {
+          alert('No results found')
+          return;
+        }
+
+        //天気予報
+        console.log(this.resultLocationLat);
+        console.log(this.resultLocationLng);
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${this.resultLocationLat}&lon=${this.resultLocationLng}&units=metric&appid=${apiKey}&lang=ja`
+
+        axios.get(forecastUrl)
+          .then((res) => {
+            for (let i = 1; i < 4; i++) {
+            const resAll = res.data;
+            console.log(resAll);
+            this.forecastdata.description = taranslateJp[res.data.daily[i].weather[0].id][0];
+            this.forecastdata.temphigh = Math.round(res.data.daily[i].temp.max);
+            this.forecastdata.templow = Math.round(res.data.daily[i].temp.min);
+            this.forecastdata.icon = taranslateJp[res.data.daily[i].weather[0].id][1];
+
+            //日付、時間を取得（Dateがミリ秒なので1000倍が必要）
+            const date = new Date(res.data.daily[i].dt * 1000);
+            //UTCとの時差をなくす（日本は-9時間なので9をたす）
+            date.setHours(date.getHours() + 9);
+            //月を取得。getMonth()は0-11を返すため1を足す
+            const month = date.getMonth() + 1;
+            //曜日を日本語変換するための配列
+            const week = ['（日）','（月）','（火）','（水）','（木）','（金）','（土）'];
+            //月＋日＋曜日をdayに代入。getDay()は0-6を返すため、曜日の配列に応じた日本語曜日が入る
+            this.forecastdata.day = month + '/' + date.getDate() + week[date.getDay()];
+
+            //3日分の配列を作る
+            this.forecast3days.push(
+              {day: this.forecastdata.day,
+              description: this.forecastdata.description,
+              temphigh: this.forecastdata.temphigh,
+              templow: this.forecastdata.templow,
+              icon: `img/weathericon/${this.forecastdata.icon}`}
+              )
+            }
+          })
+          .catch(() => {
+            alert('天気予報の取得に失敗しました')});
+            
+          console.log(this.forecast3days);
+      });
+
+      // gMap(this.campDetailData.campsiteName);
+
+
 
     },
     
@@ -324,12 +411,13 @@ new Vue({
     }
   },
   
-
   
   
   
   
-  //読み込み時
+  /*
+  読み込み時
+  */
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

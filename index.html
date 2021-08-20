@@ -196,7 +196,22 @@
                 <div class="campcontent_wrap">
                     <div class="campcontent_menubar">Weather&Map</div>
                     <div class="contentarea__weather-map">
-                        <div id="weatherarea">作成中</div>
+                        <!--天気予報-->
+                        <div id="weatherarea">
+                            <p class="contentarea__subtitle">3日先までの天気</p>
+                            <div>
+                                <ul id="forecastwrap">
+                                    <li class="forecast" v-for="(value, key) in forecast3days">
+                                        <p>{{value.day}}</p>
+                                        <img v-bind:src=value.icon>
+                                        <p>{{value.description}}</p>
+                                        <p>{{value.temphigh}}°c / {{value.templow}}°c</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="contentarea__small">*by OpenWeatherMap</p>
+                        </div>
+                        <!--map-->
                         <div id="maparea"></div>
                     </div>
                 </div>
@@ -289,7 +304,8 @@ firebase.initializeApp(firebaseConfig);
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>
-    
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="js/main.js"></script>
     
     <!-- Font Awesome -->

@@ -179,6 +179,13 @@ footer {
     margin-bottom: 20px;
 }
 
+//機能ウインドウ共通
+.contentarea__subtitle {
+    font-weight: bold;
+    color: $violet
+}
+
+
 
 //toppage
 #headercontent {
@@ -589,7 +596,7 @@ footer {
     }
     .contentarea__weather-map {
         @extend .contentarea;
-        height: 300px;
+        height: 250px;
         @include flex;
         @include sp {
             display: block;
@@ -600,13 +607,34 @@ footer {
         height: 800px;
     }
     #weatherarea {
+        padding: 10px;
+        margin: 0 auto;
+        background-color: #fff;
         width: 40%;
         height: 100%;
-        text-align: center;
-        line-height: 150px;
+        #forecastwrap{
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .forecast {
+            text-align: center;
+            padding: 0 15px;
+            img{
+                padding-top: 10px;
+                width: 40px;
+            }
+        }
+        .contentarea__small {
+            font-size: 13px;
+            color: #777;
+            text-align: right;
+        }
         @include sp {
             width: 100%;
-            height: 150px;
+            #forecastwrap {
+                margin: 5px 0;
+            }
         }
     }
     #maparea {
