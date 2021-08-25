@@ -40,6 +40,11 @@ import taranslateJp from "./forecastTranslate.js";
 // }
 
 /**
+ * todo追加
+ */
+import {todoList} from "./todoList.js";
+
+/**
  * 表示パーツ
  */
 
@@ -88,6 +93,7 @@ new Vue({
     'login-modal': loginModal,
     'signup-modal': signupModal,
     'footer-wrap': footerWrap,
+    'todo-list': todoList,
     // 'camp-cards': campCards
   },
   data: {
@@ -141,6 +147,11 @@ new Vue({
       icon: '',
     },
     forecast3days: [],
+    //TODO
+    todoItems: [
+      { title: '',
+        isChecked: false}
+    ],
   },
   methods: {
   /*
@@ -257,6 +268,12 @@ new Vue({
       this.openDetailPage();
       this.campDetailData = value;
       this.currentCampId = key;
+      //todoのデータをfirebaseから取得
+      firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
+      .on('value', (snapshot) =>{
+          this.todoItems = snapshot.val();
+          console.log(this.todoItems)
+      });
       
       //GoogleMaps & OpenWeatherMap
       const geocoder = new window.google.maps.Geocoder();
@@ -329,10 +346,6 @@ new Vue({
             
           console.log(this.forecast3days);
       });
-
-      // gMap(this.campDetailData.campsiteName);
-
-
 
     },
     
@@ -446,7 +459,7 @@ new Vue({
         //   });
 
         //全てのデータ
-        firebase.database().ref(`campbooks/${user.uid}`).orderByChild('fromCampDate')
+        firebase.database().ref(`campbooks/${user.uid}`)
           .on('value', (snapshot) => {
             this.campData = snapshot.val();
             console.log(this.campData)
