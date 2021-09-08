@@ -833,37 +833,43 @@ footer {
 }
 
 .campcontent_wrap #todolist .todolist__item .todolist__delete {
-  font-size: 12px;
+  margin-left: 10px;
+  font-size: 11px;
   color: #777;
+  cursor: pointer;
 }
 
 .campcontent_wrap .addtodoarea {
-  padding: 10px 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .campcontent_wrap .addtodoarea .addtodotext {
-  width: 300px;
+  width: 90%;
   height: 28px;
 }
 
 .campcontent_wrap .addtodoarea .addtodobtn {
-  font-size: 16px;
-  position: relative;
-  color: #fff;
+  font-size: 22px;
+  color: #6868AF;
+  opacity: 0.8;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
-.campcontent_wrap .addtodoarea .addtodobtn::after {
-  content: "＋";
-  position: absolute;
-  display: inline-block;
-  top: 0;
-  left: 10px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: #6868AF;
-  line-height: 28px;
-  text-align: center;
+.campcontent_wrap .addtodoarea .addtodobtn:hover {
+  opacity: 1;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.campcontent_wrap .addtodoarea .addtodobtn:active {
+  color: #7878CC;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
 }
 
 .campcontent_flexlayout {

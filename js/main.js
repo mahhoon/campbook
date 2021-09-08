@@ -148,10 +148,7 @@ new Vue({
     },
     forecast3days: [],
     //TODO
-    todoItems: [
-      { title: '',
-        isChecked: false}
-    ],
+    todoItems: '',
   },
   methods: {
   /*

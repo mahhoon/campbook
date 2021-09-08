@@ -651,35 +651,35 @@ footer {
             border-bottom: 1px solid #ddd;
             padding: 0 5px;
             .todolist__delete {
-                font-size: 12px;
+                margin-left: 10px;
+                font-size: 11px;
                 color: #777;
+                cursor: pointer;
             }
         }
     }
     .addtodoarea {
-        padding: 10px 20px;
+        padding-bottom: 10px;
+        width: 100%;
+        display: flex;
         .addtodotext {
-            width: 300px;
+            width: 90%;
             height: 28px;
         }
         .addtodobtn {
-            font-size: 16px;
-            position: relative;
-            color: #fff;
+            font-size: 22px;
+            color: $violet;
+            opacity: 0.8;
+            margin-left: 5px;
+            cursor: pointer;
         }
-        .addtodobtn::after {
-            content: "＋";
-            position: absolute;
-            display: inline-block;
-            top: 0;
-            left: 10px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background-color: $violet;
-            line-height: 28px;
-            text-align: center;
-
+        .addtodobtn:hover {
+            opacity: 1;
+            transition: all .3s;
+        }
+        .addtodobtn:active {
+            color: $hover-violet;
+            transform: translateY(1px);
         }
 
     }
