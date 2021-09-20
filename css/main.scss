@@ -592,7 +592,7 @@ footer {
         width: 100%;
         //height: 200px;
         //background-color: #eee;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
     .contentarea__weather-map {
         @extend .contentarea;
@@ -648,8 +648,9 @@ footer {
     #todolist {
         padding: 10px 0;
         .todolist__item {
-            border-bottom: 1px solid #ddd;
             padding: 0 5px;
+            display: flex;
+            align-items: center;
             .todolist__delete {
                 margin-left: 10px;
                 font-size: 11px;
@@ -657,6 +658,94 @@ footer {
                 cursor: pointer;
             }
         }
+        //todoチェックボックススタイルカスタマイズ
+        .todocheckbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .todocheckbox__input {
+            margin:0;
+            width: 0;
+            opacity: 0;
+        }
+        .todocheckbox__dummyinput {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            border-radius: 4px;
+            border: 1px solid $violet
+        }
+
+        .todocheckbox__input:checked + .todocheckbox__dummyinput::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 5px;
+            width: 4px;
+            height: 9px;
+            transform: rotate(40deg);
+            border-bottom: 3px solid $violet;
+            border-right: 3px solid $violet;
+        }
+
+        //todoチェックボックススタイルカスタマイズ
+        // .todocheckbox {
+        //     display: flex;
+        //     align-items: center;
+        //     cursor: pointer;
+        // }
+        // .todocheckbox__input {
+        //     margin:0;
+        //     width: 0;
+        //     opacity: 0;
+        // }
+        // .todocheckbox__input:checked + .todocheckbox__dummyinput {
+        //     background-color: #fff;
+        // }
+        // .todocheckbox__input:checked + .todocheckbox__dummyinput::before {
+        //     content: "";
+        //     display: block;
+        //     position: absolute;
+        //     top: 24%;
+        //     left: 57%;
+        //     width: 36%;
+        //     height: 3px;
+        //     border-radius: 2px;
+        //     transform: translate(-6px, 5px) rotateZ(-135deg);
+        //     transform-origin: 2px 2px;
+        //     background: $violet;
+        // }
+        // .todocheckbox__input:checked + .todocheckbox__dummyinput::after {
+        //     content: "";
+        //     display: block;
+        //     position: absolute;
+        //     top: 34%;
+        //     left: 67%;
+        //     width: 70%;
+        //     height: 3px;
+        //     border-radius: 2px;
+        //     transform: translate(-6px, 5px) rotateZ(-45deg);
+        //     transform-origin: 2px 2px;
+        //     background: $violet;
+        // }
+        // .todocheckbox__dummyinput {
+        //     position: relative;
+        //     top: 0;
+        //     left: 0;
+        //     display: block;
+        //     width: 18px;
+        //     height: 18px;
+        //     border: solid 2px transparent;
+        //     border: 1px $violet solid;
+        //     border-radius: 4px;
+        //     margin-right: 6px;
+        // }
     }
     .addtodoarea {
         padding-bottom: 10px;
@@ -665,23 +754,47 @@ footer {
         .addtodotext {
             width: 90%;
             height: 28px;
+            border: 1px solid lighten($violet, 30%);
+            border-radius: 4px;
         }
+        .addtodotext:focus {
+            outline: none;
+            border-color: $violet;
+        }
+        //todo追加ボタン
         .addtodobtn {
-            font-size: 22px;
-            color: $violet;
-            opacity: 0.8;
-            margin-left: 5px;
+            position:relative;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            background-color: $violet;
+            border-radius: 50%;
             cursor: pointer;
         }
+        .addtodobtn:before, .addtodobtn:after {
+            position: absolute;
+            top: 13px;
+            left: 50%;
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-top: 2px solid #fff;
+            transform: translateX(-50%);
+        }
+        .addtodobtn:after {
+            top: 6px;
+            left: 0px;
+            transform: rotate(90deg);
+        }
         .addtodobtn:hover {
-            opacity: 1;
+            opacity: 0.8;
             transition: all .3s;
         }
         .addtodobtn:active {
             color: $hover-violet;
             transform: translateY(1px);
         }
-
     }
 }
 .campcontent_flexlayout {

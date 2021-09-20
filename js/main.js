@@ -56,32 +56,6 @@ const footerWrap = {
   </footer>
   `
 };
-
-// //キャンプ一覧
-// const campCards = {
-//   template: `
-//   <ul class="campcards-wrap container" v-on:click="godetailpage">
-//     <li class="campcard" v-for="(value, key) in campdatafromparent">
-//         <img v-bind:src="value.downloadcampimage">
-//         <div class="campcard__text">
-//             <p class="campcard__place">{{value.campsitename}}</p>
-//             <p class="campcard__data">{{value.fromcampdate}}〜{{value.tocampdate}}</p>
-//         </div>
-//     </li>
-//   </ul>
-//   `,
-//   props: {
-    
-    
-//   },
-//   methods: {
-
-//   },
-//   data: {
-    
-//   }
-// }
-
  
 /**
  * インスタンス
@@ -150,6 +124,7 @@ new Vue({
     //TODO
     todoItems: '',
   },
+
   methods: {
   /*
   表示切り替え
@@ -192,6 +167,7 @@ new Vue({
     goUserIndex() {
       this.camppage = false;
       this.usertop = true;
+      this.forecast3days = [];
     },
     openDetailPage() {
       this.camppage = true;
@@ -267,10 +243,10 @@ new Vue({
       this.currentCampId = key;
       //todoのデータをfirebaseから取得
       firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
-      .on('value', (snapshot) =>{
-          this.todoItems = snapshot.val();
-          console.log(this.todoItems)
-      });
+        .on('value', (snapshot) => {
+            this.todoItems = snapshot.val();
+            console.log(this.todoItems)
+        });
       
       //GoogleMaps & OpenWeatherMap
       const geocoder = new window.google.maps.Geocoder();
@@ -346,7 +322,6 @@ new Vue({
 
     },
     
-    
     //詳細画面でキャンプデータを削除する
     deleteCampData() {
       const resultDelete = window.confirm('削除しますか？');
@@ -370,6 +345,7 @@ new Vue({
       this.newCamp = false;
       // this.campRegisterData = this.campDetailDataだと参照渡しになるので、展開して入れる
       this.campRegisterData = {...this.campDetailData};
+      //$refsでコンポーネント内のDOM要素を直接参照できる
       this.$refs.selectedFileInput.value = null;
     },
     editCampData() {
@@ -397,7 +373,6 @@ new Vue({
               });
               this.campDetailData = this.campRegisterData;
             });
-
         })
       .catch((error) => {
         console.error('アップロード失敗', error);

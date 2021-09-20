@@ -742,7 +742,7 @@ footer {
 
 .campcontent_wrap .contentarea, .campcontent_wrap .contentarea__weather-map {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .campcontent_wrap .contentarea__weather-map {
@@ -828,8 +828,13 @@ footer {
 }
 
 .campcontent_wrap #todolist .todolist__item {
-  border-bottom: 1px solid #ddd;
   padding: 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .campcontent_wrap #todolist .todolist__item .todolist__delete {
@@ -837,6 +842,48 @@ footer {
   font-size: 11px;
   color: #777;
   cursor: pointer;
+}
+
+.campcontent_wrap #todolist .todocheckbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.campcontent_wrap #todolist .todocheckbox__input {
+  margin: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.campcontent_wrap #todolist .todocheckbox__dummyinput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  border-radius: 4px;
+  border: 1px solid #6868AF;
+}
+
+.campcontent_wrap #todolist .todocheckbox__input:checked + .todocheckbox__dummyinput::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 4px;
+  height: 9px;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+  border-bottom: 3px solid #6868AF;
+  border-right: 3px solid #6868AF;
 }
 
 .campcontent_wrap .addtodoarea {
@@ -850,18 +897,47 @@ footer {
 .campcontent_wrap .addtodoarea .addtodotext {
   width: 90%;
   height: 28px;
+  border: 1px solid #cccce4;
+  border-radius: 4px;
+}
+
+.campcontent_wrap .addtodoarea .addtodotext:focus {
+  outline: none;
+  border-color: #6868AF;
 }
 
 .campcontent_wrap .addtodoarea .addtodobtn {
-  font-size: 22px;
-  color: #6868AF;
-  opacity: 0.8;
-  margin-left: 5px;
+  position: relative;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  background-color: #6868AF;
+  border-radius: 50%;
   cursor: pointer;
 }
 
+.campcontent_wrap .addtodoarea .addtodobtn:before, .campcontent_wrap .addtodoarea .addtodobtn:after {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid #fff;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.campcontent_wrap .addtodoarea .addtodobtn:after {
+  top: 6px;
+  left: 0px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
 .campcontent_wrap .addtodoarea .addtodobtn:hover {
-  opacity: 1;
+  opacity: 0.8;
   -webkit-transition: all .3s;
   transition: all .3s;
 }

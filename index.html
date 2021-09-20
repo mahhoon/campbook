@@ -132,9 +132,6 @@
             </div>
             <div id="addcampplan" v-on:click="openNewcampModal">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
-                <!--<camp-cards v-bind:campdatafromparent="campData" v-bind:godetailpage="openDetailPage"></camp-cards>-->
-                
-                
                 <ul class="campcards-wrap container">
                     <li class="campcard" v-for="(value, key) in campData" v-on:click="expandPage(value, key)">
                         <img v-if="value.downloadCampImage.length === 0" src="img/campimg.png">
@@ -223,8 +220,7 @@
                     <div class="column2">
                         <div class="campcontent_wrap">
                             <div class="campcontent_menubar">TODO</div>
-                            <todo-list v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:todo-items="todoItems"></todo-list>
-                            <!-- v-bind:todo-items="todoItems" -->
+                            <todo-list v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:todo-items.sync="todoItems"></todo-list>
                         </div>
                         <div class="campcontent_wrap">
                             <div class="campcontent_menubar">お役立ちリンク集</div>

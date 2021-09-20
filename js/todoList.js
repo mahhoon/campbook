@@ -4,22 +4,24 @@ export const todoList = {
     <div class="contentarea">
         <ul id="todolist">
             <li class="todolist__item" v-for="(value, key) in todoItems">
-                <label>
-                    <input type="checkbox" v-model="value.isChecked">
+                <label class="todocheckbox" v-on:click="updateTodo(value,key)">
+                    <input class="todocheckbox__input" type="checkbox">
+                    <span class="todocheckbox__dummyinput" v-model="value.isChecked"></span>
                     <span>{{value.title}}</span>
                 </label>
-                <span class="todolist__delete"　v-on:click="deleteTodo(key)">削除</span>
+                <span class="todolist__delete" v-on:click="deleteTodo(key)">削除</span>
             </li>
         </ul>
         <div class="addtodoarea">
             <input type="text" class="addtodotext" v-model="inputTodotitle">
-            <span class="addtodobtn" v-on:click="addTodo"><i class="fas fa-plus-circle"></i></span>
+            <span class="addtodobtn" v-on:click="addTodo"></span>
         </div> 
     </div>
     `,
 
     data() {
         return {
+            // todoItems: '',
             inputTodotitle: '',
         }
     },
@@ -32,15 +34,13 @@ export const todoList = {
                     isChecked: false
                 })
                 
-                
             //やっぱりoffする意味が分からない
             // firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
             //     .off('child_added');
 
             firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
                 .on('child_added', (snapshot) =>{
-                    this.todoItems = snapshot.val();
-                    console.log(this.todoItems)
+                    this.$emit('update:value', snapshot.val());
                 })
 
             this.inputTodotitle = '';
@@ -49,33 +49,36 @@ export const todoList = {
             }
         },
 
-        deleteTodo(key){
-            firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}/key`)
-                .remove()
-                .then(() => {
-
+        updateTodo(value,key) {
+            value.isChecked = !value.isChecked
+            firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}/${key}`)
+                .update({...value})
+                .catch(()=> {
+                    console.error("更新できませんでした")
                 })
         },
 
-        //だめだった・・
-        // mounted(){
-        //     //todoのデータをfirebaseから取得
-        //         firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
-        //             .on('value', (snapshot) =>{
-        //                 this.todoItems = snapshot.val();
-        //         console.log(this.todoItems)
-        //         });
-        // }
-
+        deleteTodo(key){
+            firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}/${key}`)
+                .remove()
+                .then(() => {
+                    console.log("Remove succeeded.");
+                })
+                .catch(()=> {
+                    console.error("削除できませんでした")
+                })
+        },
     },
 
-    props: ['currentCampId', 'currentUid', 'todoItems'],
-    // 'todoItems'
+    //データは取れるけど、表示されない・・
+    // mounted(){
+    //     //todoのデータをfirebaseから取得
+    //         firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
+    //             .on('value', (snapshot) => {
+    //                 this.todoItems = snapshot.val();
+    //         console.log(this.todoItems)
+    //         });
+    // },
 
-    // created() {
-    //     firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
-    //                 .on('value', (snapshot) =>{
-    //                     this.todoItems = snapshot.val();
-    //                 })
-    // }
+    props: ['currentCampId', 'currentUid', 'todoItems'],
 }
