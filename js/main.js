@@ -167,9 +167,9 @@ new Vue({
     goUserIndex() {
       this.camppage = false;
       this.usertop = true;
-      this.forecast3days = [];
     },
     openDetailPage() {
+      this.forecast3days = [];
       this.camppage = true;
       this.registCampModalShow = false;
       this.usertop = false;
