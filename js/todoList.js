@@ -38,10 +38,10 @@ export const todoList = {
             // firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
             //     .off('child_added');
 
-            firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
-                .on('child_added', (snapshot) =>{
-                    this.$emit('update:value', snapshot.val());
-                })
+            // firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
+            //     .on('child_added', (snapshot) =>{
+            //         this.$emit('update:value', snapshot.val());
+            //     })
 
             this.inputTodotitle = '';
             } else {

@@ -243,7 +243,10 @@ new Vue({
       this.currentCampId = key;
       //todoのデータをfirebaseから取得
       firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
+        .off('value');
+      firebase.database().ref(`camptodos/${this.currentUid}/${this.currentCampId}`)
         .on('value', (snapshot) => {
+            console.log('value', snapshot.val())
             this.todoItems = snapshot.val();
             console.log(this.todoItems)
         });
