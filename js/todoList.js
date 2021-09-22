@@ -4,8 +4,8 @@ export const todoList = {
     <div class="contentarea">
         <ul id="todolist">
             <li class="todolist__item" v-for="(value, key) in todoItems">
-                <label class="todocheckbox" v-on:click="updateTodo(value,key)">
-                    <input class="todocheckbox__input" type="checkbox">
+                <label class="todocheckbox">
+                    <input class="todocheckbox__input" type="checkbox"　v-on:click="updateTodo(value,key)">
                     <span class="todocheckbox__dummyinput" v-model="value.isChecked"></span>
                     <span>{{value.title}}</span>
                 </label>
