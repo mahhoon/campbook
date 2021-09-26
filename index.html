@@ -253,7 +253,7 @@
                 </div>
                 <div v-bind:class="[togglemenu, {'togglemenu-show':isActive}, sp]">
                     <p class="non-active"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
-                    <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>シオリ一覧ページへ</p>
+                    <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>キャンプ一覧ページへ</p>
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
                 </div>
             </div>
@@ -261,10 +261,10 @@
                 <div class="usergoodslists__contentarea">
                     <p class="usergoodslists__contentarea-backbtn" v-on:click="goUserIndex"><span class="icon"><i class="fas fa-arrow-circle-left"></i></span>キャンプ一覧に戻る</p>
                     <div class="usergoodslists__contentarea__heading">
-                        <h1><span class="icon"><i class="fas fa-edit"></i></span>うちの持ち物リストを作成</h1>
+                        <h1>うちの持ち物リストを作成</h1>
                         <div class="usergoodslists__contentarea__heading-addcategory">
-                            <p>新しいカテゴリーを追加</p>
-                            <input type="text" class="addlisttext addlisttext-short">
+                            <!-- <p>新しいカテゴリーを追加</p> -->
+                            <input type="text" class="addlisttext addlisttext-short"　placeholder="新しいカテゴリーを追加">
                             <span class="addlistbtn"></span>
                         </div>
                     </div>
@@ -276,9 +276,11 @@
                                     <li class="goods-basic-list">テント<i class="fas fa-backspace deletebtn"></i></li>
                                     <li class="goods-basic-list">タープ<i class="fas fa-backspace deletebtn"></i></li>
                                     <li class="goods-basic-list">エアマット<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">ブルーシート<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">寝袋<i class="fas fa-backspace deletebtn"></i></li>
                                 </ul>
                                 <div class="adduserlistarea">
-                                    <input type="text" class="addlisttext addlisttext-color">
+                                    <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加">
                                     <span class="addlistbtn_s"></span>
                                 </div>
                             </div>
@@ -292,11 +294,40 @@
                                     <li class="goods-basic-list">エアマット<i class="fas fa-backspace deletebtn"></i></li>
                                 </ul>
                                 <div class="adduserlistarea">
-                                    <input type="text" class="addlisttext addlisttext-color">
+                                    <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加">
                                     <span class="addlistbtn_s"></span>
                                 </div>
                             </div>
                         </div>
+                        <div class="usergoodslists__contentarea__main_categoryunit">
+                            <div class="usergoodslists__contentarea__main_categoryunit-categoryname">居<i class="fas fa-backspace deletebtn"></i></div>
+                            <div>
+                                <ul>
+                                    <li class="goods-basic-list">テント<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">タープ<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">エアマット<i class="fas fa-backspace deletebtn"></i></li>
+                                </ul>
+                                <div class="adduserlistarea">
+                                    <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加">
+                                    <span class="addlistbtn_s"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="usergoodslists__contentarea__main_categoryunit">
+                            <div class="usergoodslists__contentarea__main_categoryunit-categoryname">居<i class="fas fa-backspace deletebtn"></i></div>
+                            <div>
+                                <ul>
+                                    <li class="goods-basic-list">テント<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">タープ<i class="fas fa-backspace deletebtn"></i></li>
+                                    <li class="goods-basic-list">エアマット<i class="fas fa-backspace deletebtn"></i></li>
+                                </ul>
+                                <div class="adduserlistarea">
+                                    <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加">
+                                    <span class="addlistbtn_s"></span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                </div>
             </div>

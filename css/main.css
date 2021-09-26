@@ -261,6 +261,7 @@ footer {
   height: 28px;
   border: 1px solid #cccce4;
   border-radius: 4px;
+  padding-left: 5px;
 }
 
 .addlisttext:focus {
@@ -1053,8 +1054,7 @@ footer {
 }
 
 .usergoodslists__contentarea__heading h1 {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 26px;
   color: #6868AF;
 }
 
@@ -1067,9 +1067,6 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 5px 10px;
-  margin-top: 10px;
-  background-color: #cccce4;
 }
 
 .usergoodslists__contentarea__heading-addcategory p {
@@ -1094,6 +1091,7 @@ footer {
 
 .usergoodslists__contentarea__main_categoryunit {
   width: 48%;
+  margin-bottom: 10px;
 }
 
 .usergoodslists__contentarea__main .adduserlistarea {

@@ -484,15 +484,13 @@
         padding: 10px 0;
         margin-bottom: 40px;
         h1 {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 26px;
             color: $violet;
         }
         &-addcategory {
             @include flex;
-            padding: 5px 10px;
-            margin-top: 10px;
-            background-color: lighten($violet, 30%);
+            // padding: 5px 10px;
+            // margin-top: 10px;
             p {
                 color: $violet;
                 padding-right: 10px;
@@ -508,6 +506,7 @@
 
         &_categoryunit {
             width: 48%;
+            margin-bottom: 10px;
         }
 
         .adduserlistarea {
