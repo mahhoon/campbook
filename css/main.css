@@ -181,70 +181,91 @@ footer {
   color: #6868AF;
 }
 
-#headercontent {
-  background-image: url(../img/mainbg.jpg);
-  background-position: 50% 0%;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  text-align: center;
-  padding: 20px 0 50px;
-  height: 600px;
-}
-
-@media (max-width: 670px) {
-  #headercontent {
-    height: auto;
-  }
-  #headercontent img {
-    width: 250px;
-    padding-bottom: 60px;
-  }
-}
-
-#headercontent p {
-  padding-top: 20px;
-}
-
-@media (max-width: 670px) {
-  #headercontent p {
-    text-align: left;
-    padding: 20px;
-  }
-}
-
-#headercontent .loginbuttons {
-  margin-top: 20px;
-}
-
-#headercontent .loginbuttons .btn-basic {
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+.addlistbtn {
+  position: relative;
+  top: 2px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
   background-color: #6868AF;
-  color: #fff;
-  width: 200px;
-  font-weight: 400;
-  font-size: 16px;
-  -webkit-transition: .3s;
-  transition: .3s;
-  cursor: default;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.addlistbtn::before, .addlistbtn::after {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  content: '';
   display: inline-block;
-  margin-right: 20px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
-#headercontent .loginbuttons .btn-basic:hover {
-  background-color: #7878CC;
+.addlistbtn::after {
+  top: 7px;
+  left: 3px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
-#headercontent .loginbuttons .btn-basic:disabled {
-  background-color: #ababd2;
+.addlistbtn:hover {
+  opacity: 0.8;
+  -webkit-transition: all .3s;
+  transition: all .3s;
 }
 
-@media (max-width: 670px) {
-  #headercontent .loginbuttons .btn-basic {
-    width: 60%;
-    margin: 0 0 15px 0;
-  }
+.addlistbtn:active {
+  color: #7878CC;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+}
+
+.addlistbtn_s {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.addlistbtn_s::before, .addlistbtn_s::after {
+  position: absolute;
+  top: 12px;
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #6868AF;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.addlistbtn_s::after {
+  top: 6px;
+  left: -12px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.addlistbtn_s:active {
+  color: #7878CC;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+}
+
+.addlisttext {
+  width: 90%;
+  height: 28px;
+  border: 1px solid #cccce4;
+  border-radius: 4px;
+}
+
+.addlisttext:focus {
+  outline: none;
+  border-color: #6868AF;
 }
 
 .overlay {
@@ -351,6 +372,72 @@ footer {
   text-align: left;
   line-height: 1.1rem;
   color: red;
+}
+
+#headercontent {
+  background-image: url(../img/mainbg.jpg);
+  background-position: 50% 0%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 20px 0 50px;
+  height: 600px;
+}
+
+@media (max-width: 670px) {
+  #headercontent {
+    height: auto;
+  }
+  #headercontent img {
+    width: 250px;
+    padding-bottom: 60px;
+  }
+}
+
+#headercontent p {
+  padding-top: 20px;
+}
+
+@media (max-width: 670px) {
+  #headercontent p {
+    text-align: left;
+    padding: 20px;
+  }
+}
+
+#headercontent .loginbuttons {
+  margin-top: 20px;
+}
+
+#headercontent .loginbuttons .btn-basic {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #6868AF;
+  color: #fff;
+  width: 200px;
+  font-weight: 400;
+  font-size: 16px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: default;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#headercontent .loginbuttons .btn-basic:hover {
+  background-color: #7878CC;
+}
+
+#headercontent .loginbuttons .btn-basic:disabled {
+  background-color: #ababd2;
+}
+
+@media (max-width: 670px) {
+  #headercontent .loginbuttons .btn-basic {
+    width: 60%;
+    margin: 0 0 15px 0;
+  }
 }
 
 #introduction {
@@ -894,60 +981,6 @@ footer {
   display: flex;
 }
 
-.campcontent_wrap .addtodoarea .addtodotext {
-  width: 90%;
-  height: 28px;
-  border: 1px solid #cccce4;
-  border-radius: 4px;
-}
-
-.campcontent_wrap .addtodoarea .addtodotext:focus {
-  outline: none;
-  border-color: #6868AF;
-}
-
-.campcontent_wrap .addtodoarea .addtodobtn {
-  position: relative;
-  left: 4px;
-  width: 28px;
-  height: 28px;
-  background-color: #6868AF;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.campcontent_wrap .addtodoarea .addtodobtn:before, .campcontent_wrap .addtodoarea .addtodobtn:after {
-  position: absolute;
-  top: 13px;
-  left: 50%;
-  content: '';
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-top: 2px solid #fff;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-
-.campcontent_wrap .addtodoarea .addtodobtn:after {
-  top: 6px;
-  left: 0px;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
-.campcontent_wrap .addtodoarea .addtodobtn:hover {
-  opacity: 0.8;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-.campcontent_wrap .addtodoarea .addtodobtn:active {
-  color: #7878CC;
-  -webkit-transform: translateY(1px);
-          transform: translateY(1px);
-}
-
 .campcontent_flexlayout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -968,6 +1001,150 @@ footer {
     display: block;
   }
   .campcontent_flexlayout .column2 {
+    width: 100%;
+  }
+}
+
+#usergoodslists {
+  padding-top: 20px;
+}
+
+.usergoodslists__contentarea {
+  background-color: #ededf6;
+  min-height: 1000px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+@media (max-width: 670px) {
+  .usergoodslists__contentarea {
+    padding: 0 10px;
+  }
+}
+
+.usergoodslists__contentarea .icon {
+  padding-right: 5px;
+}
+
+.usergoodslists__contentarea-backbtn {
+  padding-top: 20px;
+  color: #6868AF;
+  font-weight: 400;
+  font-size: 15px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.usergoodslists__contentarea__heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 10px 0;
+  margin-bottom: 40px;
+}
+
+.usergoodslists__contentarea__heading h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6868AF;
+}
+
+.usergoodslists__contentarea__heading-addcategory {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: #cccce4;
+}
+
+.usergoodslists__contentarea__heading-addcategory p {
+  color: #6868AF;
+  padding-right: 10px;
+}
+
+.usergoodslists__contentarea__heading-addcategory .addlisttext-short {
+  width: 200px;
+}
+
+.usergoodslists__contentarea__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.usergoodslists__contentarea__main_categoryunit {
+  width: 48%;
+}
+
+.usergoodslists__contentarea__main .adduserlistarea {
+  margin: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.usergoodslists__contentarea__main .adduserlistarea .addlisttext-color {
+  background-color: #cccce4;
+}
+
+.usergoodslists__contentarea__main_categoryunit-categoryname {
+  background-color: #6868AF;
+  color: #fff;
+  padding-left: 10px;
+  position: relative;
+}
+
+.usergoodslists__contentarea__main .goods-basic-list {
+  border-bottom: 1px solid #ababd2;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 0 10px;
+  position: relative;
+}
+
+.usergoodslists__contentarea__main .goods-basic-list:last-child {
+  border-bottom: none;
+}
+
+.usergoodslists__contentarea__main .deletebtn {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .usergoodslists__contentarea__main {
+    display: block;
+  }
+  .usergoodslists__contentarea__main_categoryunit {
     width: 100%;
   }
 }

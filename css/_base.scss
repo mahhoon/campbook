@@ -1,0 +1,105 @@
+//colors
+$violet: #6868AF;
+$hover-violet: #7878CC;
+
+//mixin
+@mixin basic-btn {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: $violet;
+    color: #fff;
+    width: 200px;
+    font-weight: 400;
+    font-size: 16px;
+    transition: .3s;
+    cursor: default;
+
+    &:hover {
+        background-color: $hover-violet;
+    }
+    
+    &:disabled {
+        background-color: lighten($violet, 20%);
+    }
+}
+@mixin flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@mixin sp {
+  @media (max-width: 670px) {
+    @content;
+  }
+}
+
+.non-active, .togglemenu >.non-active {
+    color: lighten($violet, 20%);
+}
+
+.pc {
+    display: block;
+    @include sp {
+        display: none;
+    }
+}
+.sp {
+    display: none;
+    @include sp {
+        display: block;
+    }
+}
+
+//basic settings
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Noto Sans JP', sans-serif; 
+    color: #333;
+    font-size: 15px;
+    line-height: 1.7rem;
+    @include sp {
+        font-size: 13px;
+    }
+    h2  {
+        font-size: 24px;
+    }
+}
+
+.container {
+    max-width: 1070px;
+    min-width: 960px;
+    margin: 0 auto;
+    padding: 0 80px;
+    @include sp {
+        min-width: 100%;
+        padding: 0 20px;
+    }
+}
+footer {
+    font-size: 11px;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    color: #777;
+}
+
+
+.fade {
+    opacity: 0; 
+    animation: fadein-anim 0.5s Linear forwards;
+    
+    @keyframes fadein-anim {
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+
+.fade-show {
+    opacity: 1;
+}

@@ -9,6 +9,11 @@ import {signupModal} from "./signupModal.js";
 const apiKey = '28f6fef487aab69f58982d60c1b8f9e0';
 import taranslateJp from "./forecastTranslate.js";
 
+//Sortable.js
+const goodsBasicLists = document.getElementById('goodsbasiclists');
+console.log(goodsBasicLists);
+//Sortable.create(goodsBasicLists);
+
 // //GoogleMaps
 // const gMap = (currentCampAdress) => {
 //   const geocoder = new window.google.maps.Geocoder();
@@ -44,6 +49,7 @@ import taranslateJp from "./forecastTranslate.js";
  */
 import {todoList} from "./todoList.js";
 
+
 /**
  * 表示パーツ
  */
@@ -56,6 +62,9 @@ const footerWrap = {
   </footer>
   `
 };
+
+//ユーザーヘッダー
+import { userHeader } from "./userHeader.js";
  
 /**
  * インスタンス
@@ -68,6 +77,7 @@ new Vue({
     'signup-modal': signupModal,
     'footer-wrap': footerWrap,
     'todo-list': todoList,
+    'user-header': userHeader,
     // 'camp-cards': campCards
   },
   data: {
@@ -84,6 +94,7 @@ new Vue({
     isActive: false,
     togglemenu: 'togglemenu',
     sp: 'sp',
+    usergoodslists: false,
     //ユーザー関連
     currentUid: '',
     currentUname: '',
@@ -167,6 +178,7 @@ new Vue({
     goUserIndex() {
       this.camppage = false;
       this.usertop = true;
+      this.usergoodslists = false;
     },
     openDetailPage() {
       this.forecast3days = [];
@@ -177,7 +189,10 @@ new Vue({
     showToggleMenu() {
       this.isActive = !this.isActive;
     },
-
+    showUserGoodsLists() {
+      this.usergoodslists = true;
+      this.usertop = false;
+    },
 
     //画像セレクト
     selectedFile(e) {
@@ -471,6 +486,9 @@ $(function(){
   $('body').on('click', '.campcontent_menubar', (e) => {
     $(e.target).next().slideToggle(200);
     $(e.target).toggleClass('close',200);
+  });
+  $('body').on('click', '.usergoodslists__contentarea__main_categoryunit-categoryname', (e) => {
+    $(e.target).next().slideToggle(200);
   });
   
 

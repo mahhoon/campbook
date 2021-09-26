@@ -1,190 +1,7 @@
 @charset "UTF-8";
 
-//colors
-$violet: #6868AF;
-$hover-violet: #7878CC;
-
-
-//mixin
-@mixin basic-btn {
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    background-color: $violet;
-    color: #fff;
-    width: 200px;
-    font-weight: 400;
-    font-size: 16px;
-    transition: .3s;
-    cursor: default;
-
-    &:hover {
-        background-color: $hover-violet;
-    }
-    
-    &:disabled {
-        background-color: lighten($violet, 20%);
-    }
-}
-@mixin flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-@mixin sp {
-  @media (max-width: 670px) {
-    @content;
-  }
-}
-
-.non-active, .togglemenu >.non-active {
-    color: lighten($violet, 20%);
-}
-
-.pc {
-    display: block;
-    @include sp {
-        display: none;
-    }
-}
-.sp {
-    display: none;
-    @include sp {
-        display: block;
-    }
-}
-
-//basic settings
-*{
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Noto Sans JP', sans-serif; 
-    color: #333;
-    font-size: 15px;
-    line-height: 1.7rem;
-    @include sp {
-        font-size: 13px;
-    }
-    h2  {
-        font-size: 24px;
-    }
-}
-
-.container {
-    max-width: 1070px;
-    min-width: 960px;
-    margin: 0 auto;
-    padding: 0 80px;
-    @include sp {
-        min-width: 100%;
-        padding: 0 20px;
-    }
-}
-footer {
-    font-size: 11px;
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid #eee;
-    color: #777;
-}
-
-
-.fade {
-    opacity: 0; 
-    animation: fadein-anim 0.5s Linear forwards;
-    
-    @keyframes fadein-anim {
-        100% {
-            opacity: 1;
-        }
-    }
-}
-
-
-.fade-show {
-    opacity: 1;
-}
-
-
-//ユーザーページ共通ヘッダー
-.user-heading {
-    margin-bottom: 10px;
-    @include flex;
-
-    .user {
-        text-align: right;
-
-        p {
-            display: inline-block;
-            padding-left: 20px;
-        }
-        .logout {
-            cursor: default;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    }
-
-    @include sp {
-        margin-bottom: 10px;
-        h1 {
-            width: 170px;
-            padding-left: 0;
-            img {
-                width: 100%;
-            }
-        }
-        .toggle-wrap {
-            text-align: right;
-        }
-        .togglebtn {
-            z-index: 20;
-            font-size: 20px;
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            line-height: 30px;
-            color: $violet;
-        }
-    }
-}
-.togglemenu {
-    position: fixed;
-    top: 50px;
-    right: 0;
-    background-color: #fff;
-    padding: 20px;
-    width: 200px;
-    z-index: 10;
-    transform: translateX(200px);
-    transition: all .3s;
-    text-align: right;
-    .icon {
-        padding-right: 5px;
-    }
-    p {
-        font-size: 14px;
-        color: $violet;
-        line-height: 3rem
-    }
-}
-.togglemenu-show {
-    transform: translateX(0);
-}
-
-.username-sp {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-//機能ウインドウ共通
-.contentarea__subtitle {
-    font-weight: bold;
-    color: $violet
-}
-
+@import "_base.scss";
+@import "_modules.scss";
 
 
 //toppage
@@ -222,88 +39,6 @@ footer {
             @include sp {
                 width: 60%;
                 margin: 0 0 15px 0;
-            }
-        }
-    }
-}
-
-
-//modal
-.overlay {
-    z-index:100;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-
-    .modal-wrapping {
-        position: absolute;
-        top: 20%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 450px;
-        background-color: #fff;
-        border-radius: 4px;
-        text-align: center;
-        padding: 20px;
-        @include sp {
-            width: 90%;
-            top: 5%;
-        }
-
-        .modal-wrapping__title {
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .modal-wrapping__name {
-            font-size: 13px;
-            line-height: 1rem;
-            color: #777;
-            text-align: left;
-        }
-        .modal-wrapping__formcontrol {
-            /* デフォルトスタイルをリセット */
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-            /* font-familyを継承しないので、継承させる */
-            font-family: inherit;
-            
-            background-color: transparent;
-            background-image: none;
-            border: 1px solid rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-            color: inherit;
-            font-size: 1em;
-            padding: 0.4em 0.8em;
-            width: 100%;
-            height: 40px;
-            box-sizing:border-box;
-            margin: 4px 0 10px;
-        }
-        .modal-wrapping__submit {
-            @include basic-btn;
-            margin: 20px 20px 0 0;
-            width: 100%;
-        }
-        .close-modal{
-            text-align: right;
-            font-size: 10px;
-            cursor: pointer;
-            color: #888;
-        }
-        .modal-msgbox {
-            height: 20px;
-            margin-bottom: 10px;
-            .modal-errormsg {
-                font-size: 12px;
-                text-align: left;
-                line-height: 1.1rem;
-                color: red;
             }
         }
     }
@@ -693,108 +428,13 @@ footer {
             border-bottom: 3px solid $violet;
             border-right: 3px solid $violet;
         }
-
-        //todoチェックボックススタイルカスタマイズ
-        // .todocheckbox {
-        //     display: flex;
-        //     align-items: center;
-        //     cursor: pointer;
-        // }
-        // .todocheckbox__input {
-        //     margin:0;
-        //     width: 0;
-        //     opacity: 0;
-        // }
-        // .todocheckbox__input:checked + .todocheckbox__dummyinput {
-        //     background-color: #fff;
-        // }
-        // .todocheckbox__input:checked + .todocheckbox__dummyinput::before {
-        //     content: "";
-        //     display: block;
-        //     position: absolute;
-        //     top: 24%;
-        //     left: 57%;
-        //     width: 36%;
-        //     height: 3px;
-        //     border-radius: 2px;
-        //     transform: translate(-6px, 5px) rotateZ(-135deg);
-        //     transform-origin: 2px 2px;
-        //     background: $violet;
-        // }
-        // .todocheckbox__input:checked + .todocheckbox__dummyinput::after {
-        //     content: "";
-        //     display: block;
-        //     position: absolute;
-        //     top: 34%;
-        //     left: 67%;
-        //     width: 70%;
-        //     height: 3px;
-        //     border-radius: 2px;
-        //     transform: translate(-6px, 5px) rotateZ(-45deg);
-        //     transform-origin: 2px 2px;
-        //     background: $violet;
-        // }
-        // .todocheckbox__dummyinput {
-        //     position: relative;
-        //     top: 0;
-        //     left: 0;
-        //     display: block;
-        //     width: 18px;
-        //     height: 18px;
-        //     border: solid 2px transparent;
-        //     border: 1px $violet solid;
-        //     border-radius: 4px;
-        //     margin-right: 6px;
-        // }
     }
     .addtodoarea {
         padding-bottom: 10px;
         width: 100%;
         display: flex;
-        .addtodotext {
-            width: 90%;
-            height: 28px;
-            border: 1px solid lighten($violet, 30%);
-            border-radius: 4px;
-        }
-        .addtodotext:focus {
-            outline: none;
-            border-color: $violet;
-        }
-        //todo追加ボタン
-        .addtodobtn {
-            position:relative;
-            left: 4px;
-            width: 28px;
-            height: 28px;
-            background-color: $violet;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .addtodobtn:before, .addtodobtn:after {
-            position: absolute;
-            top: 13px;
-            left: 50%;
-            content: '';
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border-top: 2px solid #fff;
-            transform: translateX(-50%);
-        }
-        .addtodobtn:after {
-            top: 6px;
-            left: 0px;
-            transform: rotate(90deg);
-        }
-        .addtodobtn:hover {
-            opacity: 0.8;
-            transition: all .3s;
-        }
-        .addtodobtn:active {
-            color: $hover-violet;
-            transform: translateY(1px);
-        }
+
+    
     }
 }
 .campcontent_flexlayout {
@@ -809,4 +449,108 @@ footer {
             width: 100%;
         }
     }
+}
+
+//持ち物リスト編集画面
+#usergoodslists {
+    padding-top: 20px;
+}
+.usergoodslists__contentarea {
+    background-color: lighten($violet, 40%);
+    min-height: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    @include sp {
+        padding: 0 10px;
+    }
+
+    .icon {
+        padding-right: 5px;
+    }
+
+    &-backbtn {
+        padding-top: 20px;
+        color: $violet;
+        font-weight: 400;
+        font-size: 15px;
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    &__heading {
+        @include flex;
+        align-items: flex-end;
+        padding: 10px 0;
+        margin-bottom: 40px;
+        h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: $violet;
+        }
+        &-addcategory {
+            @include flex;
+            padding: 5px 10px;
+            margin-top: 10px;
+            background-color: lighten($violet, 30%);
+            p {
+                color: $violet;
+                padding-right: 10px;
+            }
+            .addlisttext-short {
+                width: 200px;
+            }
+          
+        }
+    }
+    &__main {
+        @include flex;
+
+        &_categoryunit {
+            width: 48%;
+        }
+
+        .adduserlistarea {
+            margin: 10px 0;
+            @include flex;
+
+            .addlisttext-color{
+                background-color: lighten($violet, 30%);
+            }
+        }
+
+        &_categoryunit-categoryname {
+            background-color: $violet;
+            color: #fff;
+            padding-left: 10px;
+            position: relative;
+        }
+        .goods-basic-list {
+            border-bottom: 1px solid lighten($violet, 20%);
+            background-color: #fff;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 0 10px;
+            position: relative;
+        }
+        .goods-basic-list:last-child {
+            border-bottom: none;
+        }
+
+        .deletebtn {
+            position: absolute;
+            right: 10px;
+            top: 20%;
+            line-height: 24px;
+            cursor: pointer;
+        }
+
+        @include sp {
+            display: block;
+            &_categoryunit {
+                width: 100%;
+            }
+        }
+    }
+
 }
