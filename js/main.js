@@ -1,7 +1,6 @@
 /**
  * 認証部分
  **/
- 
 import {loginModal} from "./loginModal.js";
 import {signupModal} from "./signupModal.js";
 
@@ -14,41 +13,14 @@ const goodsBasicLists = document.getElementById('goodsbasiclists');
 console.log(goodsBasicLists);
 //Sortable.create(goodsBasicLists);
 
-// //GoogleMaps
-// const gMap = (currentCampAdress) => {
-//   const geocoder = new window.google.maps.Geocoder();
-//   geocoder.geocode({
-//     address: currentCampAdress
-//   },(results, status) => {
-//     console.log(results);
-//     // this.resultZip = results[0].address_components[6].long_name;
-//     const resultLocation = results[0].geometry.location;
-    
-    
-//     const mapArea = document.getElementById('maparea')
-//     let map;
-//     if (results[0]) {
-//       map = new window.google.maps.Map(mapArea, {
-//         center: resultLocation,
-//         zoom: 10
-//       });
-//       new window.google.maps.Marker({
-//         position: resultLocation,
-//         map: map,
-//         animation: window.google.maps.Animation.DROP
-//       })
-//     } else {
-//       alert('No results found')
-//       return;
-//     }
-//   });
-// }
-
 /**
  * todo追加
  */
 import {todoList} from "./todoList.js";
-
+/**
+ * 持ち物リスト作成ページ追加
+ */
+import {basicGoodsLists} from "./userGoodsLists.js";
 
 /**
  * 表示パーツ
@@ -78,6 +50,7 @@ new Vue({
     'footer-wrap': footerWrap,
     'todo-list': todoList,
     'user-header': userHeader,
+    'basic-goods-lists': basicGoodsLists,
     // 'camp-cards': campCards
   },
   data: {
