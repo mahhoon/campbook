@@ -44,7 +44,7 @@ export const basicGoodsLists = {
     methods: {
         //一覧へ戻るボタンのイベント発火を親に伝える
         goUserIndexFromChild() {
-            this.$emit('goUserIndexFromChild');
+            this.$emit('go-user-index-from-child');
         },
         //カテゴリー登録
         registGoodsCategory() {
