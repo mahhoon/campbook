@@ -329,6 +329,7 @@
         //background-color: #eee;
         margin-bottom: 30px;
     }
+    //天気予報-地図エリア
     .contentarea__weather-map {
         @extend .contentarea;
         height: 250px;
@@ -337,9 +338,6 @@
             display: block;
             height: auto;
         }
-    }
-    .left {
-        height: 800px;
     }
     #weatherarea {
         padding: 10px;
@@ -360,11 +358,13 @@
                 width: 40px;
             }
         }
-        .contentarea__small {
+        .contentarea_a-small {
             font-size: 13px;
+            display: block;
             color: #777;
             text-align: right;
         }
+        
         @include sp {
             width: 100%;
             #forecastwrap {
@@ -380,6 +380,8 @@
             height: 200px;
         }
     }
+
+    //todoリストエリア
     #todolist {
         padding: 10px 0;
         .todolist__item {
@@ -436,6 +438,51 @@
 
     
     }
+
+    //goodsリストエリア
+    .add-basiclist {
+        margin: 10px 0;
+        padding: 0 4px;
+        font-size: 14px;
+        color: $violet;
+        border: 1px solid $violet;
+        display: inline-block;
+        border-radius: 6px;
+    }
+    .goodslists__contentarea{
+        &__categoryunit-category-name {
+            height: 24px;
+            background-color: lighten($violet, 20%);
+            padding-left: 10px;
+            line-height: 24px;
+            margin-bottom: 10px;
+        }
+        .goodscheckbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .caricon-unchecked {
+            width: 28px;
+            height: 28px;
+            vertical-align: bottom;
+        }
+        .goodscheckbox-dummyinput-circle {
+            position: relative;
+
+            &::after {
+                position: absolute;
+                content: '';
+                width: 16px;
+                height: 16px;
+                border: 2px solid #acacac;
+                border-radius: 50%;
+            }
+        }
+
+    }
+
+
 }
 .campcontent_flexlayout {
     @include flex;

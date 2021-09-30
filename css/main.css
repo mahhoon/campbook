@@ -852,10 +852,6 @@ footer {
   }
 }
 
-.campcontent_wrap .left {
-  height: 800px;
-}
-
 .campcontent_wrap #weatherarea {
   padding: 10px;
   margin: 0 auto;
@@ -884,8 +880,9 @@ footer {
   width: 40px;
 }
 
-.campcontent_wrap #weatherarea .contentarea__small {
+.campcontent_wrap #weatherarea .contentarea_a-small {
   font-size: 13px;
+  display: block;
   color: #777;
   text-align: right;
 }
@@ -980,6 +977,53 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.campcontent_wrap .add-basiclist {
+  margin: 10px 0;
+  padding: 0 4px;
+  font-size: 14px;
+  color: #6868AF;
+  border: 1px solid #6868AF;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.campcontent_wrap .goodslists__contentarea__categoryunit-category-name {
+  height: 24px;
+  background-color: #ababd2;
+  padding-left: 10px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.campcontent_wrap .goodslists__contentarea .goodscheckbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.campcontent_wrap .goodslists__contentarea .caricon-unchecked {
+  width: 28px;
+  height: 28px;
+  vertical-align: bottom;
+}
+
+.campcontent_wrap .goodslists__contentarea .goodscheckbox-dummyinput-circle {
+  position: relative;
+}
+
+.campcontent_wrap .goodslists__contentarea .goodscheckbox-dummyinput-circle::after {
+  position: absolute;
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid #acacac;
+  border-radius: 50%;
 }
 
 .campcontent_flexlayout {
