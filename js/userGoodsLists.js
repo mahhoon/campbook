@@ -15,11 +15,7 @@ export const basicGoodsLists = {
                 <div class="usergoodslists__contentarea__main_categoryunit-categoryname">{{value.goodsCategory}}<i class="fas fa-backspace deletebtn"></i></div>
                     <div>
                         <ul id="goodsbasiclists">
-                            <li class="goods-basic-list">テント<i class="fas fa-backspace deletebtn"></i></li>
-                            <li class="goods-basic-list">タープ<i class="fas fa-backspace deletebtn"></i></li>
-                            <li class="goods-basic-list">エアマット<i class="fas fa-backspace deletebtn"></i></li>
-                            <li class="goods-basic-list">ブルーシート<i class="fas fa-backspace deletebtn"></i></li>
-                            <li class="goods-basic-list">寝袋<i class="fas fa-backspace deletebtn"></i></li>
+                            <li class="goods-basic-list"　v-for="(item, itemkey) in value.goodsItems">{{item.goodsItemName}}<i class="fas fa-backspace deletebtn"></i></li>
                         </ul>
                         <div class="adduserlistarea">
                             <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加" v-model="goodsItemName">
@@ -38,6 +34,8 @@ export const basicGoodsLists = {
             goodsItemName: '',
             currentCategory: '', //今いるカテゴリKeyを入れる
             userGoods: '',　//databaseのアイテムのsnapshotを格納
+            checkboxCar: false,
+            checkboxStuff: false,
         }
     },
 
@@ -62,8 +60,10 @@ export const basicGoodsLists = {
         addGoods(key) {
             this.currentCategory = key;
             if (this.goodsItemName.length !== 0) {
-                firebase.database().ref(`basicgoods/${this.currentUid}/${this.currentCategory}`).push({
-                    goodsItem: this.goodsItemName, 
+                firebase.database().ref(`basicgoods/${this.currentUid}/${this.currentCategory}/goodsItems`).push({
+                    goodsItemName: this.goodsItemName, 
+                    checkboxCar: this.checkboxCar,
+                    checkboxStuff: this.checkboxStuff,
                 })
 
             this.goodsItemName = '';
@@ -79,6 +79,11 @@ export const basicGoodsLists = {
                 this.userGoods = snapshot.val();
                 console.log(this.userGoods);
             });
+
+        //Sortable.js　※ループ内のIDは取れない
+        // const goodsBasicLists = document.getElementById('goodsbasiclists');
+        // console.log(goodsBasicLists);
+        // Sortable.create(goodsBasicLists);
     },
 
     props: ['currentUid'],

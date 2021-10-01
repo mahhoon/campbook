@@ -8,11 +8,6 @@ import {signupModal} from "./signupModal.js";
 const apiKey = '28f6fef487aab69f58982d60c1b8f9e0';
 import taranslateJp from "./forecastTranslate.js";
 
-//Sortable.js
-const goodsBasicLists = document.getElementById('goodsbasiclists');
-console.log(goodsBasicLists);
-//Sortable.create(goodsBasicLists);
-
 /**
  * todo追加
  */
