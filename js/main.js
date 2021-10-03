@@ -31,7 +31,7 @@ const footerWrap = {
 };
 
 //ユーザーヘッダー
-import { userHeader } from "./userHeader.js";
+//import { userHeader } from "./userHeader.js";
  
 /**
  * インスタンス
@@ -44,7 +44,7 @@ new Vue({
     'signup-modal': signupModal,
     'footer-wrap': footerWrap,
     'todo-list': todoList,
-    'user-header': userHeader,
+    //'user-header': userHeader,
     'basic-goods-lists': basicGoodsLists,
     // 'camp-cards': campCards
   },

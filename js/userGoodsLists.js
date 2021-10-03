@@ -1,3 +1,5 @@
+import {addGoodsItem} from "./addGoodsItem.js";
+
 //うちの持ち物基本リスト
 export const basicGoodsLists = {
     template: `
@@ -17,10 +19,7 @@ export const basicGoodsLists = {
                         <ul id="goodsbasiclists">
                             <li class="goods-basic-list"　v-for="(item, itemkey) in value.goodsItems">{{item.goodsItemName}}<i class="fas fa-backspace deletebtn"></i></li>
                         </ul>
-                        <div class="adduserlistarea">
-                            <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加" v-model="goodsItemName">
-                            <span class="addlistbtn_s" v-on:click="addGoods(key)"></span>
-                        </div>
+                        <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
                     </div>
                 </div>
             </div>
@@ -28,14 +27,18 @@ export const basicGoodsLists = {
     </div>
     `,
 
+    components: {
+        'add-goods-item': addGoodsItem,
+    },
+
     data() {
         return {
             goodsCategoryName: '',
-            goodsItemName: '',
             currentCategory: '', //今いるカテゴリKeyを入れる
             userGoods: '',　//databaseのアイテムのsnapshotを格納
             checkboxCar: false,
             checkboxStuff: false,
+            goodsItemName: '',
         }
     },
 
@@ -56,9 +59,17 @@ export const basicGoodsLists = {
                 return;
             }
         },
+        //アイテム追加の入力値受け取る
+        getInputGoods(goodsinput) {
+            this.goodsItemName = goodsinput;
+            console.log(this.goodsItemName);
+        },
+
         //アイテム登録
-        addGoods(key) {
+        addGoods(key) {            
             this.currentCategory = key;
+            console.log(this.currentCategory);
+
             if (this.goodsItemName.length !== 0) {
                 firebase.database().ref(`basicgoods/${this.currentUid}/${this.currentCategory}/goodsItems`).push({
                     goodsItemName: this.goodsItemName, 
