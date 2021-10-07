@@ -13,8 +13,8 @@ export const todoList = {
             </li>
         </ul>
         <div class="addtodoarea">
-            <input type="text" class="addlisttext" v-model="inputTodotitle">
-            <span class="addlistbtn" v-on:click="addTodo"></span>
+            <input type="text" class="addlisttext" placeholder="項目を追加" v-model="inputTodotitle">
+            <span class="addlistbtn_s" v-on:click="addTodo"></span>
         </div> 
     </div>
     `,

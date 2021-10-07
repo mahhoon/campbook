@@ -458,6 +458,9 @@ $(function(){
   $('body').on('click', '.usergoodslists__contentarea__main_categoryunit-categoryname', (e) => {
     $(e.target).next().slideToggle(200);
   });
+  $('body').on('click', '.goodslists__contentarea__categoryunit-category-name', (e) => {
+    $(e.target).next().slideToggle(200);
+  });
   
 
   //スクロールに合わせてふわっと出す
