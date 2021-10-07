@@ -14,13 +14,17 @@ export const basicGoodsLists = {
         </div>
         <div class="usergoodslists__contentarea__main">
             <div class="usergoodslists__contentarea__main_categoryunit" v-for="(value, key) in userGoods">
-                <div class="usergoodslists__contentarea__main_categoryunit-categoryname">{{value.goodsCategory}}<i class="fas fa-backspace deletebtn"></i></div>
-                    <div>
-                        <ul id="goodsbasiclists">
-                            <li class="goods-basic-list"　v-for="(item, itemkey) in value.goodsItems">{{item.goodsItemName}}<i class="fas fa-backspace deletebtn"></i></li>
-                        </ul>
-                        <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
-                    </div>
+                <div class="usergoodslists__contentarea__main_categoryunit-categoryname">{{value.goodsCategory}}
+                    <span v-on:click="deleteCategory(key)"><i class="fas fa-backspace deletebtn"></i></span>
+                </div>
+                <div>
+                    <ul id="goodsbasiclists">
+                        <li class="goods-basic-list"　v-for="(item, itemkey) in value.goodsItems">
+                            {{item.goodsItemName}}
+                            <span v-on:click="deleteGoods(key, itemkey)"><i class="fas fa-backspace deletebtn"></i></span>
+                        </li>
+                    </ul>
+                    <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
                 </div>
             </div>
         </div>
@@ -34,7 +38,6 @@ export const basicGoodsLists = {
     data() {
         return {
             goodsCategoryName: '',
-            currentCategory: '', //今いるカテゴリKeyを入れる
             userGoods: '',　//databaseのアイテムのsnapshotを格納
             checkboxCar: false,
             checkboxStuff: false,
@@ -59,6 +62,7 @@ export const basicGoodsLists = {
                 return;
             }
         },
+        
         //アイテム追加の入力値受け取る
         getInputGoods(goodsinput) {
             this.goodsItemName = goodsinput;
@@ -67,11 +71,8 @@ export const basicGoodsLists = {
 
         //アイテム登録
         addGoods(key) {            
-            this.currentCategory = key;
-            console.log(this.currentCategory);
-
             if (this.goodsItemName.length !== 0) {
-                firebase.database().ref(`basicgoods/${this.currentUid}/${this.currentCategory}/goodsItems`).push({
+                firebase.database().ref(`basicgoods/${this.currentUid}/${key}/goodsItems`).push({
                     goodsItemName: this.goodsItemName, 
                     checkboxCar: this.checkboxCar,
                     checkboxStuff: this.checkboxStuff,
@@ -81,7 +82,31 @@ export const basicGoodsLists = {
             } else {
                 return;
             }
-        }
+        },
+
+        //アイテム削除
+        deleteGoods(key, itemkey) {
+            firebase.database().ref(`basicgoods/${this.currentUid}/${key}/goodsItems/${itemkey}`)
+                .remove()
+                .then(() =>{
+                    console.log("Remove succeeded.");
+                })
+                .catch(() => {
+                    console.error("削除できませんでした");
+                })
+        },
+
+        //カテゴリー削除
+        deleteCategory(key) {
+            firebase.database().ref(`basicgoods/${this.currentUid}/${key}`)
+                .remove()
+                .then(() =>{
+                    console.log("Remove succeeded.");
+                })
+                .catch(() => {
+                    console.error("削除できませんでした");
+                })
+        },
     },
 
     mounted() {
