@@ -190,7 +190,7 @@
             
             
             <div class="camppage_content container">
-                <div class="campcontent_wrap">
+                <div class="campcontent_wrap"><!--1カラム-->
                     <div class="campcontent_menubar">Weather&Map</div>
                     <div class="contentarea__weather-map">
                         <!--天気予報-->
@@ -206,16 +206,58 @@
                                     </li>
                                 </ul>
                             </div>
-                            <p class="contentarea__small">*by OpenWeatherMap</p>
+                            <a href="https://openweathermap.org/" target="_blank" class="contentarea_a-small">*by OpenWeatherMap</a>
                         </div>
                         <!--map-->
                         <div id="maparea"></div>
                     </div>
                 </div>
-                <div class="campcontent_flexlayout">
+                <div class="campcontent_flexlayout"><!--2カラム-->
                     <div class="campcontent_wrap column2">
                         <div class="campcontent_menubar">持ち物リスト</div>
-                        <div class="contentarea left"></div>
+                        <div class="contentarea">
+                            <div class="add-basiclist">基本の持ち物リストを読み込む</div>
+                            <div class="goodslists__contentarea">
+                                <div class="goodslists__contentarea__categoryunit">
+                                    <div class="goodslists__contentarea__categoryunit-category-name">居</div>
+                                    <ul>
+                                        <li class="goodslist">
+                                            <div class="goodscheckbox">
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-car"><img class="caricon-unchecked" src="img/car-unchecked.svg"></span>
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-circle"></span>
+                                            </div>
+                                            <div class="goodslist__name">グッズ1</div>
+                                        </li>
+                                        <li class="goodslist">
+                                            <div class="goodscheckbox">
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-car"><img class="caricon-unchecked" src="img/car-unchecked.svg"></span>
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-circle"></span>
+                                            </div>
+                                            <div class="goodslist__name">グッズ2</div>
+                                        </li>
+                                        <li class="goodslist">
+                                            <div class="goodscheckbox">
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-car"><img class="caricon-unchecked" src="img/car-unchecked.svg"></span>
+                                                <!--<input type="checkbox">-->
+                                                <span class="goodscheckbox-dummyinput-circle"></span>
+                                            </div>
+                                            <div class="goodslist__name">グッズ3</div>
+                                        </li>
+                                    </ul>
+                                    <div class="addlistarea">
+                                        <input type="text" class="addlisttext" placeholder="新しいアイテムを追加" v-model="goodsItemName">
+                                        <span class="addlistbtn_s"></span>
+                                    </div>
+                                </div>
+                                
+
+                            </div> 
+                        </div>
                     </div>
                     <div class="column2">
                         <div class="campcontent_wrap">
