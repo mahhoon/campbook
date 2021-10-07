@@ -19,6 +19,8 @@ export const addGoodsItem = {
         },
         addGoodsFromChild() {
             this.$emit('add-goods-from-child');
+            //親のデータを参照する
+            this.goodsItemInput = this.$parent.goodsItemName;
         },
     },
 }
