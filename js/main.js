@@ -11,7 +11,11 @@ import taranslateJp from "./forecastTranslate.js";
 /**
  * todo追加
  */
+//todoリスト
 import {todoList} from "./todoList.js";
+//持ち物リスト
+import {goodsList} from "./goodsList.js";
+
 /**
  * 持ち物リスト作成ページ追加
  */
@@ -44,6 +48,7 @@ new Vue({
     'signup-modal': signupModal,
     'footer-wrap': footerWrap,
     'todo-list': todoList,
+    'goods-list': goodsList,
     //'user-header': userHeader,
     'basic-goods-lists': basicGoodsLists,
     // 'camp-cards': campCards
