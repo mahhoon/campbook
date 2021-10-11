@@ -12,11 +12,11 @@ export const goodsList = {
                     <ul>
                         <li class="goodslist" v-for="(item, itemkey) in value.goodsItems">
                             <label class="checkbox-car">
-                                <input type="checkbox" class="checkbox-car-input">
+                                <input type="checkbox" class="checkbox-car-input" v-on:click="checkCar(item, key, itemkey)">
                                 <span class="goodscheckbox-dummyinput-car"></span>
                             </label>
                             <label class="checkbox-circle">
-                                <input type="checkbox" class="checkbox-circle-input">
+                                <input type="checkbox" class="checkbox-circle-input" v-on:click="checkStuff(item, key, itemkey)">
                                 <span class="goodscheckbox-dummyinput-circle"></span>
                             </label>
                             <span class="goodslist__name">{{item.goodsItemName}}</span>
@@ -74,14 +74,34 @@ export const goodsList = {
             if (this.goodsItemName.length !== 0){
                 firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems`).push({
                     goodsItemName: this.goodsItemName,
-                    checkboxCar: false,
-                    checkboxStuff: false,
+                    checkboxCar: true,
+                    checkboxStuff: true,
                 })
             this.goodsItemName =  ''; 
             } else {
                 return;
             }
         },
+        
+        //チェックボックス更新
+        checkCar(item, key, itemkey) {
+            item.checkboxCar = !item.checkboxCar
+            firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems/${itemkey}`)
+                .update({...item})
+                .catch(()=> {
+                    console.error("更新できませんでした")
+                })
+        },
+
+        checkStuff(item, key, itemkey) {
+            item.checkboxStuff = !item.checkboxStuff
+            firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems/${itemkey}`)
+                .update({...item})
+                .catch(()=> {
+                    console.error("更新できませんでした")
+                })
+        },
+
 
         //アイテム削除
         deleteGoods(key, itemkey) {
