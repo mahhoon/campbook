@@ -12,11 +12,11 @@ export const goodsList = {
                     <ul>
                         <li class="goodslist" v-for="(item, itemkey) in value.goodsItems">
                             <label class="checkbox-car">
-                                <input type="checkbox" class="checkbox-car-input" v-on:click="checkCar(item, key, itemkey)">
+                                <input type="checkbox" class="checkbox-car-input" v-on:click="checkCar(item, key, itemkey)" v-model="item.checkboxCar">
                                 <span class="goodscheckbox-dummyinput-car"></span>
                             </label>
                             <label class="checkbox-circle">
-                                <input type="checkbox" class="checkbox-circle-input" v-on:click="checkStuff(item, key, itemkey)">
+                                <input type="checkbox" class="checkbox-circle-input" v-on:click="checkStuff(item, key, itemkey)" v-model="item.checkboxStuff">
                                 <span class="goodscheckbox-dummyinput-circle"></span>
                             </label>
                             <span class="goodslist__name">{{item.goodsItemName}}</span>
@@ -74,8 +74,8 @@ export const goodsList = {
             if (this.goodsItemName.length !== 0){
                 firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems`).push({
                     goodsItemName: this.goodsItemName,
-                    checkboxCar: true,
-                    checkboxStuff: true,
+                    checkboxCar: false,
+                    checkboxStuff: false,
                 })
             this.goodsItemName =  ''; 
             } else {

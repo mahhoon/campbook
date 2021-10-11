@@ -5,8 +5,8 @@ export const todoList = {
         <ul id="todolist">
             <li class="todolist__item" v-for="(value, key) in todoItems">
                 <label class="todocheckbox">
-                    <input class="todocheckbox__input" type="checkbox"　v-on:click="updateTodo(value,key)">
-                    <span class="todocheckbox__dummyinput" v-model="value.isChecked"></span>
+                    <input class="todocheckbox__input" type="checkbox"　v-on:click="updateTodo(value,key)" v-model="value.isChecked">
+                    <span class="todocheckbox__dummyinput"></span>
                     <span>{{value.title}}</span>
                 </label>
                 <span class="todolist__delete" v-on:click="deleteTodo(key)">削除</span>
