@@ -22,8 +22,8 @@ export const goodsList = {
                         </li>
                     </ul>
                     <div class="addlistarea">
-                        <input type="text" class="addlisttext" placeholder="新しいアイテムを追加">
-                        <span class="addlistbtn_s"></span>
+                        <input type="text" class="addlisttext" placeholder="新しいアイテムを追加" v-model="inputGoodsName">
+                        <span class="addlistbtn_s" v-on:click="addGoods(key)"></span>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,7 @@ export const goodsList = {
     data() {
         return {
             userGoods: '',
+            inputGoodsName: '',
             //campGoods: '',
         }
     },
@@ -54,7 +55,20 @@ export const goodsList = {
             //         this.campGoods = snapshot.val();
             //         console.log(this.campGoods);
             //     })
-        }
+        },
+
+        addGoods(key) {
+            if (this.inputGoodsName.length !== 0){
+                firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems`).push({
+                    goodsItemName: this.inputGoodsName,
+                    checkboxCar: false,
+                    checkboxStuff: false,
+                })
+            this.inputGoodsName =  ''; 
+            } else {
+                return;
+            }
+        },
     },
 
     // mounted() {
