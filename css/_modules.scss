@@ -151,6 +151,14 @@
     border-color: $violet;
 }
 
+.addlistarea {
+    margin: 10px 0 15px;
+    @include flex;
+
+    .addlisttext-color{
+        background-color: #fff;
+    }
+}
 
 //modal
 .overlay {

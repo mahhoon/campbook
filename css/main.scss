@@ -460,7 +460,7 @@
             display: flex;
             align-items: center;
             padding: 0 5px;
-            height: 30px;
+            height: 26px;
 
                 .goodslist__name {
                     line-height: 26px;
@@ -483,7 +483,7 @@
                         background-image: url("../img/car-unchecked.svg");
                         width: 26px;
                         height: 26px;
-                        margin-right: 6px;
+                        margin-right: 5px;
                         display: inline-block;
                         cursor: pointer;
                     }
@@ -530,14 +530,8 @@
                         }
                     }
     
-                }
-            
+                }   
         }
-        .addlistarea {
-            @include flex;
-            margin: 10px 0;
-        }
-
     }
 
 
@@ -610,15 +604,6 @@
         &_categoryunit {
             width: 48%;
             margin-bottom: 10px;
-        }
-
-        .adduserlistarea {
-            margin: 10px 0;
-            @include flex;
-
-            .addlisttext-color{
-                background-color: lighten($violet, 30%);
-            }
         }
 
         &_categoryunit-categoryname {

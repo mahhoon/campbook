@@ -1,8 +1,10 @@
+import {addGoodsItem} from "./addGoodsItem.js";
+
 //詳細ページの持ち物リスト部分
 export const goodsList = {
     template: `
     <div class="contentarea">
-        <div class="add-basiclist" v-on:click="importUserGoodsList">基本の持ち物リストを読み込む</div>
+        <div class="add-basiclist" v-on:click="importUserGoodsList">基本の持ち物リストを読み込む/リセットする</div>
         <div class="goodslists__contentarea">
             <div class="goodslists__contentarea__categoryunit"  v-for="(value, key) in campGoods">
                 <div class="goodslists__contentarea__categoryunit-category-name">{{value.goodsCategory}}</div>
@@ -18,30 +20,33 @@ export const goodsList = {
                                 <span class="goodscheckbox-dummyinput-circle"></span>
                             </label>
                             <span class="goodslist__name">{{item.goodsItemName}}</span>
-                            <span class="goodslist__delete">削除</span>
+                            <span class="goodslist__delete" v-on:click="deleteGoods(key, itemkey)">削除</span>
                         </li>
                     </ul>
-                    <div class="addlistarea">
-                        <input type="text" class="addlisttext" placeholder="新しいアイテムを追加" v-model="inputGoodsName">
-                        <span class="addlistbtn_s" v-on:click="addGoods(key)"></span>
-                    </div>
+                    <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
                 </div>
             </div>
         </div> 
     </div>
     `,
-
+    components: {
+        'add-goods-item': addGoodsItem,
+    },
+    
     data() {
         return {
             userGoods: '',
-            inputGoodsName: '',
+            goodsItemName: '',
             //campGoods: '',
         }
     },
 
     methods: {
         importUserGoodsList() {
-            firebase.database().ref(`basicgoods/${this.currentUid}`)
+            const resultreset = window.confirm('持ち物リストをリセットしますか？');
+
+            if (resultreset) {
+                firebase.database().ref(`basicgoods/${this.currentUid}`)
                 .on('value',(snapshot) =>{
                     this.userGoods = snapshot.val();
                     console.log(this.userGoods);
@@ -55,19 +60,39 @@ export const goodsList = {
             //         this.campGoods = snapshot.val();
             //         console.log(this.campGoods);
             //     })
+            }
         },
 
+        //アイテム追加の入力値受け取る
+        getInputGoods(goodsinput) {
+            this.goodsItemName = goodsinput;
+            console.log(this.goodsItemName);
+        },
+
+        //アイテム追加
         addGoods(key) {
-            if (this.inputGoodsName.length !== 0){
+            if (this.goodsItemName.length !== 0){
                 firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems`).push({
-                    goodsItemName: this.inputGoodsName,
+                    goodsItemName: this.goodsItemName,
                     checkboxCar: false,
                     checkboxStuff: false,
                 })
-            this.inputGoodsName =  ''; 
+            this.goodsItemName =  ''; 
             } else {
                 return;
             }
+        },
+
+        //アイテム削除
+        deleteGoods(key, itemkey) {
+            firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems/${itemkey}`)
+                .remove()
+                .then(() =>{
+                    console.log("Remove succeeded.");
+                })
+                .catch(() => {
+                    console.error("削除できませんでした");
+                })
         },
     },
 

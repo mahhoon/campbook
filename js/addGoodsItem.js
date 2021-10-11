@@ -1,7 +1,7 @@
 //持ち物基本リストカテゴリーごと
 export const addGoodsItem = {
     template: `
-    <div class="adduserlistarea">
+    <div class="addlistarea">
         <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加" v-model="goodsItemInput" v-on:change="goodsInputed">
         <span class="addlistbtn_s" v-on:click="addGoodsFromChild"></span>
     </div>

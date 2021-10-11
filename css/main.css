@@ -269,6 +269,22 @@ footer {
   border-color: #6868AF;
 }
 
+.addlistarea {
+  margin: 10px 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.addlistarea .addlisttext-color {
+  background-color: #fff;
+}
+
 .overlay {
   z-index: 100;
   position: fixed;
@@ -1011,7 +1027,7 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 5px;
-  height: 30px;
+  height: 26px;
 }
 
 .campcontent_wrap .goodslists__contentarea .goodslist .goodslist__name {
@@ -1035,7 +1051,7 @@ footer {
   background-image: url("../img/car-unchecked.svg");
   width: 26px;
   height: 26px;
-  margin-right: 6px;
+  margin-right: 5px;
   display: inline-block;
   cursor: pointer;
 }
@@ -1079,18 +1095,6 @@ footer {
           transform: rotate(40deg);
   border-bottom: 2px solid #fff;
   border-right: 2px solid #fff;
-}
-
-.campcontent_wrap .goodslists__contentarea .addlistarea {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 10px 0;
 }
 
 .campcontent_flexlayout {
@@ -1203,22 +1207,6 @@ footer {
 .usergoodslists__contentarea__main_categoryunit {
   width: 48%;
   margin-bottom: 10px;
-}
-
-.usergoodslists__contentarea__main .adduserlistarea {
-  margin: 10px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.usergoodslists__contentarea__main .adduserlistarea .addlisttext-color {
-  background-color: #cccce4;
 }
 
 .usergoodslists__contentarea__main_categoryunit-categoryname {
