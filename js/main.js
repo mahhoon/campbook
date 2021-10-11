@@ -107,6 +107,8 @@ new Vue({
     forecast3days: [],
     //TODO
     todoItems: '',
+    //持ち物リスト
+    campGoods: '',
   },
 
   methods: {
@@ -238,6 +240,12 @@ new Vue({
             this.todoItems = snapshot.val();
             console.log(this.todoItems)
         });
+      //持ち物リストのデータをfirebaseから取得
+      firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
+      .on('value',(snapshot) => {
+          this.campGoods = snapshot.val();
+          console.log(this.campGoods);
+      });
       
       //GoogleMaps & OpenWeatherMap
       const geocoder = new window.google.maps.Geocoder();

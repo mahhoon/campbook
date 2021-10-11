@@ -34,7 +34,7 @@ export const goodsList = {
     data() {
         return {
             userGoods: '',
-            campGoods: '',
+            //campGoods: '',
         }
     },
 
@@ -47,11 +47,13 @@ export const goodsList = {
                 });
             firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
                 .set(this.userGoods);
-            firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
-                .on('value',(snapshot) => {
-                    this.campGoods = snapshot.val();
-                    console.log(this.campGoods);
-                })
+
+            //データを取る
+            // firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
+            //     .on('value',(snapshot) => {
+            //         this.campGoods = snapshot.val();
+            //         console.log(this.campGoods);
+            //     })
         }
     },
 
@@ -63,5 +65,5 @@ export const goodsList = {
     //         })
     // },
 
-    props: ['currentUid','currentCampId'],
+    props: ['currentUid','currentCampId','campGoods'],
 }
