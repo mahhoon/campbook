@@ -24,7 +24,7 @@ export const basicGoodsLists = {
                             <span v-on:click="deleteGoods(key, itemkey)"><i class="fas fa-backspace deletebtn"></i></span>
                         </li>
                     </ul>
-                    <add-goods-item v-bind:current-category-key="currentCategoryKey" v-bind:current-uid="currentUid"></add-goods-item>
+                    <add-goods-item v-bind:current-category-key="currentCategoryKey" v-bind:current-uid="currentUid" v-on:inform-focus="getKey(key)"></add-goods-item>
                 </div>
             </div>
         </div>
@@ -62,7 +62,13 @@ export const basicGoodsLists = {
                 return;
             }
         },
+
+        getKey(key) {
+            this.currentCategoryKey = key;
+            console.log(this.currentCategoryKey);
+        },
         
+
         //アイテム追加の入力値受け取る
         // getInputGoods(goodsinput) {
         //     this.goodsItemName = goodsinput;
