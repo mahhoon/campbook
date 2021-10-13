@@ -13,7 +13,7 @@ export const basicGoodsLists = {
             </div>
         </div>
         <div class="usergoodslists__contentarea__main">
-            <div class="usergoodslists__contentarea__main_categoryunit" v-for="(value, key) in userGoods">
+            <div class="usergoodslists__contentarea__main_categoryunit" v-for="(value, key) in userGoods" v-bind:key="key">
                 <div class="usergoodslists__contentarea__main_categoryunit-categoryname">{{value.goodsCategory}}
                     <span v-on:click="deleteCategory(key)"><i class="fas fa-backspace deletebtn"></i></span>
                 </div>
