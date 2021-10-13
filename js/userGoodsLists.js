@@ -24,7 +24,7 @@ export const basicGoodsLists = {
                             <span v-on:click="deleteGoods(key, itemkey)"><i class="fas fa-backspace deletebtn"></i></span>
                         </li>
                     </ul>
-                    <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
+                    <add-goods-item v-bind:current-category-key="currentCategoryKey" v-bind:current-uid="currentUid"></add-goods-item>
                 </div>
             </div>
         </div>
@@ -39,9 +39,10 @@ export const basicGoodsLists = {
         return {
             goodsCategoryName: '',
             userGoods: '',　//databaseのアイテムのsnapshotを格納
-            checkboxCar: false,
-            checkboxStuff: false,
-            goodsItemName: '',
+            // checkboxCar: false,
+            // checkboxStuff: false,
+            //goodsItemName: '',
+            currentCategoryKey: '',
         }
     },
 
@@ -56,7 +57,6 @@ export const basicGoodsLists = {
                 firebase.database().ref(`basicgoods/${this.currentUid}`).push({
                     goodsCategory: this.goodsCategoryName, 
                 })
-
             this.goodsCategoryName = '';
             } else {
                 return;
@@ -64,28 +64,29 @@ export const basicGoodsLists = {
         },
         
         //アイテム追加の入力値受け取る
-        getInputGoods(goodsinput) {
-            this.goodsItemName = goodsinput;
-            console.log(this.goodsItemName);
-        },
+        // getInputGoods(goodsinput) {
+        //     this.goodsItemName = goodsinput;
+        //     console.log(this.goodsItemName);
+        // },
 
         //アイテム登録
-        addGoods(key) {            
-            if (this.goodsItemName.length !== 0) {
-                firebase.database().ref(`basicgoods/${this.currentUid}/${key}/goodsItems`).push({
-                    goodsItemName: this.goodsItemName, 
-                    checkboxCar: this.checkboxCar,
-                    checkboxStuff: this.checkboxStuff,
-                })
+        // addGoods(key) {            
+        //     if (this.goodsItemName.length !== 0) {
+        //         firebase.database().ref(`basicgoods/${this.currentUid}/${key}/goodsItems`).push({
+        //             goodsItemName: this.goodsItemName, 
+        //             checkboxCar: this.checkboxCar,
+        //             checkboxStuff: this.checkboxStuff,
+        //         })
 
-            this.goodsItemName = '';
-            } else {
-                return;
-            }
-        },
+        //     this.goodsItemName = '';
+        //     } else {
+        //         return;
+        //     }
+        // },
 
         //アイテム削除
         deleteGoods(key, itemkey) {
+            console.log(key);
             firebase.database().ref(`basicgoods/${this.currentUid}/${key}/goodsItems/${itemkey}`)
                 .remove()
                 .then(() =>{
