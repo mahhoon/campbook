@@ -1,4 +1,4 @@
-import {addGoodsItem} from "./addGoodsItem.js";
+import {addCampGoodsItem} from "./addCampGoodsItem.js";
 
 //詳細ページの持ち物リスト部分
 export const goodsList = {
@@ -23,21 +23,22 @@ export const goodsList = {
                             <span class="goodslist__delete" v-on:click="deleteGoods(key, itemkey)">削除</span>
                         </li>
                     </ul>
-                    <add-goods-item v-on:pass-input-goods="getInputGoods" v-on:add-goods-from-child="addGoods(key)"></add-goods-item>
+                    <add-camp-goods-item v-bind:current-category-key="currentCategoryKey" v-bind:current-uid="currentUid" v-bind:current-camp-id="currentCampId" v-on:inform-focus="getKey(key)"></add-camp-goods-item>
                 </div>
             </div>
         </div> 
     </div>
     `,
     components: {
-        'add-goods-item': addGoodsItem,
+        'add-camp-goods-item': addCampGoodsItem,
     },
     
     data() {
         return {
             userGoods: '',
-            goodsItemName: '',
+            //goodsItemName: '',
             //campGoods: '',
+            currentCategoryKey: '',
         }
     },
 
@@ -53,34 +54,13 @@ export const goodsList = {
                 });
             firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
                 .set(this.userGoods);
-
-            //データを取る
-            // firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
-            //     .on('value',(snapshot) => {
-            //         this.campGoods = snapshot.val();
-            //         console.log(this.campGoods);
-            //     })
             }
         },
 
-        //アイテム追加の入力値受け取る
-        getInputGoods(goodsinput) {
-            this.goodsItemName = goodsinput;
-            console.log(this.goodsItemName);
-        },
-
-        //アイテム追加
-        addGoods(key) {
-            if (this.goodsItemName.length !== 0){
-                firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}/${key}/goodsItems`).push({
-                    goodsItemName: this.goodsItemName,
-                    checkboxCar: false,
-                    checkboxStuff: false,
-                })
-            this.goodsItemName =  ''; 
-            } else {
-                return;
-            }
+        //インプットエリアにkeyが乗ったら該当のkeyを取得
+        getKey(key) {
+            this.currentCategoryKey = key;
+            console.log(this.currentCategoryKey);
         },
         
         //チェックボックス更新

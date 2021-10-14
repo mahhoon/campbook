@@ -63,6 +63,7 @@ export const basicGoodsLists = {
             }
         },
 
+        //インプットエリアにkeyが乗ったら該当のkeyを取得
         getKey(key) {
             this.currentCategoryKey = key;
             console.log(this.currentCategoryKey);
