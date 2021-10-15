@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, ,maximum-scale=1.0">
     <title>Let's go CAMPING</title>
 
     <!--リセットCSS-->
@@ -30,7 +30,7 @@
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
                 <h1 class="sp"><img src="img/title-sp.svg" alt="キャンプノシオリ"></h1>
                 <p>キャンプ行ってますかー？<br>
-                    キャンプの準備をちょっと便利にしてくれるかもしれないアプリを作ってみました。<br>       
+                    キャンプの準備をちょっと便利にしてくれる<br>かもしれないアプリを作ってみました。<br>       
                 <div class="loginbuttons">
                     <div class="btn-basic loginbuttons__login" v-on:click="openLoginModal">ログイン</div>
                     <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
@@ -41,42 +41,55 @@
             <signup-modal v-show="signupModalShow" v-on:from-child="closeSignupModal" v-on:set-uname="setUserName"></signup-modal>
             <!--機能紹介-->
             <div id="introduction" class="container fade"> <!--fade-->
-                <h2 class="introduction__title">こんなことができ（たらいいな）</h2>
+                <h2 class="introduction__title">こんなことができます</h2>
+                <p　class="introduction__p">ログインが必要です</p>
                 <ul class="introitems-wrap">
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
-                        <h3>キャンプ場情報表示</h3>
-                        <p>行く予定のキャンプ場の天気予報・地図・周辺情報を表示します。</p>
+                        <div class="intro-text">
+                            <h3>キャンプ場情報表示</h3>
+                            <p>行く予定のキャンプ場の天気予報・地図を表示します。</p>
+                        </div>
                     </li>
                     <li class="intro-item">
                         <span class="intro-icon"><i class="far fa-list-alt"></i></i></span>
-                        <h3>TODOリスト作成</h3>
-                        <p>買い物リストやキャンセルポリシー、備忘録などに。</p>
+                        <div class="intro-text">
+                            <h3>TODOリスト作成</h3>
+                            <p>買い物リストやキャンセルポリシー、備忘録などに。</p>
+                        </div>
                     </li>
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-check-circle"></i></span>
-                        <h3>持ち物チェックリスト作成</h3>
-                        <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！</p>
+                        <div class="intro-text">
+                            <h3>持ち物チェックリスト作成</h3>
+                            <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！</p>
+                        </div>
                     </li>
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-link"></i></span>
-                        <h3>お役立ちリンク集を作れる</h3>
-                        <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
+                        <div class="intro-text">
+                            <h3>お役立ちリンク集を作れる</h3>
+                            <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
+                        </div>
                     </li>
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-camera"></i></span>
-                        <h3>写真アップ（予定）</h3>
-                        <p>キャンプに行ったら写真をアップ。トップページでみんなにシェア。</p>
+                        <div class="intro-text">
+                            <h3>写真アップ（予定）</h3>
+                            <p>キャンプに行ったら写真をアップ。トップページでみんなにシェア。</p>
+                        </div>
                     </li>
                     <li class="intro-item">
                         <span class="intro-icon"><i class="fas fa-drumstick-bite"></i></span>
-                        <h3>キャンプごはんメモ（予定）</h3>
-                        <p>キャンプごはんメニュー計画のメモに。</p>
+                        <div class="intro-text">
+                            <h3>キャンプごはんメモ（予定）</h3>
+                            <p>キャンプごはんメニュー計画のメモに。</p>
+                        </div>
                     </li>
                 </ul>
             </div>
             <!--投稿写真集-->
-            <div id="post-photos" class="container fade">
+            <!-- <div id="post-photos" class="container fade">
                 <h2 class="post-photos-title">CAMP SNAP!</h2>
                 <span>キャンプマニアの写真たち ※作成予定</span>
                 <div class="post-photos-wrap">
@@ -99,7 +112,7 @@
                         <P class="post-photo__by post-photo_text">username</P>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
         </template>
         <!--ログインしたら表示-->
@@ -157,6 +170,7 @@
                 </div>
 
                 <h1 class="sp"><img src="img/logo-small.svg"></h1>
+                <!--ハンバーガーメニュー-->
                 <div class="toggle-wrap sp">
                     <div class="togglebtn" v-on:click="showToggleMenu">
                         <span><i class="fas fa-bars"></i></span>
@@ -168,24 +182,26 @@
                     <p v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left" v-on:click="goUserIndex"></i></span>キャンプ一覧ページへ</p>
                     <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
                 </div>
+                <!--ハンバーガーメニューここまで-->
             </div>
             <div class="heroimg">
                 <img class="headimg" v-if="campDetailData.downloadCampImage.length === 0" src="img/campimg.svg">
                 <img class="headimg" v-else v-bind:src="campDetailData.downloadCampImage">
-                
             </div>
             <div class="camppage__heading container">
                 <div>
                     <h2 class="camppage__title">{{ campDetailData.campsiteName }}</h2>
                     <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>{{campDetailData.fromCampDate}}〜{{campDetailData.toCampDate}}</p>
                     <a v-bind:href="campDetailData.campsiteUrl" target="_blank">公式サイト</a>
-                    <p><span class="icon"><i class="fas fa-phone"></i></span>{{ campDetailData.campsiteTel }}</p>
+                    <p class="campsite__tel"><span class="icon"><i class="fas fa-phone"></i></span><a v-bind:href="`tel:${campDetailData.campsiteTel}`">{{ campDetailData.campsiteTel }}</a></p>
                 </div>
+                <!--pc メニューボタン-->
                 <ul class="camppage__navlinks pc">
                     <li v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>キャンプ一覧ページへ戻る</li>
-                </ul>    
+                </ul>   
+                <!--pc メニューボタンここまで--> 
             </div>
             
             
@@ -226,10 +242,10 @@
                             <div class="campcontent_menubar">お役立ちリンク集</div>
                             <div class="contentarea"></div>
                         </div>
-                        <div class="campcontent_wrap">
+                        <!-- <div class="campcontent_wrap">
                             <div class="campcontent_menubar">キャンプご飯</div>
                             <div class="contentarea"></div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

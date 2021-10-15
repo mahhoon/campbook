@@ -35,6 +35,12 @@ $hover-violet: #7878CC;
   }
 }
 
+@mixin pc {
+    @media (min-width: 669px) {
+      @content;
+    }
+  }
+
 .non-active, .togglemenu >.non-active {
     color: lighten($violet, 20%);
 }
@@ -62,7 +68,7 @@ body {
     font-size: 15px;
     line-height: 1.7rem;
     @include sp {
-        font-size: 13px;
+        font-size: 14px;
     }
     h2  {
         font-size: 24px;
@@ -76,7 +82,7 @@ body {
     padding: 0 80px;
     @include sp {
         min-width: 100%;
-        padding: 0 20px;
+        padding: 0;
     }
 }
 footer {

@@ -6,7 +6,7 @@ export const basicGoodsLists = {
     <div class="usergoodslists__contentarea">
         <p class="usergoodslists__contentarea-backbtn" v-on:click="goUserIndexFromChild"><span class="icon"><i class="fas fa-arrow-circle-left"></i></span>キャンプ一覧に戻る</p>
         <div class="usergoodslists__contentarea__heading">
-            <h1>うちの持ち物リストを作成</h1>
+            <h1>基本の持ち物リストを作成</h1>
             <div class="usergoodslists__contentarea__heading-addcategory">
                 <input type="text" class="addlisttext addlisttext-short"　placeholder="新しいカテゴリーを追加" v-model="goodsCategoryName">
                 <span class="addlistbtn" v-on:click="registGoodsCategory"></span>

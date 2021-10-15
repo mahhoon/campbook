@@ -37,7 +37,7 @@ body {
 
 @media (max-width: 670px) {
   body {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -55,7 +55,7 @@ body h2 {
 @media (max-width: 670px) {
   .container {
     min-width: 100%;
-    padding: 0 20px;
+    padding: 0;
   }
 }
 
@@ -119,13 +119,14 @@ footer {
 @media (max-width: 670px) {
   .user-heading {
     margin-bottom: 10px;
+    padding: 0 10px;
   }
   .user-heading h1 {
     width: 170px;
     padding-left: 0;
   }
   .user-heading h1 img {
-    width: 100%;
+    width: 90%;
   }
   .user-heading .toggle-wrap {
     text-align: right;
@@ -259,9 +260,15 @@ footer {
 .addlisttext {
   width: 90%;
   height: 28px;
-  border: 1px solid #cccce4;
-  border-radius: 4px;
+  border: solid 0px;
+  border-bottom: 1px solid #cccce4;
   padding-left: 5px;
+}
+
+@media (max-width: 670px) {
+  .addlisttext {
+    width: 88%;
+  }
 }
 
 .addlisttext:focus {
@@ -279,6 +286,12 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media (max-width: 670px) {
+  .addlistarea {
+    margin-left: 10px;
+  }
 }
 
 .addlistarea .addlisttext-color {
@@ -312,6 +325,7 @@ footer {
   .overlay .modal-wrapping {
     width: 90%;
     top: 5%;
+    padding: 10px;
   }
 }
 
@@ -346,6 +360,13 @@ footer {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 4px 0 10px;
+}
+
+@media (max-width: 670px) {
+  .overlay .modal-wrapping .modal-wrapping__formcontrol {
+    font-size: 0.8em;
+    height: 30px;
+  }
 }
 
 .overlay .modal-wrapping .modal-wrapping__submit {
@@ -403,11 +424,14 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent {
-    height: auto;
+    height: 300px;
+    padding-bottom: 0;
+    background-size: 160%;
   }
   #headercontent img {
-    width: 250px;
-    padding-bottom: 60px;
+    width: 200px;
+    padding-bottom: 0px;
+    text-align: left;
   }
 }
 
@@ -417,8 +441,10 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent p {
-    text-align: left;
-    padding: 20px;
+    line-height: 22px;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 700;
   }
 }
 
@@ -452,8 +478,9 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent .loginbuttons .btn-basic {
-    width: 60%;
-    margin: 0 0 15px 0;
+    width: 30%;
+    margin: 0 10px 0 0;
+    font-size: 15px;
   }
 }
 
@@ -463,19 +490,57 @@ footer {
 
 @media (max-width: 670px) {
   #introduction {
-    padding: 30px;
+    padding: 20px;
   }
 }
 
 #introduction .introduction__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
   font-size: 24px;
+}
+
+#introduction .introduction__title::after {
+  content: '';
+  margin-left: 20px;
+  width: 2px;
+  height: 24px;
+  background-color: #333;
+  -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+}
+
+#introduction .introduction__title::before {
+  content: '';
+  margin-right: 20px;
+  width: 2px;
+  height: 24px;
+  background-color: #333;
+  -webkit-transform: rotate(-35deg);
+          transform: rotate(-35deg);
 }
 
 @media (max-width: 670px) {
   #introduction .introduction__title {
     font-size: 20px;
   }
+  #introduction .introduction__title::after, #introduction .introduction__title::before {
+    height: 20px;
+  }
+}
+
+#introduction .introduction__p {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 14px;
 }
 
 #introduction .introitems-wrap {
@@ -495,7 +560,16 @@ footer {
 
 #introduction .introitems-wrap .intro-item {
   width: 33%;
-  padding: 20px 40px;
+  padding: 20px 20px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 @media (max-width: 670px) {
@@ -506,19 +580,21 @@ footer {
 }
 
 #introduction .introitems-wrap .intro-item .intro-icon {
-  float: left;
   color: #6868AF;
   font-size: 40px;
-  padding-right: 20px;
-  display: block;
-  line-height: 90px;
+  position: relative;
+  top: 4px;
+  padding-right: 10px;
 }
 
 @media (max-width: 670px) {
   #introduction .introitems-wrap .intro-item .intro-icon {
     font-size: 30px;
-    line-height: 60px;
   }
+}
+
+#introduction .introitems-wrap .intro-item .intro-text {
+  width: 78%;
 }
 
 #introduction .introitems-wrap .intro-item h3 {
@@ -531,78 +607,14 @@ footer {
   line-height: 1.5rem;
 }
 
-#post-photos {
-  padding: 30px 40px;
-}
-
-@media (max-width: 670px) {
-  #post-photos {
-    padding: 20px;
-  }
-}
-
-#post-photos h2 {
-  display: inline-block;
-}
-
-@media (max-width: 670px) {
-  #post-photos h2 {
-    display: block;
-  }
-}
-
-#post-photos span {
-  font-size: 13px;
-  padding-left: 10px;
-}
-
-@media (max-width: 670px) {
-  #post-photos span {
-    padding: 0;
-  }
-}
-
-#post-photos p {
-  font-size: 12px;
-  color: #777;
-}
-
-#post-photos .post-photos-wrap {
-  padding: 20px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-#post-photos .post-photos-wrap .post-photo {
-  width: 32%;
-}
-
-@media (max-width: 670px) {
-  #post-photos .post-photos-wrap .post-photo {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-}
-
-#post-photos .post-photos-wrap .post-photo .post-photo__photo {
-  width: 100%;
-  height: 300px;
-  background-color: #eee;
-  margin-bottom: 10px;
-}
-
-#post-photos .post-photos-wrap .post-photo .post-photo_text {
-  line-height: 1rem;
-}
-
 #userindex {
   padding-top: 20px;
+}
+
+@media (max-width: 670px) {
+  #userindex {
+    padding-top: 10px;
+  }
 }
 
 .personal-link {
@@ -777,6 +789,25 @@ footer {
           justify-content: space-between;
 }
 
+.camppage__heading a {
+  color: #333;
+}
+
+@media (min-width: 669px) {
+  .camppage__heading .campsite__tel a {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 670px) {
+  .camppage__heading {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+}
+
 .camppage__heading .icon {
   padding-right: 5px;
 }
@@ -788,13 +819,20 @@ footer {
 
 @media (max-width: 670px) {
   .camppage__heading .camppage__title {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 
 .camppage__heading .camppage__date {
   font-size: 18px;
   padding: 10px 0;
+}
+
+@media (max-width: 670px) {
+  .camppage__heading .camppage__date {
+    font-size: 16px;
+    padding: 5px 0;
+  }
 }
 
 .camppage__heading .camppage__navlinks {
@@ -836,6 +874,12 @@ footer {
           transform: rotate(-45deg);
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap .campcontent_menubar {
+    border-radius: 0;
+  }
 }
 
 .campcontent_wrap .close:after {
@@ -888,7 +932,7 @@ footer {
 
 .campcontent_wrap #weatherarea .forecast {
   text-align: center;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .campcontent_wrap #weatherarea .forecast img {
@@ -936,6 +980,12 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap #todolist .todolist__item {
+    padding: 0 10px;
+  }
 }
 
 .campcontent_wrap #todolist .todolist__item .todolist__delete {
@@ -1000,15 +1050,34 @@ footer {
           justify-content: space-between;
 }
 
+@media (max-width: 670px) {
+  .campcontent_wrap .addtodoarea {
+    margin-left: 10px;
+  }
+}
+
 .campcontent_wrap .add-basiclist {
   margin: 10px 0;
   padding: 0 4px;
   font-size: 14px;
   color: #6868AF;
-  border: 1px solid #6868AF;
+  border: 1px solid #cccce4;
   display: inline-block;
   border-radius: 6px;
   cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.campcontent_wrap .add-basiclist:hover {
+  background-color: #ededf6;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap .add-basiclist {
+    margin-left: 10px;
+    font-size: 13px;
+  }
 }
 
 .campcontent_wrap .goodslists__contentarea__categoryunit-category-name {
@@ -1027,7 +1096,13 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 5px;
-  height: 26px;
+  height: 30px;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap .goodslists__contentarea .goodslist {
+    padding: 0 10px;
+  }
 }
 
 .campcontent_wrap .goodslists__contentarea .goodslist .goodslist__name {
@@ -1051,9 +1126,10 @@ footer {
   background-image: url("../img/car-unchecked.svg");
   width: 26px;
   height: 26px;
-  margin-right: 5px;
   display: inline-block;
   cursor: pointer;
+  position: relative;
+  top: 3px;
 }
 
 .campcontent_wrap .goodslists__contentarea .goodslist .checkbox-car .checkbox-car-input:checked + .goodscheckbox-dummyinput-car {
@@ -1074,8 +1150,10 @@ footer {
   height: 18px;
   border: 2px solid #acacac;
   border-radius: 50%;
-  margin-right: 8px;
+  margin-right: 6px;
   cursor: pointer;
+  position: relative;
+  top: 3px;
 }
 
 .campcontent_wrap .goodslists__contentarea .goodslist .checkbox-circle .checkbox-circle-input:checked + .goodscheckbox-dummyinput-circle {
@@ -1134,7 +1212,7 @@ footer {
 
 @media (max-width: 670px) {
   .usergoodslists__contentarea {
-    padding: 0 10px;
+    padding: 0px;
   }
 }
 
@@ -1150,6 +1228,12 @@ footer {
   -webkit-transition: .3s;
   transition: .3s;
   cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .usergoodslists__contentarea-backbtn {
+    padding: 10px;
+  }
 }
 
 .usergoodslists__contentarea__heading {
@@ -1168,9 +1252,23 @@ footer {
   margin-bottom: 40px;
 }
 
+@media (max-width: 670px) {
+  .usergoodslists__contentarea__heading {
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+}
+
 .usergoodslists__contentarea__heading h1 {
   font-size: 26px;
   color: #6868AF;
+}
+
+@media (max-width: 670px) {
+  .usergoodslists__contentarea__heading h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 .usergoodslists__contentarea__heading-addcategory {
@@ -1217,7 +1315,7 @@ footer {
 }
 
 .usergoodslists__contentarea__main .goods-basic-list {
-  border-bottom: 1px solid #ababd2;
+  border-bottom: 1px solid #cccce4;
   background-color: #fff;
   font-size: 14px;
   line-height: 24px;

@@ -19,11 +19,12 @@
 
     @include sp {
         margin-bottom: 10px;
+        padding: 0 10px;
         h1 {
             width: 170px;
             padding-left: 0;
             img {
-                width: 100%;
+                width: 90%;
             }
         }
         .toggle-wrap {
@@ -142,9 +143,13 @@
 .addlisttext {
     width: 90%;
     height: 28px;
-    border: 1px solid lighten($violet, 30%);
-    border-radius: 4px;
+    border: solid 0px;
+    border-bottom: 1px solid lighten($violet, 30%);
+    //border-radius: 4px;
     padding-left: 5px;
+    @include sp {
+        width: 88%;
+    }
 }
 .addlisttext:focus {
     outline: none;
@@ -154,6 +159,10 @@
 .addlistarea {
     margin: 10px 0 15px;
     @include flex;
+
+    @include sp {
+        margin-left: 10px;
+    }
 
     .addlisttext-color{
         background-color: #fff;
@@ -184,6 +193,7 @@
         @include sp {
             width: 90%;
             top: 5%;
+            padding: 10px;
         }
 
         .modal-wrapping__title {
@@ -216,6 +226,11 @@
             height: 40px;
             box-sizing:border-box;
             margin: 4px 0 10px;
+
+            @include sp {
+                font-size: 0.8em;
+                height: 30px;
+            }
         }
         .modal-wrapping__submit {
             @include basic-btn;
