@@ -23,7 +23,7 @@ export const goodsList = {
                                 <span class="goodscheckbox-dummyinput-circle"></span>
                             </label>
                             <span class="goodslist__name">{{item.goodsItemName}}</span>
-                            <span class="goodslist__delete" v-on:click="deleteGoods(key, itemkey)">削除</span>
+                            <span class="item__delete" v-on:click="deleteGoods(key, itemkey)">削除</span>
                         </li>
                     </ul>
                     <add-camp-goods-item v-bind:current-category-key="currentCategoryKey" v-bind:current-uid="currentUid" v-bind:current-camp-id="currentCampId" v-on:inform-focus="getKey(key)"></add-camp-goods-item>

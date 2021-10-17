@@ -182,6 +182,13 @@ footer {
   color: #6868AF;
 }
 
+.item__delete {
+  margin-left: 10px;
+  font-size: 11px;
+  color: #777;
+  cursor: pointer;
+}
+
 .addlistbtn {
   position: relative;
   top: 2px;
@@ -930,7 +937,7 @@ footer {
 }
 
 .campcontent_wrap .contentarea__weather-map {
-  height: 250px;
+  height: 277px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -953,6 +960,7 @@ footer {
   display: block;
   color: #777;
   text-align: right;
+  padding-right: 10px;
 }
 
 .campcontent_wrap #weatherarea {
@@ -970,7 +978,7 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 20px 0;
+  margin: 20px 0 10px;
 }
 
 .campcontent_wrap #weatherarea .forecast {
@@ -997,7 +1005,7 @@ footer {
 }
 
 .campcontent_wrap .map #maparea {
-  height: 213px;
+  height: 230px;
 }
 
 @media (max-width: 670px) {
@@ -1027,13 +1035,6 @@ footer {
   .campcontent_wrap #todolist .todolist__item {
     padding: 0 10px;
   }
-}
-
-.campcontent_wrap #todolist .todolist__item .todolist__delete {
-  margin-left: 10px;
-  font-size: 11px;
-  color: #777;
-  cursor: pointer;
 }
 
 .campcontent_wrap #todolist .todocheckbox {
@@ -1182,13 +1183,6 @@ footer {
   line-height: 26px;
 }
 
-.campcontent_wrap .goodslists__contentarea .goodslist .goodslist__delete {
-  margin-left: 10px;
-  font-size: 11px;
-  color: #777;
-  cursor: pointer;
-}
-
 .campcontent_wrap .goodslists__contentarea .goodslist .checkbox-car .checkbox-car-input {
   margin: 0;
   width: 0;
@@ -1246,6 +1240,55 @@ footer {
           transform: rotate(40deg);
   border-bottom: 2px solid #fff;
   border-right: 2px solid #fff;
+}
+
+.campcontent_wrap #bookmarks {
+  padding: 10px 0;
+}
+
+.campcontent_wrap #bookmarks .bookmarks__item {
+  padding: 10px 5px;
+  border-bottom: 1px solid #aaa;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap #bookmarks .bookmarks__item {
+    padding: 0 10px;
+  }
+}
+
+.campcontent_wrap .bookmark__item-url {
+  text-decoration: none;
+  display: block;
+  color: #6868AF;
+}
+
+.campcontent_wrap .bookmark__item-url .icon {
+  padding-left: 10px;
+  color: #6868AF;
+}
+
+.campcontent_wrap .addbookmarkarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #cccce4;
+  border-radius: 6px;
+}
+
+.campcontent_wrap .addbookmarkarea .inputarea {
+  width: 90%;
+}
+
+.campcontent_wrap .addbookmarkarea .inputarea input {
+  width: 100%;
+  height: 24px;
 }
 
 .campcontent_flexlayout {

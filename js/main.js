@@ -9,12 +9,14 @@ const apiKey = '28f6fef487aab69f58982d60c1b8f9e0';
 import taranslateJp from "./forecastTranslate.js";
 
 /**
- * todo追加
+ * 詳細ページ機能
  */
 //todoリスト
 import {todoList} from "./todoList.js";
 //持ち物リスト
 import {goodsList} from "./goodsList.js";
+//リンク集
+import {bookmarks} from "./bookmarks.js";
 
 /**
  * 持ち物リスト作成ページ追加
@@ -49,6 +51,7 @@ new Vue({
     'footer-wrap': footerWrap,
     'todo-list': todoList,
     'goods-list': goodsList,
+    'bookmarks': bookmarks,
     //'user-header': userHeader,
     'basic-goods-lists': basicGoodsLists,
     // 'camp-cards': campCards
@@ -109,6 +112,8 @@ new Vue({
     todoItems: '',
     //持ち物リスト
     campGoods: '',
+    //リンク集
+    campBookmarks: '',
   },
 
   methods: {
@@ -243,10 +248,16 @@ new Vue({
         });
       //持ち物リストのデータをfirebaseから取得
       firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
-      .on('value',(snapshot) => {
-          this.campGoods = snapshot.val();
-          console.log(this.campGoods);
-      });
+        .on('value',(snapshot) => {
+            this.campGoods = snapshot.val();
+            console.log(this.campGoods);
+        });
+      //リンク集のデータをfirebaseから取得
+      firebase.database().ref(`campbookmarks/${this.currentUid}/${this.currentCampId}`)
+        .on('value',(snapshot) => {
+            this.campBookmarks = snapshot.val();
+            console.log(this.campBookmarks);
+        });
       
       //GoogleMaps & OpenWeatherMap
       const geocoder = new window.google.maps.Geocoder();
@@ -271,7 +282,7 @@ new Vue({
           new window.google.maps.Marker({
             position: resultLocation,
             map: map,
-            animation: window.google.maps.Animation.DROP
+            animation: window.google.maps.Animation.DROP,
           })
         } else {
           alert('No results found')

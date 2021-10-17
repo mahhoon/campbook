@@ -3,7 +3,7 @@ export const addGoodsItem = {
     template: `
     <div class="addlistarea" v-on:mouseover="goodsInputedFocus">
         <input type="text" class="addlisttext addlisttext-color" placeholder="新しいアイテムを追加" 
-            v-model="goodsItemInput">
+            v-model="goodsItemInput" v-on:keypress.enter="addGoods">
         <span class="addlistbtn_s"　v-on:click="addGoods"></span>
     </div>
     `,

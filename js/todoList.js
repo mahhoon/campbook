@@ -9,7 +9,7 @@ export const todoList = {
                     <span class="todocheckbox__dummyinput"></span>
                     <span>{{value.title}}</span>
                 </label>
-                <span class="todolist__delete" v-on:click="deleteTodo(key)">削除</span>
+                <span class="item__delete" v-on:click="deleteTodo(key)">削除</span>
             </li>
         </ul>
         <div class="addtodoarea">

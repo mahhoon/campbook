@@ -247,12 +247,12 @@
                     </div>
                     <div class="column2">
                         <div class="campcontent_wrap">
-                            <div class="campcontent_menubar">TODO</div>
+                            <div class="campcontent_menubar">MEMO</div>
                             <todo-list v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:todo-items.sync="todoItems"></todo-list>
                         </div>
                         <div class="campcontent_wrap">
                             <div class="campcontent_menubar">お役立ちリンク集</div>
-                            <div class="contentarea"></div>
+                            <bookmarks v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:camp-bookmarks="campBookmarks"></bookmarks>
                         </div>
                         <!-- <div class="campcontent_wrap">
                             <div class="campcontent_menubar">キャンプご飯</div>

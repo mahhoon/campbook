@@ -75,6 +75,12 @@
     font-weight: bold;
     color: $violet
 }
+.item__delete {
+    margin-left: 10px;
+    font-size: 11px;
+    color: #777;
+    cursor: pointer;
+}
 
 //リスト追加ボタン
 .addlistbtn {
