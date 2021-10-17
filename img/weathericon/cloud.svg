@@ -3,15 +3,25 @@
 <svg version="1.1" id="レイヤー_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 141.7 141.7" style="enable-background:new 0 0 141.7 141.7;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#EA8C3A;}
-	.st1{fill:#B5B5B6;}
-	.st2{fill:#00A7CB;}
-	.st3{fill:#FAC311;}
-	.st4{fill:#FFFFFF;}
-	.st5{fill:#A9C3CB;}
+	.st0{fill:#60C1C9;}
+	.st1{fill:none;}
+	.st2{fill:#E8BE31;}
+	.st3{fill:#EC734E;}
+	.st4{fill:#BAC7C5;}
+	.st5{fill:#27AA88;}
+	.st6{fill:#AE9CC1;}
+	.st7{fill:#E98C3A;}
+	.st8{fill:#B4B4B5;}
+	.st9{fill:#00A6CA;}
+	.st10{fill:#F9C110;}
+	.st11{fill:#A8C2CB;}
+	.st12{fill:#FFFFFF;}
+	.st13{fill:none;stroke:#BAC7C5;stroke-width:6;stroke-miterlimit:10;}
 </style>
 <g>
-	<path class="st1" d="M106.4,110.1c12.6,0,22.9-10.2,22.9-22.9S119,64.4,106.4,64.4c-0.6,0-1.3,0-1.9,0.1
-		C100.6,48.2,85.9,36,68.5,36c-16.6,0-30.7,11-35.4,26c-12.6,0.8-22.5,11.2-22.5,24c0,13.3,10.8,24,24,24H106.4z"/>
+	<path class="st4" d="M107.3,112.2h-69c-17.1,0-31.1-13.9-31.1-31.1c0-17.1,14-31.1,31.1-31.1h3.5c6.1-12.5,18.8-20.5,32.9-20.5
+		c17.3,0,31.9,11.8,35.6,28.4c13.6,1.5,24.3,13.1,24.3,27C134.6,100,122.3,112.2,107.3,112.2z M38.3,56.1
+		c-13.8,0-25.1,11.2-25.1,25.1c0,13.8,11.3,25.1,25.1,25.1h69c11.7,0,21.2-9.5,21.2-21.2c0-11.5-9.4-21-20.9-21.2l-2.5,0l-0.4-2.5
+		c-2.4-14.9-15-25.7-30.2-25.7c-12.3,0-23.4,7.3-28.2,18.7l-0.8,1.8H38.3z"/>
 </g>
 </svg>
