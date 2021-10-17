@@ -6,6 +6,9 @@ export const goodsList = {
     <div class="contentarea">
         <div class="add-basiclist" v-on:click="importUserGoodsList">基本の持ち物リストを読み込む/リセットする</div>
         <div class="goodslists__contentarea">
+            <div v-show="noUserBasicgoodslist" class="no-user-basicgoods-list">
+                <P v-on:click="showUserGoodsListsFromChild"><span class="icon"><i class="fas fa-exclamation-circle"></i></span>基本の持ち物リストを作成してください</P>
+            </div>
             <div class="goodslists__contentarea__categoryunit"  v-for="(value, key) in campGoods">
                 <div class="goodslists__contentarea__categoryunit-category-name">{{value.goodsCategory}}</div>
                 <div>
@@ -39,6 +42,7 @@ export const goodsList = {
             //goodsItemName: '',
             //campGoods: '',
             currentCategoryKey: '',
+            noUserBasicgoodslist: false
         }
     },
 
@@ -47,14 +51,28 @@ export const goodsList = {
             const resultreset = window.confirm('持ち物リストをリセットしますか？');
 
             if (resultreset) {
-                firebase.database().ref(`basicgoods/${this.currentUid}`)
-                .on('value',(snapshot) =>{
-                    this.userGoods = snapshot.val();
-                    console.log(this.userGoods);
-                });
-            firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
-                .set(this.userGoods);
+                    firebase.database().ref(`basicgoods/${this.currentUid}`)
+                        .on('value',(snapshot) =>{
+                            this.userGoods = snapshot.val();
+                            console.log(this.userGoods);
+                    });
+                    if (this.userGoods == null) {
+                        this.noUserBasicgoodslist = true;
+                        firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
+                        .set(this.userGoods);
+                    } else {
+                        this.noUserBasicgoodslist = false;
+                        firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
+                        .set(this.userGoods);
+                    }
+            } else {
+                return;
             }
+
+        },
+
+        showUserGoodsListsFromChild(){
+            this.$emit('show-user-goods-lists');
         },
 
         //インプットエリアにkeyが乗ったら該当のkeyを取得

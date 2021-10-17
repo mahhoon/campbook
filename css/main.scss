@@ -287,6 +287,9 @@
 //キャンプ詳細ページ
 #camppage {
     padding-top: 20px;
+    @include sp {
+        padding-top: 10px;
+    }
 }
 
 
@@ -399,6 +402,12 @@
             height: auto;
         }
     }
+    .contentarea_a-small {
+        font-size: 13px;
+        display: block;
+        color: #777;
+        text-align: right;
+    }
     #weatherarea {
         padding: 10px;
         margin: 0 auto;
@@ -418,13 +427,6 @@
                 width: 40px;
             }
         }
-        .contentarea_a-small {
-            font-size: 13px;
-            display: block;
-            color: #777;
-            text-align: right;
-        }
-        
         @include sp {
             width: 100%;
             #forecastwrap {
@@ -432,12 +434,17 @@
             }
         }
     }
-    #maparea {
+    .map {
         width: 60%;
-        height: 100%;
+        #maparea {
+            height: 213px;;
+        }
+
         @include sp {
             width: 100%;
-            height: 200px;
+            #maparea {
+            height: 400px;
+            }
         }
     }
 
@@ -506,7 +513,7 @@
     //goodsリストエリア
     .add-basiclist {
         margin: 10px 0;
-        padding: 0 4px;
+        padding: 0 8px;
         font-size: 14px;
         color: $violet;
         border: 1px solid lighten($violet, 30%);
@@ -531,6 +538,31 @@
             padding-left: 10px;
             line-height: 24px;
             margin-bottom: 10px;
+            position: relative;
+            &:after {
+                content: "";
+                position: absolute;
+                display: block;
+                top: 38%;
+                right: 20px;
+                width: 8px;
+                height: 8px;
+                border-top: 2px solid #fff;
+                border-right: 2px solid #fff;
+                transform: rotate(-45deg);
+                transition: all 0.2s ease-out;
+            }
+        }
+        .no-user-basicgoods-list {
+            margin-left: 10px;
+            cursor: pointer;
+            .icon {
+                padding-right: 5px;
+            }
+        }
+        .close:after{
+            transform: rotate(135deg);
+            top: 20%;
         }
         .goodslist {
             display: flex;
@@ -635,15 +667,17 @@
 //持ち物リスト編集画面
 #usergoodslists {
     padding-top: 20px;
+    @include sp {
+        padding-top: 10px;
+    }
 }
 .usergoodslists__contentarea {
     background-color: lighten($violet, 40%);
-    min-height: 1000px;
     margin: 0 auto;
     padding: 0 30px;
 
     @include sp {
-        padding: 0px;
+        padding: 0 0 10px 0;
     }
 
     .icon {
@@ -651,14 +685,25 @@
     }
 
     &-backbtn {
-        padding-top: 20px;
+        margin: 20px 0 10px;
+        padding: 4px 10px;
         color: $violet;
         font-weight: 400;
         font-size: 15px;
         transition: .3s;
         cursor: pointer;
+        border: 1px solid $violet;
+        border-radius: 4px;
+        display: inline-block;
+        transition: .3s;
+        &:hover {
+            background-color: #fff;
+        }
         @include sp {
-            padding: 10px;
+            margin-top: 10px;
+            padding: 0;
+            margin-left: 10px;
+            border: none;
         }
     }
 
@@ -672,10 +717,11 @@
             padding: 0 10px;
         }
         h1 {
-            font-size: 26px;
+            font-size: 22px;
             color: $violet;
+            font-weight: 700;
             @include sp {
-                font-size: 20px;
+                font-size: 18px;
                 margin-bottom: 10px;
             }
         }

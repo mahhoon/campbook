@@ -167,6 +167,7 @@ new Vue({
     showUserGoodsLists() {
       this.usergoodslists = true;
       this.usertop = false;
+      this.camppage = false;
     },
 
     //画像セレクト
@@ -473,6 +474,7 @@ $(function(){
   });
   $('body').on('click', '.goodslists__contentarea__categoryunit-category-name', (e) => {
     $(e.target).next().slideToggle(200);
+    $(e.target).toggleClass('close',200);
   });
   
 

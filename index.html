@@ -11,6 +11,10 @@
     <!--webフォント -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!--ファビコン-->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png">
     <!--css -->
     <link rel="stylesheet" href="css/main.css">
     <!--googlemaps-->
@@ -136,14 +140,14 @@
             </div>
             <div v-bind:class="[togglemenu, {'togglemenu-show':isActive}, sp]">
                 <p v-on:click="showUserGoodsLists"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</p>
-                <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+                <!-- <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p> -->
                 <p v-on:click="logOut"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>ログアウト</p>
             </div>
             <div class="username-sp container"><p class="sp">{{ currentUname }}さん、こんにちは</p></div>
             
             <div class="personal-link container pc">
-                <P v-on:click="showUserGoodsLists"><span class="icon"><i class="fas fa-check-circle"></i></span>持ち物リストの編集</P>
-                <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p>
+                <P v-on:click="showUserGoodsLists" class="editgoodsbtn"><span class="icon"><i class="fas fa-check-circle"></i></span>基本の持ち物リストを編集</P>
+                <!-- <p class="non-active"><span class="icon"><i class="fas fa-camera"></i></span>写真投稿</p> -->
             </div>
             <div id="addcampplan" v-on:click="openNewcampModal">NEXT CAMP PLAN<br><span><i class="fas fa-plus-circle"></i></span></div>
             <div id="campcards">
@@ -163,13 +167,14 @@
         <!--キャンプ詳細ページ-->
         <section id="camppage" v-show="camppage">
             <div class="user-heading container">
-                <h1 class="pc"><img src="img/logo-small.svg"></h1>
+                <!--pc-->
+                <h1 class="pc" v-on:click="goUserIndex"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
                     <p class="username">{{ currentUname }}さん、こんにちは</p>
                     <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
-
-                <h1 class="sp"><img src="img/logo-small.svg"></h1>
+                <!--sp-->
+                <h1 class="sp" v-on:click="goUserIndex"><img src="img/logo-small.svg"></h1>
                 <!--ハンバーガーメニュー-->
                 <div class="toggle-wrap sp">
                     <div class="togglebtn" v-on:click="showToggleMenu">
@@ -194,12 +199,16 @@
                     <p class="camppage__date"><span class="icon"><i class="far fa-calendar"></i></span>{{campDetailData.fromCampDate}}〜{{campDetailData.toCampDate}}</p>
                     <a v-bind:href="campDetailData.campsiteUrl" target="_blank">公式サイト</a>
                     <p class="campsite__tel"><span class="icon"><i class="fas fa-phone"></i></span><a v-bind:href="`tel:${campDetailData.campsiteTel}`">{{ campDetailData.campsiteTel }}</a></p>
+                    <!--sp持ち物ボタン-->
+                    <P v-on:click="showUserGoodsLists" class="editgoodsbtn_sp"><span class="icon"><i class="fas fa-check-circle"></i></span>基本の持ち物リストを編集</P>
                 </div>
+
                 <!--pc メニューボタン-->
                 <ul class="camppage__navlinks pc">
                     <li v-on:click="editCampModalShow"><span class="icon"><i class="fas fa-edit"></i></span>行程を編集</li>
                     <li v-on:click="deleteCampData(currentCampId)"><span class="icon"><i class="far fa-trash-alt"></i></span>このシオリを削除</li>
                     <li v-on:click="goUserIndex"><span class="icon"><i class="fas fa-angle-double-left"></i></span>キャンプ一覧ページへ戻る</li>
+                    <P v-on:click="showUserGoodsLists" class="editgoodsbtn"><span class="icon"><i class="fas fa-check-circle"></i></span>基本の持ち物リストを編集</P>
                 </ul>   
                 <!--pc メニューボタンここまで--> 
             </div>
@@ -225,13 +234,16 @@
                             <a href="https://openweathermap.org/" target="_blank" class="contentarea_a-small">*by OpenWeatherMap</a>
                         </div>
                         <!--map-->
-                        <div id="maparea"></div>
+                        <div class="map">
+                            <div id="maparea"></div>
+                            <a target="_blank" v-bind:href="`http://maps.google.com/maps?q=${campDetailData.campsiteName}`" class="contentarea_a-small">GoogleMapアプリで見る</a>
+                        </div>
                     </div>
                 </div>
                 <div class="campcontent_flexlayout"><!--2カラム-->
                     <div class="campcontent_wrap column2">
                         <div class="campcontent_menubar">持ち物リスト</div>
-                        <goods-list v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:camp-goods="campGoods"></goods-list>
+                        <goods-list v-bind:current-camp-id="currentCampId" v-bind:current-uid="currentUid" v-bind:camp-goods="campGoods" v-on:show-user-goods-lists="showUserGoodsLists"></goods-list>
                     </div>
                     <div class="column2">
                         <div class="campcontent_wrap">
@@ -255,13 +267,13 @@
         <section id="usergoodslists" v-show="usergoodslists">
             <!-- v-show="userGoodslistsPage" -->
             <div class="user-heading container">
-                <h1 class="pc"><img src="img/logo-small.svg"></h1>
+                <h1 class="pc" v-on:click="goUserIndex"><img src="img/logo-small.svg"></h1>
                 <div class="user pc">
                     <p class="username">{{ currentUname }}さん、こんにちは</p>
                     <p class="logout" v-on:click="logOut">ログアウト</p>
                 </div>
 
-                <h1 class="sp"><img src="img/logo-small.svg"></h1>
+                <h1 class="sp" v-on:click="goUserIndex"><img src="img/logo-small.svg"></h1>
                 <div class="toggle-wrap sp">
                     <div class="togglebtn" v-on:click="showToggleMenu">
                         <span><i class="fas fa-bars"></i></span>
