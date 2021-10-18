@@ -486,7 +486,7 @@ footer {
   #headercontent p {
     line-height: 18px;
     padding: 5px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
   }
 }
@@ -514,7 +514,7 @@ footer {
   transition: .3s;
   cursor: default;
   display: inline-block;
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 #headercontent .loginbuttons .btn-basic:hover {
@@ -528,7 +528,7 @@ footer {
 @media (max-width: 670px) {
   #headercontent .loginbuttons .btn-basic {
     width: 30%;
-    margin: 0 10px 0 0;
+    margin: 0 10px;
     font-size: 15px;
   }
 }
@@ -539,7 +539,7 @@ footer {
 
 @media (max-width: 670px) {
   #introduction {
-    padding: 20px;
+    padding: 40px 20px 20px 20px;
   }
 }
 
@@ -579,7 +579,7 @@ footer {
 
 @media (max-width: 670px) {
   #introduction .introduction__title {
-    font-size: 20px;
+    font-size: 18px;
   }
   #introduction .introduction__title::after, #introduction .introduction__title::before {
     height: 20px;
@@ -592,23 +592,53 @@ footer {
   font-size: 14px;
 }
 
+@media (min-width: 669px) {
+  #introduction .introduction_contents {
+    margin-top: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+#introduction .introduction_contents .intro-img {
+  width: 35%;
+}
+
+#introduction .introduction_contents .intro-img img {
+  width: 100%;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 4px 4px 6px #ddd;
+          box-shadow: 4px 4px 6px #ddd;
+  border-radius: 6px;
+}
+
+@media (max-width: 670px) {
+  #introduction .introduction_contents .intro-img {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
 #introduction .introitems-wrap {
-  margin: 30px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  width: 60%;
+  padding-left: 20px;
 }
 
 @media (max-width: 670px) {
   #introduction .introitems-wrap {
     margin: 20px 0;
+    width: 100%;
+    padding-left: 0;
   }
 }
 
 #introduction .introitems-wrap .intro-item {
-  width: 33%;
   padding: 20px 20px;
   margin: 0 auto;
   display: -webkit-box;
@@ -630,20 +660,25 @@ footer {
 
 #introduction .introitems-wrap .intro-item .intro-icon {
   color: #6868AF;
-  font-size: 40px;
+  font-size: 35px;
   position: relative;
   top: 4px;
-  padding-right: 10px;
 }
 
 @media (max-width: 670px) {
   #introduction .introitems-wrap .intro-item .intro-icon {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 
 #introduction .introitems-wrap .intro-item .intro-text {
-  width: 78%;
+  width: 88%;
+}
+
+@media (max-width: 670px) {
+  #introduction .introitems-wrap .intro-item .intro-text {
+    width: 82%;
+  }
 }
 
 #introduction .introitems-wrap .intro-item h3 {
@@ -652,8 +687,93 @@ footer {
 }
 
 #introduction .introitems-wrap .intro-item p {
+  font-size: 14px;
+  line-height: 1.5rem;
+}
+
+@media (max-width: 670px) {
+  #introduction .introitems-wrap .intro-item p {
+    font-size: 13px;
+  }
+}
+
+#introduction .introduction-author {
+  cursor: pointer;
+  display: inline-block;
+}
+
+@media (max-width: 670px) {
+  #introduction .introduction-author {
+    margin-top: 60px;
+  }
+}
+
+#introduction .introduction-author img {
+  width: 50px;
+  vertical-align: middle;
+}
+
+@media (max-width: 670px) {
+  #introduction .introduction-author img {
+    width: 40px;
+  }
+}
+
+#introduction .introduction-author .about-author {
+  vertical-align: middle;
+  border-bottom: 1px dotted #333;
+  font-size: 14px;
+}
+
+@media (max-width: 670px) {
+  #introduction .introduction-author .about-author {
+    font-size: 13px;
+  }
+}
+
+#introduction .author-msg {
+  display: none;
+  position: relative;
+  width: 80%;
+  color: #6868AF;
+  padding: 10px 15px;
   font-size: 13px;
   line-height: 1.5rem;
+  border: 1px solid #6868AF;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+@media (max-width: 670px) {
+  #introduction .author-msg {
+    width: 100%;
+  }
+}
+
+#introduction .author-msg::before {
+  content: '';
+  position: absolute;
+  left: 70px;
+  top: -10px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #6868AF;
+  border-left: 8px solid transparent;
+}
+
+#introduction .author-msg::after {
+  content: '';
+  position: absolute;
+  left: 70px;
+  top: -8px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #fff;
+  border-left: 8px solid transparent;
 }
 
 #userindex {

@@ -475,7 +475,14 @@ $(function(){
 
   //アコーディオン
   //ページ読み込み時の要素を指定したいのでセレクタにbody,第二引数に要素を入れています
-
+  $('body').on('click', '.introduction-author', (e) => {
+    $(e.target).toggleClass ('authorMsgShow');
+      if ($(e.target).hasClass('authorMsgShow')) {
+        $('.author-msg').slideDown(300);
+      } else {
+        $('.author-msg').slideUp(300);
+      }
+  });
   $('body').on('click', '.campcontent_menubar', (e) => {
     $(e.target).next().slideToggle(200);
     $(e.target).toggleClass('close',200);

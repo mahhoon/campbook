@@ -34,7 +34,7 @@
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
                 <h1 class="sp"><img src="img/title-sp.svg" alt="キャンプノシオリ"></h1>
                 <p>キャンプ行ってますかー？<br>
-                    キャンプの準備をちょっと便利にしてくれる<br class="sp">かもしれないアプリです。<br>行き届かないところもありますが、<br class="sp">良かったら使ってみてください！
+                    キャンプの準備をちょっと便利にしてくれる<br class="sp">かもしれないアプリを作ってみました。<br>行き届かないところもありますが、<br class="sp">良かったら使ってみてください！
                 <div class="loginbuttons">
                     <div class="btn-basic loginbuttons__login" v-on:click="openLoginModal">ログイン</div>
                     <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
@@ -47,51 +47,66 @@
             <div id="introduction" class="container fade"> <!--fade-->
                 <h2 class="introduction__title">こんなことができます</h2>
                 <p　class="introduction__p">ログインが必要です</p>
-                <ul class="introitems-wrap">
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
-                        <div class="intro-text">
-                            <h3>キャンプ場情報表示</h3>
-                            <p>行く予定のキャンプ場の天気予報・地図を表示します。</p>
-                        </div>
-                    </li>
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="fas fa-check-circle"></i></span>
-                        <div class="intro-text">
-                            <h3>持ち物チェックリスト作成</h3>
-                            <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！</p>
-                        </div>
-                    </li>
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="far fa-list-alt"></i></i></span>
-                        <div class="intro-text">
-                            <h3>MEMO機能</h3>
-                            <p>TODOリストやキャンセルポリシー、備忘録などに。</p>
-                        </div>
-                    </li>
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="fas fa-link"></i></span>
-                        <div class="intro-text">
-                            <h3>お役立ちリンク集を作れる</h3>
-                            <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
-                        </div>
-                    </li>
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="fas fa-camera"></i></span>
-                        <div class="intro-text">
-                            <h3>写真アップ（予定）</h3>
-                            <p>キャンプに行ったら写真をアップ。トップページでみんなにシェア。</p>
-                        </div>
-                    </li>
-                    <li class="intro-item">
-                        <span class="intro-icon"><i class="fas fa-drumstick-bite"></i></span>
-                        <div class="intro-text">
-                            <h3>キャンプごはんメモ（予定）</h3>
-                            <p>キャンプごはんメニュー計画のメモに。</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                <div class="introduction_contents">
+                    <ul class="introitems-wrap">
+                        <li class="intro-item">
+                            <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
+                            <div class="intro-text">
+                                <h3>キャンプ場情報表示</h3>
+                                <p>行く予定のキャンプ場を登録すると、天気予報・地図を表示します。</p>
+                            </div>
+                        </li>
+                        <li class="intro-item">
+                            <span class="intro-icon"><i class="fas fa-check-circle"></i></span>
+                            <div class="intro-text">
+                                <h3>持ち物チェックリスト作成</h3>
+                                <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！ チェックマークはパッキングと車への積載完了の２種類用意しました。</p>
+                            </div>
+                        </li>
+                        <li class="intro-item">
+                            <span class="intro-icon"><i class="far fa-list-alt"></i></i></span>
+                            <div class="intro-text">
+                                <h3>MEMO機能</h3>
+                                <p>TODOリストやキャンセルポリシー、備忘録などに。</p>
+                            </div>
+                        </li>
+                        <li class="intro-item">
+                            <span class="intro-icon"><i class="fas fa-bookmark"></i></span>
+                            <div class="intro-text">
+                                <h3>お役立ちリンク集を作れる</h3>
+                                <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
+                            </div>
+                        </li>
+                        <!-- <li class="intro-item">
+                            <span class="intro-icon"><i class="fas fa-camera"></i></span>
+                            <div class="intro-text">
+                                <h3>写真アップ（予定）</h3>
+                                <p>キャンプに行ったら写真をアップ。トップページでみんなにシェア。</p>
+                            </div>
+                        </li>
+                        <li class="intro-item">
+                            <span class="intro-icon"><i class="fas fa-drumstick-bite"></i></span>
+                            <div class="intro-text">
+                                <h3>キャンプごはんメモ（予定）</h3>
+                                <p>キャンプごはんメニュー計画のメモに。</p>
+                            </div>
+                        </li> -->
+                    </ul>
+                    <div class="intro-img"><img src="img/appimg.png"></div>
+                </div>
+                <div class="introduction-author">
+                    <img src="img/faceicon.svg">
+                    <span class="about-author">制作者について</span>
+                </div>
+                <div class="author-msg">
+                    <p>
+                        キャンプ好き、スノーボード好きな40代女性。プログラミングの勉強を始めたら楽しくて、どうせならとキャンプのアプリ制作に挑戦（無謀・・！）
+                        小踊りしたり絶望したりを繰り返すこと４ヶ月。やっとお見せできるかなというところまで辿り着きました。まだまだですが、ご意見ご感想、コードレビューなどいただけると嬉しいです！（2021/10）<br>
+                        使用フレームワーク：Vue.js（CDN）　データベース：firebase Realtimedatabase
+                    </p>
+                </div>
+                
+            
             <!--投稿写真集-->
             <!-- <div id="post-photos" class="container fade">
                 <h2 class="post-photos-title">CAMP SNAP!</h2>
