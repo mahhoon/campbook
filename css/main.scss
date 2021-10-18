@@ -14,28 +14,31 @@
     padding: 20px 0 50px;
     height: 600px; 
     @include sp {
-        height: 300px;
-        padding-bottom: 0;
+        height: auto;
+        padding-bottom: 30px;
         img {
             width: 200px;
             padding-bottom: 0px;
             text-align: left;
         }
-        background-size: 160%;
+        background-size: cover;
     }
 
     p {
         padding-top: 20px;
         @include sp {
-            line-height: 22px;
+            line-height: 18px;
             padding: 5px;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 700;
         }
     }
 
     .loginbuttons {
         margin-top: 20px;
+        @include sp {
+            margin-top: 20px;
+        }
         .btn-basic {
             @include basic-btn;
             display: inline-block;
@@ -498,7 +501,7 @@
     }
     .addtodoarea {
         padding-bottom: 10px;
-        width: 100%;
+        width: 98%;
         @include flex;
         @include sp {
             margin-left: 10px;
@@ -641,11 +644,9 @@
     #bookmarks {
         padding: 10px 0;
         .bookmarks__item {
-            padding: 10px 5px;
+            margin: 0 10px;
+            padding: 10px 0;
             border-bottom: 1px solid #aaa;
-            @include sp {
-                padding: 0 10px;
-            }
         }
     }
     .bookmark__item-url {
@@ -659,13 +660,17 @@
     }
     .addbookmarkarea {
         @include flex;
+        margin: 0 10px;
         padding: 10px;
         border: 1px solid lighten($violet, 30%);
         border-radius: 6px;
+        @include sp {
+            padding-right: 0;
+        }
         .inputarea {
             width: 90%;
             input {
-                width: 100%;
+                width: 98%;
                 height: 24px;
             }
         }

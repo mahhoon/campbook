@@ -31,7 +31,7 @@ import {basicGoodsLists} from "./userGoodsLists.js";
 const footerWrap = {
   template: `
   <footer class="container">
-       <p>&copy; luonto 2021</p>
+    <div class="footerimg"></div>
   </footer>
   `
 };

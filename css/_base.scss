@@ -86,11 +86,16 @@ body {
     }
 }
 footer {
-    font-size: 11px;
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid #eee;
-    color: #777;
+    margin-top: 10px;
+    width: 80%;
+    height: 80px;
+    background-image: url(../img/footerimg.svg);
+    background-repeat: no-repeat;
+    @include sp {
+        background-image: url(../img/footerimg-sp.svg);
+
+    }
+   
 }
 
 
@@ -108,4 +113,10 @@ footer {
 
 .fade-show {
     opacity: 1;
+}
+
+.br-sponly {
+    @include sp {
+
+    }
 }

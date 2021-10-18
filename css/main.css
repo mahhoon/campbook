@@ -60,11 +60,17 @@ body h2 {
 }
 
 footer {
-  font-size: 11px;
-  text-align: center;
-  padding: 20px 0;
-  border-top: 1px solid #eee;
-  color: #777;
+  margin-top: 10px;
+  width: 80%;
+  height: 80px;
+  background-image: url(../img/footerimg.svg);
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 670px) {
+  footer {
+    background-image: url(../img/footerimg-sp.svg);
+  }
 }
 
 .fade {
@@ -461,9 +467,9 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent {
-    height: 300px;
-    padding-bottom: 0;
-    background-size: 160%;
+    height: auto;
+    padding-bottom: 30px;
+    background-size: cover;
   }
   #headercontent img {
     width: 200px;
@@ -478,15 +484,21 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent p {
-    line-height: 22px;
+    line-height: 18px;
     padding: 5px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
   }
 }
 
 #headercontent .loginbuttons {
   margin-top: 20px;
+}
+
+@media (max-width: 670px) {
+  #headercontent .loginbuttons {
+    margin-top: 20px;
+  }
 }
 
 #headercontent .loginbuttons .btn-basic {
@@ -1081,7 +1093,7 @@ footer {
 
 .campcontent_wrap .addtodoarea {
   padding-bottom: 10px;
-  width: 100%;
+  width: 98%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1247,14 +1259,9 @@ footer {
 }
 
 .campcontent_wrap #bookmarks .bookmarks__item {
-  padding: 10px 5px;
+  margin: 0 10px;
+  padding: 10px 0;
   border-bottom: 1px solid #aaa;
-}
-
-@media (max-width: 670px) {
-  .campcontent_wrap #bookmarks .bookmarks__item {
-    padding: 0 10px;
-  }
 }
 
 .campcontent_wrap .bookmark__item-url {
@@ -1277,9 +1284,16 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 0 10px;
   padding: 10px;
   border: 1px solid #cccce4;
   border-radius: 6px;
+}
+
+@media (max-width: 670px) {
+  .campcontent_wrap .addbookmarkarea {
+    padding-right: 0;
+  }
 }
 
 .campcontent_wrap .addbookmarkarea .inputarea {
@@ -1287,7 +1301,7 @@ footer {
 }
 
 .campcontent_wrap .addbookmarkarea .inputarea input {
-  width: 100%;
+  width: 98%;
   height: 24px;
 }
 
