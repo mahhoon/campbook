@@ -107,6 +107,10 @@ footer {
           justify-content: space-between;
 }
 
+.user-heading h1 {
+  cursor: pointer;
+}
+
 .user-heading .user {
   text-align: right;
 }
@@ -484,7 +488,7 @@ footer {
 
 @media (max-width: 670px) {
   #headercontent p {
-    line-height: 18px;
+    line-height: 22px;
     padding: 5px;
     font-size: 12px;
     font-weight: 700;
@@ -667,8 +671,12 @@ footer {
 
 @media (max-width: 670px) {
   #introduction .introitems-wrap .intro-item .intro-icon {
-    font-size: 25px;
+    font-size: 30px;
   }
+}
+
+#introduction .introitems-wrap .intro-item .bookmark {
+  padding-left: 4px;
 }
 
 #introduction .introitems-wrap .intro-item .intro-text {
@@ -698,13 +706,14 @@ footer {
 }
 
 #introduction .introduction-author {
+  margin-left: 40px;
   cursor: pointer;
   display: inline-block;
 }
 
 @media (max-width: 670px) {
   #introduction .introduction-author {
-    margin-top: 60px;
+    margin: 60px 0 0 0;
   }
 }
 
@@ -722,7 +731,7 @@ footer {
 #introduction .introduction-author .about-author {
   vertical-align: middle;
   border-bottom: 1px dotted #333;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 @media (max-width: 670px) {
@@ -732,6 +741,8 @@ footer {
 }
 
 #introduction .author-msg {
+  margin-top: 5px;
+  margin-left: 40px;
   display: none;
   position: relative;
   width: 80%;
@@ -741,12 +752,12 @@ footer {
   line-height: 1.5rem;
   border: 1px solid #6868AF;
   border-radius: 6px;
-  margin-top: 5px;
 }
 
 @media (max-width: 670px) {
   #introduction .author-msg {
     width: 100%;
+    margin-left: 0;
   }
 }
 
@@ -1388,6 +1399,8 @@ footer {
   text-decoration: none;
   display: block;
   color: #6868AF;
+  font-size: 12px;
+  line-height: 1.2rem;
 }
 
 .campcontent_wrap .bookmark__item-url .icon {

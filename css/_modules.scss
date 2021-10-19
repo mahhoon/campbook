@@ -2,7 +2,9 @@
 .user-heading {
     margin-bottom: 10px;
     @include flex;
-
+    h1 {
+        cursor: pointer;
+    }
     .user {
         text-align: right;
 

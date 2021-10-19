@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="css/main.css">
     <!--googlemaps-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8uIoaPz2mTI0XVtGIl7GZRPknGYSvrZA&langage=ja&region=JP" async defer></script>
+    <!--AOS-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <noscript>
     <!-- JavaScriptが無効化されている場合の追加スタイルシート -->
     
@@ -34,7 +37,7 @@
                 <h1 class="pc"><img src="img/title.svg" alt="キャンプノシオリ"></h1>
                 <h1 class="sp"><img src="img/title-sp.svg" alt="キャンプノシオリ"></h1>
                 <p>キャンプ行ってますかー？<br>
-                    キャンプの準備をちょっと便利にしてくれる<br class="sp">かもしれないアプリを作ってみました。<br>行き届かないところもありますが、<br class="sp">良かったら使ってみてください！
+                    キャンプの準備アプリ作ってみました！　<br class="sp">ちょっとだけ準備が楽になる、かも？<br>良かったら使ってみてください！
                 <div class="loginbuttons">
                     <div class="btn-basic loginbuttons__login" v-on:click="openLoginModal">ログイン</div>
                     <div class="btn-basic loginbuttons__signup" v-on:click="openSignupModal">新規登録</div>
@@ -48,33 +51,33 @@
                 <h2 class="introduction__title">こんなことができます</h2>
                 <p　class="introduction__p">ログインが必要です</p>
                 <div class="introduction_contents">
-                    <ul class="introitems-wrap">
-                        <li class="intro-item">
+                    <ul class="introitems-wrap" >
+                        <li class="intro-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100" data-aos-once="true">
                             <span class="intro-icon"><i class="fas fa-map-marked-alt"></i></span>
                             <div class="intro-text">
                                 <h3>キャンプ場情報表示</h3>
                                 <p>行く予定のキャンプ場を登録すると、天気予報・地図を表示します。</p>
                             </div>
                         </li>
-                        <li class="intro-item">
+                        <li class="intro-item"　data-aos="fade-right" data-aos-duration="800" data-aos-delay="300" data-aos-once="true">
                             <span class="intro-icon"><i class="fas fa-check-circle"></i></span>
                             <div class="intro-text">
                                 <h3>持ち物チェックリスト作成</h3>
                                 <p>独自の持ち物リストを作成できます。キャンプ用品のカテゴリ分けで見やすく！ チェックマークはパッキングと車への積載完了の２種類用意しました。</p>
                             </div>
                         </li>
-                        <li class="intro-item">
+                        <li class="intro-item"　data-aos="fade-right" data-aos-duration="800" data-aos-delay="500" data-aos-once="true">
                             <span class="intro-icon"><i class="far fa-list-alt"></i></i></span>
                             <div class="intro-text">
                                 <h3>MEMO機能</h3>
                                 <p>TODOリストやキャンセルポリシー、備忘録などに。</p>
                             </div>
                         </li>
-                        <li class="intro-item">
-                            <span class="intro-icon"><i class="fas fa-bookmark"></i></span>
+                        <li class="intro-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="700" data-aos-once="true">
+                            <span class="intro-icon bookmark"><i class="fas fa-bookmark"></i></span>
                             <div class="intro-text">
                                 <h3>お役立ちリンク集を作れる</h3>
-                                <p>ギアのマニュアルや近隣施設などの自分用のブックマークに。</p>
+                                <p>ギアのマニュアルや近隣施設など自分用のブックマークに。</p>
                             </div>
                         </li>
                         <!-- <li class="intro-item">
@@ -92,17 +95,17 @@
                             </div>
                         </li> -->
                     </ul>
-                    <div class="intro-img"><img src="img/appimg.png"></div>
+                    <div class="intro-img"><img src="img/appimg.png" data-aos="zoom-out-left" data-aos-duration="1500" data-aos-delay="100" data-aos-once="true"></div>
                 </div>
-                <div class="introduction-author">
+                <div class="introduction-author" data-aos="fade" data-aos-duration="1500" data-aos-easing="ease-out" data-aos-delay="600" data-aos-once="true">
                     <img src="img/faceicon.svg">
                     <span class="about-author">制作者について</span>
                 </div>
                 <div class="author-msg">
                     <p>
-                        キャンプ好き、スノーボード好きな40代女性。プログラミングの勉強を始めたら楽しくて、どうせならとキャンプのアプリ制作に挑戦（無謀・・！）
-                        小踊りしたり絶望したりを繰り返すこと４ヶ月。やっとお見せできるかなというところまで辿り着きました。まだまだですが、ご意見ご感想、コードレビューなどいただけると嬉しいです！（2021/10）<br>
-                        使用フレームワーク：Vue.js（CDN）　データベース：firebase Realtimedatabase
+                        キャンプ好き、スノーボード好き。プログラミングの勉強を始めたら楽しくて、どうせならとキャンプのアプリ制作に挑戦（無謀・・！）
+                        小踊りしたり絶望したりを繰り返すこと４ヶ月。やっとお見せできるかなというところまで辿り着きました。まだまだですが、ご感想、アドバイスなどいただけると嬉しいです！（2021/10）<br>
+                        使用フレームワーク：Vue.js（CDN）　データベース：Firebase Realtimedatabase
                     </p>
                 </div>
                 
@@ -365,6 +368,9 @@ firebase.initializeApp(firebaseConfig);
     <script src="https://unpkg.com/v8n/dist/v8n.min.js"></script>
     <!-- Sortable.js -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>

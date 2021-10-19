@@ -1,3 +1,5 @@
+
+
 /**
  * 認証部分
  **/
@@ -453,6 +455,9 @@ new Vue({
         this.user = false;
       }
     });
+
+    //AOS初期化
+    AOS.init();
   }
 
   
@@ -478,9 +483,9 @@ $(function(){
   $('body').on('click', '.introduction-author', (e) => {
     $(e.target).toggleClass ('authorMsgShow');
       if ($(e.target).hasClass('authorMsgShow')) {
-        $('.author-msg').slideDown(300);
+        $('.author-msg').slideDown(500);
       } else {
-        $('.author-msg').slideUp(300);
+        $('.author-msg').slideUp(500);
       }
   });
   $('body').on('click', '.campcontent_menubar', (e) => {
