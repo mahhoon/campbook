@@ -138,6 +138,7 @@ new Vue({
       firebase.auth().signOut();
       this.closeLoginModal();
       this.closeSignupModal();
+      document.location.reload();
     },
     openNewcampModal() {
       this.registCampModalShow = true;
@@ -250,11 +251,15 @@ new Vue({
         });
       //持ち物リストのデータをfirebaseから取得
       firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
+      .off('value');
+      firebase.database().ref(`campgoods/${this.currentUid}/${this.currentCampId}`)
         .on('value',(snapshot) => {
             this.campGoods = snapshot.val();
             console.log(this.campGoods);
         });
       //リンク集のデータをfirebaseから取得
+      firebase.database().ref(`campbookmarks/${this.currentUid}/${this.currentCampId}`)
+      .off('value');
       firebase.database().ref(`campbookmarks/${this.currentUid}/${this.currentCampId}`)
         .on('value',(snapshot) => {
             this.campBookmarks = snapshot.val();
