@@ -75,7 +75,7 @@ export const goodsList = {
             this.$emit('show-user-goods-lists');
         },
 
-        //インプットエリアにkeyが乗ったら該当のkeyを取得
+        //インプットエリアにマウスが乗ったら該当のkeyを取得
         getKey(key) {
             this.currentCategoryKey = key;
             console.log(this.currentCategoryKey);
