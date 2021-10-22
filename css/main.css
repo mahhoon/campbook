@@ -671,7 +671,7 @@ footer {
 
 @media (max-width: 670px) {
   #introduction .introitems-wrap .intro-item .intro-icon {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 
@@ -1313,7 +1313,7 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 5px;
-  height: 30px;
+  height: 35px;
 }
 
 @media (max-width: 670px) {
